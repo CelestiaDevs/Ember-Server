@@ -17,9 +17,8 @@ exports.proxyip = ['127.0.0.0/8'];
 exports.potd = '';
 exports.superAdmins = {
 	__proto__: null,
-	'fenrir': 1,
-	'fenriis': 1,
-	'slayer95': 1,
+	'deltaskiez': 1,
+	'kimpossible25': 1,
 };
 
 // crash guard - write errors to log file instead of crashing
