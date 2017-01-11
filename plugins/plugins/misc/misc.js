@@ -1,7 +1,7 @@
 'use strict';
 
 exports.commands = {
-globalauth: 'gal',
+	globalauth: 'gal',
 	stafflist: 'gal',
 	authlist: 'gal',
 	auth: 'gal',
