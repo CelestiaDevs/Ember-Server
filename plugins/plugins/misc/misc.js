@@ -1,3 +1,5 @@
+'use strict';
+
 globalauth: 'gal',
 	stafflist: 'gal',
 	authlist: 'gal',
@@ -74,3 +76,4 @@ globalauth: 'gal',
 			'<br /><br /><blink>(<b>Bold</b> / <i>Italic</i> = Currently Online)</blink>'
 		);
 	},
+};
