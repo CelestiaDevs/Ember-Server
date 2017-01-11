@@ -24,7 +24,7 @@ exports.commands = {
 					"- Our regular users<br />");
 	},
 	
-	globalauth: 'gal',
+	/**globalauth: 'gal',
 	stafflist: 'gal',
 	authlist: 'gal',
 	auth: 'gal',
@@ -99,5 +99,5 @@ exports.commands = {
 			'<br /><b><u>+Voices (' + staff['voices'].length + ')</u></b>:<br />' + staff['voices'].join(', ') +
 			'<br /><br /><blink>(<b>Bold</b> / <i>Italic</i> = Currently Online)</blink>'
 		);
-	},
+	},**/
 };
