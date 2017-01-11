@@ -122,5 +122,5 @@ exports.commands = {
 			}
 		}
 		this.sendReplyBox(official.join(' ') + nonOfficial.join(' ') + privateRoom.join(' '));
-	},
+	}
 };
