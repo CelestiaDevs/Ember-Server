@@ -271,7 +271,7 @@ exports.grouplist = [
 		symbol: '&',
 		id: "leader",
 		name: "Leader",
-		inherit: '*',
+		inherit: '@',
 		jurisdiction: '@u',
 		promote: 'u',
 		roomowner: true,
@@ -373,6 +373,8 @@ exports.grouplist = [
 		id: "voice",
 		name: "Voice",
 		inherit: ' ',
+		alts: 's',
+		broadcast: true,
 	},
 	{
 		symbol: ' ',
