@@ -902,6 +902,31 @@ exports.Formats = [
 		},
 	},
 	{
+		name: "[Gen 7] Perseverance",
+		
+		effectType: 'Format',
+		challengeDefault: true,
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+		defaultLevel: 100,
+		onFaint: function(pokemon) {
+				let name = pokemon.side.name;
+				let winner = '';
+				if (pokemon.side.id === 'p1') {
+					winner = 'p2';
+				} else {
+					winner = 'p1';
+				}
+				pokemon.battle.win(winner);
+			
+		},
+		mod: 'gen7',
+		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
+		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Shuckle', 'Sableye']
+	},
+	{
 		name: "Balanced Hackmons (Doubles)",
 		gameType: 'doubles',
 
