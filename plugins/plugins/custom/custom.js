@@ -100,7 +100,24 @@ exports.commands = {
 				roomUser.joinRoom(room);
 			}
 		}, 1000);
-	},	
+	},
+	
+	credit: 'credits',
+	credits: function (target, room, user) {
+		this.popupReply("|html|" + "<font size=5>Ember Server Credits</font><br />" +
+					"<u>Major Contributors:</u><br />" +
+					"- " + hashColor('DeltaSkiez', true) + " (Owner, Sysadmin, Server CSS)<br />" +
+					"- " + hashColor('Revival Kaine', true) + " (Owner, Sysadmin, Lead Policy)<br />" +
+					"- " + hashColor('Revival Viosmic', true) + " (Admin, Discord Manager)<br />" +
+					"<br />" +
+					"<u>Staff Contributions:</u><br />" +
+					"- " + hashColor('Blooded Kitten', true) + " (Server Website Manager)<br />" +
+					"- " + hashColor('Revival Fleur', true) + " (Server Management)<br />" +
+					"<br />" +
+					"<u>Special Thanks:</u><br />" +
+					"- Current staff team<br />" +
+					"- Our regular users<br />");
+	},
 
 	roomlist: function (target, room, user) {
 		if (!this.can('roomlist')) return;
