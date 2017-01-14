@@ -1171,7 +1171,7 @@ exports.commands = {
 		let roomfounder = (targetRoom.founder ? (room.founder in targetRoom.users ? "**" + targetRoom.founder + "**" : room.founder);
 		if (roomfounder) buffer.unshift("Room Founder:<br />" + roomfounder);
 		if (targetRoom !== room) buffer.unshift("" + targetRoom.title + " room auth:");
-		connection.send("|popup||html|" + buffer.join("\n\n") + userLookup);
+		connection.popup(buffer.join("\n\n") + userLookup);
 	},
 
 	'!userauth': true,
