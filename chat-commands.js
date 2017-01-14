@@ -1168,7 +1168,7 @@ exports.commands = {
 			connection.popup("The room '" + targetRoom.title + "' has no auth." + userLookup);
 			return;
 		}
-		let roomfounder = (targetRoom.founder ? (room.founder in targetRoom.users ? "**" + s + "**" : s);
+		let roomfounder = (targetRoom.founder ? (room.founder in targetRoom.users ? "**" + room.founder + "**" : room.founder);
 		if (roomfounder) buffer.unshift("Room Founder:<br />" + roomfounder);
 		if (targetRoom !== room) buffer.unshift("" + targetRoom.title + " room auth:");
 		connection.send("|popup||html|" + buffer.join("\n\n") + userLookup);
