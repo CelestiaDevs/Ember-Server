@@ -27,7 +27,7 @@ function parseStatus(text, encoding) {
 	return text;
 }
 
-let color = require('../config/color');
+let color = require('../plugins/utils/colors/hash');
 hashColor = function(name, bold) {
 	return (bold ? "<b>" : "") + "<font color=" + color(name) + ">" + (Users(name) && Users(name).connected && Users.getExact(name) ? Tools.escapeHTML(Users.getExact(name).name) : Tools.escapeHTML(name)) + "</font>" + (bold ? "</b>" : "");
 }
