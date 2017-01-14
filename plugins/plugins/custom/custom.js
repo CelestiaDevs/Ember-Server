@@ -193,7 +193,7 @@ exports.commands = {
 	credits: function (target, room, user) {
 		this.popupReply("|html|" + "<font size=5>Ember Server Credits</font><br />" +
 					"<u>Major Contributors:</u><br />" +
-					"- " + Plugins.Colors.apply('**DeltaSkiez**', true) + " (Owner, Sysadmin, Server CSS)<br />" +
+					"- " + Plugins.Colors.apply('DeltaSkiez', true) + " (Owner, Sysadmin, Server CSS)<br />" +
 					"- " + Plugins.Colors.apply('Revival Kaine', true) + " (Owner, Sysadmin, Lead Policy)<br />" +
 					"- " + Plugins.Colors.apply('Revival Viosmic', true) + " (Admin, Discord Manager)<br />" +
 					"<br />" +
