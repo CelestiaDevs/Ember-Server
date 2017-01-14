@@ -27,6 +27,11 @@ function parseStatus(text, encoding) {
 	return text;
 }
 
+let color = require('../config/color');
+hashColor = function(name, bold) {
+	return (bold ? "<b>" : "") + "<font color=" + color(name) + ">" + (Users(name) && Users(name).connected && Users.getExact(name) ? Tools.escapeHTML(Users.getExact(name).name) : Tools.escapeHTML(name)) + "</font>" + (bold ? "</b>" : "");
+}
+
 exports.commands = {
 	away: function (target, room, user) {
 		if (!user.isAway && user.name.length > 15) return this.sendReply('Su nombre de usuario es demasiado largo para cualquier tipo de uso de este comando.');
