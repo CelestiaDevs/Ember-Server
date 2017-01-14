@@ -102,6 +102,48 @@ exports.commands = {
 		}, 1000);
 	},
 	
+	roomfounder: function (target, room, user) {
+        if (!room.chatRoomData) {
+            return this.sendReply("/roomfounder - This room isn\'t designed for per-room moderation to be added.");
+        }
+        target = this.splitTarget(target, true);
+        var targetUser = this.targetUser;
+        if (!targetUser) return this.sendReply("User '" + this.targetUsername + "' is not online.");
+        if (!this.can('declare')) return false;
+        if (!room.auth) room.auth = room.chatRoomData.auth = {};
+        if (!room.leagueauth) room.leagueauth = room.chatRoomData.leagueauth = {};
+        var name = targetUser.name;
+        room.auth[targetUser.userid] = '#';
+        room.founder = targetUser.userid;
+        this.addModCommand(name + ' was appointed to Room Founder by ' + user.name + '.');
+        room.onUpdateIdentity(targetUser);
+        room.chatRoomData.founder = room.founder;
+        Rooms.global.writeChatRoomData();
+    },
+    
+    roomdefounder: 'deroomfounder',
+    deroomfounder: function (target, room, user) {
+        if (!room.auth) {
+            return this.sendReply("/roomdeowner - This room isn't designed for per-room moderation");
+        }
+        target = this.splitTarget(target, true);
+        var targetUser = this.targetUser;
+        var name = this.targetUsername;
+        var userid = toId(name);
+        if (!userid || userid === '') return this.sendReply("User '" + name + "' does not exist.");
+
+        if (room.auth[userid] !== '#') return this.sendReply("User '" + name + "' is not a room founder.");
+        if (!this.can('declare', null, room)) return false;
+
+        delete room.auth[userid];
+        delete room.founder;
+        this.sendReply("(" + name + " is no longer Room Founder.)");
+        if (targetUser) targetUser.updateIdentity();
+        if (room.chatRoomData) {
+            Rooms.global.writeChatRoomData();
+        }
+    },
+	
 	credit: 'credits',
 	credits: function (target, room, user) {
 		this.popupReply("|html|" + "<font size=5>Ember Server Credits</font><br />" +
