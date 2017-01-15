@@ -1,0 +1,13 @@
+{
+  "name": "Pokemon-Showdown-Plugin-Rps",
+  "version": "0.2",
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "main": "rps.js",
+  "scripts": {},
+  "author": {
+    "name": "PS Contributors"
+  },
+  "private": true
+}
