@@ -210,19 +210,19 @@ exports.commands = {
 	emberrules: function (target, room, user) {
 		this.popupReply("|html|" + "<font size=4><b>Ember Server Rules:</b></font><br />" +
 					"<br />" +
-					"<b>1.</b> Esta totalmente prohibido hablar de temas sexuales explícitos (+18). En caso de que esta norma se incumpla se penalizará con un ban inmediato o sera decidido entre el staff.<br />" +
+					"<b>1.</b> No sex. Don't discuss anything sexually explicit, not even in private messages, not even if you're both adults.<br />" +
 					"<br />" +
-					"<b>2.</b> Prohibido el Flood. El Flood (inundación) se trata de escribir en varios mensajes lo que podría redactarse en 1. El flood son las de 4 lineas seguidas en una sala.<br />" +
+					"<b>2.</b> Moderators have discretion to punish any behaviour they deem inappropriate, whether or not it's on this list.<br />" +
 					"<br />" +
-					"<b>3.</b> Esta prohibido el uso excesivo de mayúsculas y alargar las palabras.<br />" +
+					"<b>3.</b> Do not spam, flame, or troll. This includes advertising, raiding, asking questions with one-word answers in the lobby, and flooding the chat such as by copy/pasting logs in the lobby.<br />" +
 					"<br />" +
-					"<b>4.</b> Los links de otros servers no estan permitidos tampoco links de cualquier cosa 18+.<br />" +
+					"<b>4.</b> No minimodding: don't mod if it's not your job. Don't tell people they'll be muted, don't ask for people to be muted, and don't talk about whether or not people should be muted. This applies to bans and other punishments, too.<br />" +
 					"<br />" +
-					"<b>5.</b> El uso excesivo del /me o otras etiquetas esta prohibido al igual que el shitposting.<br />" +
+					"<b>5.</b> Spam is not permitted this included but not limited to server links, 18+ links, etc.<br />" +
 					"<br />" +
-					"<b>6.</b> Faltar el respeto a un user tanto en el chat como por mensajes privados no esta permitido.<br />" +
+					"<b>6.</b> Usernames may not directly reference sexual activity, or be excessively disgusting.<br />" +
 					"<br />" +
-					"<b>7.</b> El staff o los moderadores, pueden sancionar cualquier comportamiento que consideren inapropiado incluso si no aparece en estas reglas. Si usted esta en desacuerdo con una descicion tomada, puede contactar al Staff Superior (un Lider (&) o un Administrador (~)).<br />" +
+					"<b>7.</b> Please treat everyone with respect this included staff and regular users.<br />" +
 					"<br />" +
 					"<b>8.</b> No hacer minimod, se establecio a un staff capaz de pensar por si mismo.<br />" +
 					"<br />" +
