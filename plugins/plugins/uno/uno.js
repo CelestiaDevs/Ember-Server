@@ -18,11 +18,11 @@ const COLOR_NAMES = new Map([
 	['W', 'black'],
 ]);
 const COLOR_NAMES_LOCALE = new Map([
-	['R', 'rojo'],
-	['Y', 'amarillo'],
-	['B', 'azul'],
-	['G', 'verde'],
-	['W', 'negro'],
+	['R', 'red'],
+	['Y', 'yellow'],
+	['B', 'blue'],
+	['G', 'green'],
+	['W', 'black'],
 ]);
 
 const INACTIVE_TIMEOUT = 90 * 1000;
@@ -193,9 +193,9 @@ class Game {
 		if (!room) return;
 
 		if (this.places >= 2 && Number.isFinite(this.places)) {
-			room.addRaw("<div class=\"games\"><center><strong>" + Plugins.Colors.apply(this.host) + "</strong> has started a new game of UNO.<br><em>You can now join the game.<br>(Size: " + this.places + " players)</em><br><button name=\"send\" value=\"/uno join\">Entrar</button> <button name=\"send\" value=\"/uno leave\">Salir</button> <button name=\"send\" value=\"/uno\">Como jugar</button></center></div>");
+			room.addRaw("<div class=\"games\"><center><strong>" + Plugins.Colors.apply(this.host) + "</strong> has started a new game of UNO.<br><em>You can now join the game.<br>(Size: " + this.places + " players)</em><br><button name=\"send\" value=\"/uno join\">Join</button> <button name=\"send\" value=\"/uno leave\">Leave</button> <button name=\"send\" value=\"/uno\">How to play</button></center></div>");
 		} else {
-			room.addRaw("<div class=\"games\"><center><strong>" + Plugins.Colors.apply(this.host) + "</strong> has started a new game of UNO.<br><em>You can now join the game.<br>(Size: Unliminted)</em><br><button name=\"send\" value=\"/uno join\">Entrar</button> <button name=\"send\" value=\"/uno leave\">Salir</button> <button name=\"send\" value=\"/uno\">Como jugar</button></center></div>");
+			room.addRaw("<div class=\"games\"><center><strong>" + Plugins.Colors.apply(this.host) + "</strong> has started a new game of UNO.<br><em>You can now join the game.<br>(Size: Unlimited)</em><br><button name=\"send\" value=\"/uno join\">Join</button> <button name=\"send\" value=\"/uno leave\">Leave</button> <button name=\"send\" value=\"/uno\">How to play</button></center></div>");
 		}
 	}
 
@@ -205,12 +205,12 @@ class Game {
 
 		this.started = this.playerList.length;
 
-		room.addRaw('<h3 style="color:#F0403A;">¡El juego de cartas ha iniciado!</h3>');
+		room.addRaw('<h3 style="color:#F0403A;">The game of UNO has begun!</h3>');
 		this.deck = Tools.shuffle(initDeck(this.playerList.length).slice());
 		this.playerList.forEach(u => this.giveCard(u, 7));
 
 		this.player = this.playerList[~~(Math.random() * this.playerList)];
-		room.addRaw('El primer jugador es: <strong>' + Plugins.Colors.apply(this.player) + '</strong>');
+		room.addRaw('The first player is: <strong>' + Plugins.Colors.apply(this.player) + '</strong>');
 
 		//get top card
 		this.initTopCard();
@@ -218,8 +218,8 @@ class Game {
 			this.initTopCard();
 		}
 		//announce top card
-		room.add("|uhtml|post" + this.postId + "|<strong>La primera carta es:</strong> " + buildCard(this.top));
-		this.lastplay = "|uhtmlchange|post" + this.postId + "|La primera carta es <strong>" + getCardName(this.top) + "</strong>";
+		room.add("|uhtml|post" + this.postId + "|<strong>The first card is:</strong> " + buildCard(this.top));
+		this.lastplay = "|uhtmlchange|post" + this.postId + "|The first card is <strong>" + getCardName(this.top) + "</strong>";
 		//add top card to discard pile
 		//apply the effects if applicable;
 		this.applyEffects(this.player, this.top);
@@ -241,7 +241,7 @@ class Game {
 				this.discard = [];
 			}
 		}
-		if (display) Users(userid).sendTo(this.room, "|raw|Has recibido las siguientes cartas: " + buildHand(newCards, true));
+		if (display) Users(userid).sendTo(this.room, "|raw|You have received the following cards: " + buildHand(newCards, true));
 		return newCards;
 	}
 
@@ -264,27 +264,27 @@ class Game {
 		case "R":
 			this.playerList.reverse();
 			if (init) {
-				room.add("La dirección de turnos ha sido invertida.");
+				room.add("The direction of turns has been reversed.");
 				break;
 			} else if (this.playerList.length === 2) {
 				this.nextPlayer();
 			} else {
 				this.nextPlayer(2);
 			}
-			room.add("La dirección de turnos ha sido invertida.");
+			room.add("The direction of turns has been reversed.");
 			break;
 		case "S":
 			this.nextPlayer();
-			room.add("|c| |El turno de " + toUserName(userid) + " ha sido cancelado.");
+			room.add("|c| |The turn of " + toUserName(userid) + " has been skipped.");
 			break;
 		case "+2":
 			this.giveCard(userid, 2, true);
-			room.add("|c| |El turno de " + toUserName(userid) + " ha sido cancelado y se le ha añadido 2 cartas.");
+			room.add("|c| |The turn of " + toUserName(userid) + " has been skipped and has been given 2 cards.");
 			this.nextPlayer();
 			break;
 		case "+4":
 			this.giveCard(userid, 4, true);
-			room.add("|c| |El turno de " + toUserName(userid) + " ha sido cancelado y se le ha añadido 4 cartas.");
+			room.add("|c| |The turn of " + toUserName(userid) + " has been skipped and has been given 4 cards.");
 			this.nextPlayer();
 			break;
 		}
@@ -310,7 +310,7 @@ class Game {
 		this.lastDraw = null;
 		if (this.playerList.length === 1) {
 			const finalPlayer = this.player;
-			room.add(this.lastplay).add("|raw|Felicidades <strong>" + Plugins.Colors.apply(finalPlayer) + "</strong> por ganar el juego de cartas!").update();
+			room.add(this.lastplay).add("|raw|Congratulations <strong>" + Plugins.Colors.apply(finalPlayer) + "</strong> for winning the game of UNO!").update();
 			this.clearDQ();
 			this.destroy();
 		} else {
@@ -332,7 +332,7 @@ class Game {
 
 		// announce the turn
 		if (!repost) {
-			room.add("|c| |/raw Es el turno de " + Plugins.Colors.apply(playerId) + "!");
+			room.add("|c| |/raw It is the turn of " + Plugins.Colors.apply(playerId) + "!");
 			this.lastDraw = null;
 			this.runDQ(Date.now() + this.timeOut.duration);
 		}
