@@ -224,9 +224,9 @@ exports.commands = {
 					"<br />" +
 					"<b>7.</b> Please treat everyone with respect this included staff and regular users.<br />" +
 					"<br />" +
-					"<b>8.</b> No hacer minimod, se establecio a un staff capaz de pensar por si mismo.<br />" +
+					"<b>8.</b> Do flood chats with spam that has no purpose.<br />" +
 					"<br />" +
-					"<i>El shitposting se da en mensajes con fin de desviar la conversación o molestar, aquí también podríamos incluir la lenny face la cual está prohibida y sus variantes.</i><br />");
+					"<i>Please follow these rules to make the server a friendly and enjoyable place to be. Breaking any rules</i><br />");
 	},
 
 	roomlist: function (target, room, user) {
