@@ -56,33 +56,33 @@ exports.commands = {
 		if (!this.can('customicon')) return false;
 		target = this.splitTarget(target, true);
 		if (!target) return this.parse('/help customicon');
-		if (!this.targetUserid || this.targetUsername.length > 18) return this.errorReply(`Indica un nombre de usuario válido.`);
+		if (!this.targetUserid || this.targetUsername.length > 18) return this.errorReply(`Indicate the name of a valid user.`);
 
 		if (target === 'delete') {
-			if (!(this.targetUserid in customIcons)) return this.errorReply(`/customicon - ${this.targetUsername} no tiene un icono personalizado.`);
+			if (!(this.targetUserid in customIcons)) return this.errorReply(`/customicon - ${this.targetUsername} does not have an icon.`);
 			delete customIcons[this.targetUserid];
 			updateIcons();
 
-			this.sendReply(`Eliminaste el icono personalizado de ${this.targetUsername}.`);
-			Rooms('staff').add(`${user.name} eliminó el icono personalizado de ${this.targetUserid}.`).update();
-			this.privateModCommand(`(Icono personalizado de ${this.targetUserid} removido por ${user.name}).`);
+			this.sendReply(`You have removed the icon of ${this.targetUsername}.`);
+			Rooms('staff').add(`${user.name} removed the icon of ${this.targetUserid}.`).update();
+			this.privateModCommand(`(Icon of ${this.targetUserid} removed by ${user.name}).`);
 
 			if (this.targetUser && this.targetUser.connected) {
-				this.targetUser.popup(`${user.name} eliminó tu icono personalizado.`);
+				this.targetUser.popup(`${user.name} removed your icon.`);
 			}
 			return;
 		}
 
-		if (this.targetUserid in customIcons) return this.errorReply(`El usuario indicado ya tiene un icono personalizado. Ejecuta antes /customicon [user], delete.`);
+		if (this.targetUserid in customIcons) return this.errorReply(`The indicated user already has an icon. Try using /customicon [user], delete.`);
 		const targetURI = this.canEmbedURI(target);
 		if (!targetURI) return false;
 
 		customIcons[this.targetUserid] = targetURI;
 		updateIcons();
 
-		this.sendReply(`|raw|Has otorgado un icono personalizado a ${Plugins.Colors.apply(this.targetUsername).bold()}.`);
-		Rooms('staff').addRaw(Chat.html`${this.targetUserid} obtuvo un <strong>icono personalizado</strong> de ${user.name}.`).update();
-		this.privateModCommand(`(${this.targetUserid} obtuvo un icono personalizado de parte de ${user.name}: ${targetURI}`);
+		this.sendReply(`|raw|You have given an icon to ${Plugins.Colors.apply(this.targetUsername).bold()}.`);
+		Rooms('staff').addRaw(Chat.html`${this.targetUserid} obtained an <strong>icon</strong> from ${user.name}.`).update();
+		this.privateModCommand(`(${this.targetUserid} obtained an icon from ${user.name}: ${targetURI}`);
 	},
 	iconhelp: [
 		"Commands Include:",
