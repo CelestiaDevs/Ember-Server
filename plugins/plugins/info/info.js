@@ -1048,13 +1048,10 @@ exports.commands = {
 	groups: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		this.sendReplyBox(
-			"$ <b>Destacado</b> - They can use ! commands like !groups<br />" +
 			"+ <b>Voice</b> - They can also join battles and talk during moderated chat<br />" +
-			"\u2295 <b>Operator</b> - They can also create and manage tournaments<br />" +
-			"\u00A5 <b>Youtuber</b> - They can also warn users<br />" +
+			"$ <b>Operator</b> - They can also create and manage tournaments<br />" +
 			"% <b>Driver</b> - The above, and they can mute. Global % can also lock users and check for alts<br />" +
 			"@ <b>Moderator</b> - The above, and they can ban users<br />" +
-			"\u2605 <b>Player</b> - Especial rank only for battles. They can turn modchat on and promote room voices<br />" +
 			"* <b>Bot</b> - Like Moderator, but makes it clear that this user is a bot<br />" +
 			"&amp; <b>Leader</b> - The above, and they can promote to moderator and force ties<br />" +
 			"# <b>Room Owner</b> - They are leaders of the room and can almost totally control it<br />" +
