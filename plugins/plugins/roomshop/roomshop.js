@@ -36,7 +36,7 @@ function getRoomShop(room) {
 		output += '<tr><td><button name="send" value="/roomshop buy, ' + Tools.escapeHTML(name) + '">' + Tools.escapeHTML(name) + '</button></td><td>' +
 		Tools.escapeHTML(desc) + '</td><td>' + price + '</td></tr>';
 	}
-	return output + '</table><font size=1>Nota: De acuerdo con las reglas del servidor, el staff global no son responsables de las estafas a traves de una tienda de sala. Sin embargo, si es lo suficientemente grave, informe a un staff global y si habia roto una regla, se tomaran las medidas.</font></center>';
+	return output + '</table><font size=1>Note: As per server rules, global staff are not responsible for scams via a room shop.  However, if severe enough, report it to a global staff and if there was a rule broken, action will be taken.</font></center>';
 }
 
 exports.commands = {
@@ -104,9 +104,9 @@ exports.commands = {
 		}
 	},
 	roomshophelp: ["This plugin allows certain rooms to have their own room shop.  Commands include...",
-		"/roomshop add, [item], [description], [price] - Coloca un articulo nuevo en el roomshop.  Requiere Room Founder.",
-		"/roomshop remove, [item] - Remueve un articulo del roomshop. Requiere Room Founder.",
-		"/roomshop buy, [item] - Compra un articulo del roomshop.",
-		"/roomshop - Muestra el roomshop de la sala.",
+		"/roomshop add, [item], [description], [price] - Adds a new item to the roomshop. Requires Room Founder.",
+		"/roomshop remove, [item] - Removes an item from the roomshop. Requires Room Founder.",
+		"/roomshop buy, [item] - Purchases an item from the roomshop.",
+		"/roomshop - Shows the roomshop for the room.",
 	],
 };
