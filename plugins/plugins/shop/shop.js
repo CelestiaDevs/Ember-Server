@@ -9,19 +9,19 @@ exports.commands = {
 	shop: function (target, room, user) {
 		if (!this.runBroadcast()) return false;
 		this.sendReplyBox(
-			'<center><h3><b><u>Tienda del servidor</u></b></h3><table border="1" cellspacing="0" cellpadding="3" target="_blank"><tbody>' +
-			'<tr><th>Art&iacute;culo</th><th>Descripci&oacute;n</th><th>Coste</th></tr>' +
-			'<tr><td>Chatroom</td><td>Compra una Sala en el Servidor.</td><td>500</td></tr>' +
-			'<tr><td>CustomTC</td><td>Compra una Tarjeta de Entrenador personalizada (a partir de código html). Contactar con un administrador si el código es muy largo para un solo mensaje.</td><td>1000</td></tr>' +
-			'<tr><td>CustomAvatar</td><td>Compra un avatar personalizado. Preferiblemente debe ser una imagen de pequeñas dimensiones y acorde a las reglas del servidor. Contactar con un Admin para obtener este art&iacute;culo.</td><td>800</td></tr>' +
-			'<tr><td>CustomIcon</td><td>Compra un icono personalizado. Preferiblemente debe ser una imagen de pequeñas dimensiones (32x32) y acorde a las reglas del servidor. Contactar con un Admin para obtener este art&iacute;culo.</td><td>800</td></tr>' +
-			'<tr><td>CustomColor</td><td>Compra un color personalizado. Contactar con un Admin para obtener este art&iacute;culo.</td><td>800</td></tr>' +
-			'<tr><td>CustomPhrase</td><td>Compra una frase de entrada personalizada. Contactar con un Admin para obtener este art&iacute;culo.</td><td>500</td></tr>' +
-			'<tr><td>Symbol</td><td>Compra el acceso al comado /customsymbol que permite elegir un símbolo (excepto staff) para aparecer en lo alto de la lista de usuarios.</td><td>20</td></tr>' +
-			'<tr><td>TC</td><td>Compra una Tarjeta de entrenador básica. Con una Imagen modificable con /tcimage y una frase de entrenador modificable con /tcphrase</td><td>550</td></tr>' +
-			'<tr><td>Sprite</td><td>Añade la imagen de un Pokemon a tu TC Básica. Máximo 6. Se pueden cambiar los pokemon con el comando /tcpokemon</td><td>50</td></tr>' +
-			'</tbody></table><br /> Para comprar un artículo usa el comando /buy (artículo)' +
-			'<br /> Algunos artículos solo se pueden comprar contactando con un Administrador. Para más información usa /shophelp' +
+			'<center><h3><b><u>Ember Server Shop</u></b></h3><table border="1" cellspacing="0" cellpadding="3" target="_blank"><tbody>' +
+			'<tr><th>Item</th><th>Description</th><th>Cost</th></tr>' +
+			'<tr><td>Chatroom</td><td>Purchases a chatroom in the server.</td><td>500</td></tr>' +
+			'<tr><td>CustomTC</td><td>Purchases a custom trainer card (provide html). Contact an admin if the code is too long for one message.</td><td>1000</td></tr>' +
+			'<tr><td>CustomAvatar</td><td>Purchases a personalized avatar. It should be of small sizes and be appropriate. Contact an admin to obtain this item.</td><td>800</td></tr>' +
+			'<tr><td>CustomIcon</td><td>Purchases a personalized icon. It should be a small image of dimensions (32x32) and appropriate. Contact an admin to obtain this item.</td><td>800</td></tr>' +
+			'<tr><td>CustomColor</td><td>Purchases a personalized color for your name. Contact an admin to obtain this item.</td><td>800</td></tr>' +
+			'<tr><td>CustomPhrase</td><td>Purchases a personalized phrase for when you enter. Contact an admin to obtain this item.</td><td>500</td></tr>' +
+			'<tr><td>Symbol</td><td>Purchases access to the command /customsymbol that allows you to have a symbol (except staff) to appear at the top of the userlist.</td><td>20</td></tr>' +
+			'<tr><td>TC</td><td>Purchases a basic trainer card. With an image you can modify using /tcimage and a trainer phrase that you can modify using /tcphrase</td><td>550</td></tr>' +
+			'<tr><td>Sprite</td><td>Adds a pokemon sprite to your basic trainer card. Maximum of 6. You can change the pokemon by using the command /tcpokemon</td><td>50</td></tr>' +
+			'</tbody></table><br /> To purchase an item use the command /buy (item)' +
+			'<br /> Some items can only be purchased by contacting an administrator. For more information use the command /shophelp' +
 			'</center>'
 		);
 	},
