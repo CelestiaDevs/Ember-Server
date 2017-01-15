@@ -116,7 +116,7 @@ function playVerifier(topCard, card, hand, change, special) {
 	}
 	if (card === "WW") return false;
 	if (card.charAt(0) === currentColour || card.slice(1) === currentValue) return false;
-	return ,, ten en cuenta que tanto el valor como el color de la carta deben coincidir.";
+	return "You cannot play this card, remember the card color or number must match.";
 }
 
 function verifyAlts(user, playerList) {
@@ -180,7 +180,7 @@ class Game {
 		let topCard = "<center>" + this.getTopCard() + "</center>";
 		let yourHand = buildHand(this.data[user]);
 		message = message ? `<strong style="color:red">${message}</strong>` : '';
-		return html + "<center><table style=\"border-collapse: collapse;\"><tr><td style=\"background:#FFAF4B;border-radius:5px 0px 0px 0px;padding-top:8px;padding-bottom:8px\"><center><font color=\"#FFFFFF\"><strong>Mesa</strong>&nbsp;</td><td style=\"background:#FFAF4B;border-radius:0px 5px 0px 0px;color:#FFFFFF\"><center><font color=\"#FFFFFF\"><strong>Tus cartas</strong>&nbsp;</td></tr>" + "<tr><td style=\"background:#000000\"><center>" + topCard + "</center></td><td style=\"background:#000000;\"><center><br>" + yourHand + "</td></tr><tr><td style=\"background:#000000;color:#FFFFFF\">" + (pass ? PASS_BUTTON : DRAW_BUTTON) + "</td><td style=\"background:#000000;\">" + message + "</td></tr></table></center>";
+		return html + "<center><table style=\"border-collapse: collapse;\"><tr><td style=\"background:#FFAF4B;border-radius:5px 0px 0px 0px;padding-top:8px;padding-bottom:8px\"><center><font color=\"#FFFFFF\"><strong>Table</strong>&nbsp;</td><td style=\"background:#FFAF4B;border-radius:0px 5px 0px 0px;color:#FFFFFF\"><center><font color=\"#FFFFFF\"><strong>Your cards</strong>&nbsp;</td></tr>" + "<tr><td style=\"background:#000000\"><center>" + topCard + "</center></td><td style=\"background:#000000;\"><center><br>" + yourHand + "</td></tr><tr><td style=\"background:#000000;color:#FFFFFF\">" + (pass ? PASS_BUTTON : DRAW_BUTTON) + "</td><td style=\"background:#000000;\">" + message + "</td></tr></table></center>";
 	}
 
 	initTopCard() {
@@ -193,9 +193,9 @@ class Game {
 		if (!room) return;
 
 		if (this.places >= 2 && Number.isFinite(this.places)) {
-			room.addRaw("<div class=\"games\"><center><strong>" + Plugins.Colors.apply(this.host) + "</strong> ha iniciado un nuevo juego de Cartas.<br><em>Las inscripciones están abiertas, ¿Podrás ser el ganador?<br>(Tamaño: " + this.places + " jugadores)</em><br><button name=\"send\" value=\"/uno join\">Entrar</button> <button name=\"send\" value=\"/uno leave\">Salir</button> <button name=\"send\" value=\"/uno\">Como jugar</button></center></div>");
+			room.addRaw("<div class=\"games\"><center><strong>" + Plugins.Colors.apply(this.host) + "</strong> has started a new game of UNO.<br><em>You can now join the game.<br>(Size: " + this.places + " players)</em><br><button name=\"send\" value=\"/uno join\">Entrar</button> <button name=\"send\" value=\"/uno leave\">Salir</button> <button name=\"send\" value=\"/uno\">Como jugar</button></center></div>");
 		} else {
-			room.addRaw("<div class=\"games\"><center><strong>" + Plugins.Colors.apply(this.host) + "</strong> ha iniciado un nuevo juego de Cartas.<br><em>Las inscripciones están abiertas, ¿Podrás ser el ganador?<br>(Tamaño: Ilimitado)</em><br><button name=\"send\" value=\"/uno join\">Entrar</button> <button name=\"send\" value=\"/uno leave\">Salir</button> <button name=\"send\" value=\"/uno\">Como jugar</button></center></div>");
+			room.addRaw("<div class=\"games\"><center><strong>" + Plugins.Colors.apply(this.host) + "</strong> has started a new game of UNO.<br><em>You can now join the game.<br>(Size: Unliminted)</em><br><button name=\"send\" value=\"/uno join\">Entrar</button> <button name=\"send\" value=\"/uno leave\">Salir</button> <button name=\"send\" value=\"/uno\">Como jugar</button></center></div>");
 		}
 	}
 
