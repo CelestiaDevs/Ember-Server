@@ -232,7 +232,7 @@ exports.commands = {
 	'!discord': true,
 	    discord: function (target, room, user) {
 		        if (!this.runBroadcast()) return;
-		        this.sendReplyBox('Join our server discord by clicking <a href="http://whiteflare.freeforums.net/">here</a>.');
+		        this.sendReplyBox('Join our server discord by clicking <a href="https://discord.gg/pBxqYyZ">here</a>.');
 	},
 
 	roomlist: function (target, room, user) {
