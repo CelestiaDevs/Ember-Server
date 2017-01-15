@@ -29,7 +29,7 @@ function getName(user) {
 function getRoomShop(room) {
 	let output = "<center><b><u>" + Tools.escapeHTML(room.title) + " Room Shop</u></b><br />" +
 	'<table border="1" cellspacing ="0" cellpadding="3">' +
-	'<tr><th>Articulo</th><th>Descripcion</th><th>Precio</th></tr>';
+	'<tr><th>Item</th><th>Description</th><th>Cost</th></tr>';
 	for (let i in RoomShop[room.id]) {
 		let item = RoomShop[room.id][i];
 		let name = item[0], desc = item[1], price = item[2];
@@ -45,7 +45,7 @@ exports.commands = {
 		if (!room.isOfficial && !Users.usergroups[room.founder]) return this.errorReply("This room does not qualify to have a room shop.");
 		if (!target || !target.trim()) {
 			if (!RoomShop[room.id] || Object.keys(RoomShop[room.id]).length < 1) return this.errorReply("This room does not have any items in it's room shop at this time.");
-			if (!this.canBroadcast()) return;
+			if (!this.runBroadcast()) return;
 			return this.sendReplyBox(getRoomShop(room));
 		}
 
@@ -86,10 +86,10 @@ exports.commands = {
 			if (!RS[item]) return this.errorReply("This item is not in the room shop. Check spelling?");
 			item = RS[item][0];
 			price = RS[toId(item)][2];
-			if (Shop.getUserMoney(user.name) < price) return this.errorReply("No tienes suficiente dinero para comprar un " + item + ". Necesitas " + (price - Shop.getUserMoney(user.name)) + " mas PokeDolares para comprar este articulo.");
+			if (Shop.getUserMoney(user.name) < price) return this.errorReply("You do not have enough money to purchaes a " + item + ". You need " + (price - Shop.getUserMoney(user.name)) + " more bucks to purchases this item.");
 			this.parse('/tb ' + room.founder + ', ' + price);
-			room.add("|raw|<b><u>Room Shop</u>: " + hashColor(user.name) + "</b> ha comprado un <u>" + Tools.escapeHTML(item) + "</u> de el roomshop por " + price + " Pokedolare" + (price > 1 ? "s" : "") + ".").update();
-			this.privateModCommand("(" + user.name + " ha comprado un articulo " + item + " de el room shop.)");
+			room.add("|raw|<b><u>Room Shop</u>: " + Plugins.Colors.apply(user.name) + "</b> has purchased a <u>" + (item) + "</u> from the roomshop for " + price + " Buck" + (price > 1 ? "s" : "") + ".").update();
+			this.privateModCommand("(" + user.name + " has purchases an item " + item + " from the room shop.)");
 			break;
 		case 'help':
 			this.parse('/help roomshop');
