@@ -29,22 +29,22 @@ function parseStatus(text, encoding) {
 
 exports.commands = {
 	away: function (target, room, user) {
-		if (!user.isAway && user.name.length > 15) return this.sendReply('Su nombre de usuario es demasiado largo para cualquier tipo de uso de este comando.');
+		if (!user.isAway && user.name.length > 15) return this.sendReply('Your user name is too long to update your status.');
 
 		target = target ? target.replace(/[^a-zA-Z0-9]/g, '') : 'AWAY';
 		let newName = user.name;
 		let status = parseStatus(target, true);
 		let statusLen = status.length;
-		if (statusLen > 14) return this.sendReply('Su estado ausente debe ser corto, no una disertación sobre por qué estás ausente.');
+		if (statusLen > 14) return this.sendReply('Your status must be sort, not an entire description.');
 
 		if (user.isAway) {
 			let statusIdx = newName.search(/\s\-\s[\u24B6-\u24E9\u2460-\u2468\u24EA]+$/);
 			if (statusIdx > -1) newName = newName.substr(0, statusIdx);
-			if (user.name.substr(-statusLen) === status) return this.sendReply('Ahora estás "' + target + '".');
+			if (user.name.substr(-statusLen) === status) return this.sendReply('Your are now "' + target + '".');
 		}
 
 		newName += ' - ' + status;
-		if (newName.length > 18) return this.sendReply('El tipo de ausente que trataste de seleccionar "' + target + '" es muy largo para tu nick.');
+		if (newName.length > 18) return this.sendReply('The type of absence that you tried to choose "' + target + '" is too long for you username.');
 
         // forcerename any possible impersonators
 		let targetUser = Users.getExact(user.userid + target);
@@ -53,21 +53,21 @@ exports.commands = {
 			targetUser.send('|nametaken||Your name conflicts with ' + user.name + (user.name.substr(-1) === 's' ? '\'' : '\'s') + ' new away status.');
 		}
 
-		if (user.can('lock', null, room)) this.add('|raw|-- ' + Plugins.Colors.apply(user.name).bold() + ' ahora está ' + target.toLowerCase() + '.');
+		if (user.can('lock', null, room)) this.add('|raw|-- ' + Plugins.Colors.apply(user.name).bold() + ' is now ' + target.toLowerCase() + '.');
 		user.forceRename(newName, user.registered);
 		user.updateIdentity();
 		user.isAway = true;
 	},
 
 	back: function (target, room, user) {
-		if (!user.isAway) return this.sendReply('Tu no te encuentras/encontrabas ausente.');
+		if (!user.isAway) return this.sendReply('You were not using a status for being away.');
 		user.isAway = false;
 
 		let newName = user.name;
 		let statusIdx = newName.search(/\s\-\s[\u24B6-\u24E9\u2460-\u2468\u24EA]+$/);
 		if (statusIdx < 0) {
 			user.isAway = false;
-			if (user.can('lock', null, room)) this.add('|raw|-- ' + Plugins.Colors.apply(user.name).bold() + ' ya no está ausente.');
+			if (user.can('lock', null, room)) this.add('|raw|-- ' + Plugins.Colors.apply(user.name).bold() + ' is no longer away.');
 			return false;
 		}
 
@@ -76,35 +76,35 @@ exports.commands = {
 		user.forceRename(newName, user.registered);
 		user.updateIdentity();
 		user.isAway = false;
-		if (user.can('lock', null, room)) this.add('|raw|-- ' + Plugins.Colors.apply(newName).bold() + '  ya no está ' + status.toLowerCase() + '.');
+		if (user.can('lock', null, room)) this.add('|raw|-- ' + Plugins.Colors.apply(newName).bold() + '  is no longer ' + status.toLowerCase() + '.');
 	},
 
 	afk: function (target, room, user) {
 		this.parse('/away AFK', room, user);
 	},
 
-	tarea: function (target, room, user) {
-		this.parse('/away TAREA', room, user);
+	homework: function (target, room, user) {
+		this.parse('/away HOMEWORK', room, user);
 	},
 
-	trabajo: function (target, room, user) {
-		this.parse('/away TRABAJO', room, user);
+	work: function (target, room, user) {
+		this.parse('/away WORK', room, user);
 	},
 
-	trabajando: function (target, room, user) {
-		this.parse('/away TRABAJANDO', room, user);
+	working: function (target, room, user) {
+		this.parse('/away WORKING', room, user);
 	},
 
-	comiendo: function (target, room, user) {
-		this.parse('/away COMIENDO', room, user);
+	eating: function (target, room, user) {
+		this.parse('/away EATING', room, user);
 	},
 
-	jugando: function (target, room, user) {
-		this.parse('/away JUGANDO', room, user);
+	playing: function (target, room, user) {
+		this.parse('/away PLAYING', room, user);
 	},
 
-	durmiendo: function (target, room, user) {
-		this.parse('/away DURMIENDO', room, user);
+	sleep: function (target, room, user) {
+		this.parse('/away SLEEP', room, user);
 	},
 
 	nerd: function (target, room, user) {
