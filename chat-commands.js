@@ -1163,7 +1163,6 @@ exports.commands = {
 			roomRankList = roomRankList.map(s => s in targetRoom.users ? "**" + s + "**" : s);
 			return (Config.groups[r] ? Config.groups[r].name + "s (" + r + ")" : r) + ":\n" + roomRankList.join(", ");
 		});
-		if (targetRoom.founder) buffer = ['Room Founder (#): \n' + targetRoom.founder].concat(buffer);
 
 		if (!buffer.length) {
 			connection.popup("The room '" + targetRoom.title + "' has no auth." + userLookup);
