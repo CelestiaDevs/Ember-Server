@@ -58,7 +58,7 @@ exports.commands = {
 		);
 	},
 
-	comprar: 'buy',
+	purchase: 'buy',
 	buy: function (target, room, user) {
 		let params = target.split(',');
 		let prize = 0;
@@ -67,106 +67,106 @@ exports.commands = {
 		switch (article) {
 		case 'customtc':
 			prize = 1000;
-			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("No tienes suficiente dinero.");
+			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
 			var tcUser = Shop.getTrainerCard(user.name);
 			if (!tcUser) {
 				Shop.giveTrainerCard(user.name);
 				tcUser = Shop.getTrainerCard(user.name);
 			}
-			if (tcUser.customTC) return this.sendReply("Ya poseías este artículo.");
+			if (tcUser.customTC) return this.sendReply("You already have this item.");
 			Shop.setCustomTrainerCard(user.name, true);
 			Shop.removeMoney(user.name, prize);
-			return this.sendReply("Has comprado una Tarjeta de entreador personalizada. Consulta /shophelp para más información.");
+			return this.sendReply("You have purchased a personalized trainer card. Use /shophelp for more information.");
 			break;
 		case 'tc':
 			prize = 550;
-			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("No tienes suficiente dinero.");
+			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
 			var tcUser = Shop.getTrainerCard(user.name);
-			if (tcUser) return this.sendReply("Ya poseías este artículo.");
+			if (tcUser) return this.sendReply("You already have this item.");
 			Shop.giveTrainerCard(user.name);
 			Shop.removeMoney(user.name, prize);
-			return this.sendReply("Has comprado una Tarjeta de Entrenador. Revisa /shophelp para saber como editarla.");
+			return this.sendReply("You have purchased a trainer card. Use /shophelp for help on how to make changes.");
 			break;
 		case 'sprite':
 			prize = 50;
-			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("No tienes suficiente dinero.");
+			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
 			var tcUser = Shop.getTrainerCard(user.name);
-			if (!tcUser) return this.sendReply("Necesitas comprar primero una Tarjeta de entrenador.");
-			if (tcUser.nPokemon > 5) return this.sendReply("Ya tienes 6 Pokemon para tu tarjeta de entrenador.");
-			if (tcUser.customTC) return this.sendReply("Tu tarjeta es Personalizada. Usa /tchtml pata modificarla.");
+			if (!tcUser) return this.sendReply("You must purchase a trainer card first.");
+			if (tcUser.nPokemon > 5) return this.sendReply("You already have 6 pokemon for your trainer card.");
+			if (tcUser.customTC) return this.sendReply("Your trainer card is personalized. Use /tchtml to modify it.");
 			Shop.nPokemonTrainerCard(user.name, tcUser.nPokemon + 1);
 			Shop.removeMoney(user.name, prize);
-			return this.sendReply("Has comprado un Sprite de un pokemon para tu TC. Revisa /shophelp para más información.");
+			return this.sendReply("You have purchased a sprite of a pokemon for your TC. Use /shophelp for more information.");
 			break;
 		case 'chatroom':
 			prize = 500;
-			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("No tienes suficiente dinero.");
-			if (params.length !== 2) return this.sendReply("Usa el comando así: /buy chatroom,[nombre]");
+			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
+			if (params.length !== 2) return this.sendReply("Use the command like this: /buy chatroom,[roomname]");
 			var id = toId(params[1]);
-			if (Rooms.rooms.has(id)) return this.sendReply("La sala '" + params[1] + "' ya exsiste. Usa otro nombre.");
+			if (Rooms.rooms.has(id)) return this.sendReply("The room '" + params[1] + "' already exists. Use another name.");
 			if (Rooms.global.addChatRoom(params[1])) {
 				const newRoom = Rooms.get(id);
 				if (!newRoom.auth) newRoom.auth = newRoom.chatRoomData.auth = {};
 				newRoom.auth[toId(user.name)] = '#';
 				if (newRoom.chatRoomData) Rooms.global.writeChatRoomData();
 				Shop.removeMoney(user.name, prize);
-				return this.sendReply("La sala '" + params[1] + "' fue creada con éxito. Únete usando /join " + id);
+				return this.sendReply("The room '" + params[1] + "' was successfully created. Join using /join " + id);
 			}
-			return this.sendReply("No se pudo realizar la compra debido a un error al crear la sala '" + params[1] + "'.");
+			return this.sendReply("The room was not able to be purchased becuase of the following error '" + params[1] + "'.");
 			break;
 		case 'symbol':
 			prize = 20;
-			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("No tienes suficiente dinero.");
-			if (Shop.symbolPermision(user.name)) return this.sendReply("Ya posees este artículo.");
+			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
+			if (Shop.symbolPermision(user.name)) return this.sendReply("You already have this item.");
 			Shop.setSymbolPermision(user.name, true);
 			Shop.removeMoney(user.name, prize);
-			return this.sendReply("Has comprado el permiso para usar los comandos /customsymbol y /resetsymbol. Para más información consulta /shophelp.");
+			return this.sendReply("You have purchased the permission to the following commands /customsymbol and /resetsymbol. For more information use /shophelp.");
 			break;
 		case 'customavatar':
 			prize = 800;
-			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("No tienes suficiente dinero.");
-			if (Config.customavatars[user.userid]) return this.sendReply("Ya habías comprado este artículo. Para cambiar tu avatar compra la opcion Avatar.");
-			if (params.length !== 2) return this.sendReply("Usa el comando así: /buy avatar,[imagen]");
+			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
+			if (Config.customavatars[user.userid]) return this.sendReply("You have already purchased this item. To change it please speak to an admin.");
+			if (params.length !== 2) return this.sendReply("Use the command like this: /buy avatar,[image]");
 			var err = Shop.addPendingAvatar(user.userid, params[1]);
 			if (err) return this.sendReply(err);
 			Shop.removeMoney(user.name, prize);
-			return this.sendReply("Has solicitado un avatar personalizado. Contacta con un admin para que valide tu compra.");
+			return this.sendReply("You have purchased a personalized avatar. Contact an admin to validate your purchase.");
 			break;
 		case 'customicon':
 			prize = 800;
-			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("No tienes suficiente dinero.");
-			if (params.length !== 2) return this.sendReply("Usa el comando así: /buy customicon,[imagen]");
+			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
+			if (params.length !== 2) return this.sendReply("Use the command like this: /buy customicon,[image]");
 			var err = Shop.addPendingIcon(user.userid, params[1]);
 			if (err) return this.sendReply(err);
 			Shop.removeMoney(user.name, prize);
-			return this.sendReply("Has solicitado un icon personalizado. Contacta con un admin para que valide tu compra.");
+			return this.sendReply("You have purchased a personalized icon. Contact an admin to validate your purchase.");
 			break;
 		case 'customcolor':
 			prize = 800;
-			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("No tienes suficiente dinero.");
-			if (params.length !== 2) return this.sendReply("Usa el comando así: /buy customcolor,[imagen]");
+			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
+			if (params.length !== 2) return this.sendReply("Use the command like this: /buy customcolor,[hex]");
 			var err = Shop.addPendingColor(user.userid, params[1]);
 			if (err) return this.sendReply(err);
 			Shop.removeMoney(user.name, prize);
-			return this.sendReply("Has solicitado un color personalizado. Contacta con un admin para que valide tu compra.");
+			return this.sendReply("You have purchased a personalized name color. Contact an admin to validate your purchase.");
 			break;
 		case 'customphrase':
 			prize = 500;
-			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("No tienes suficiente dinero.");
-			if (params.length !== 2) return this.sendReply("Usa el comando así: /buy customphrase,[imagen]");
+			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
+			if (params.length !== 2) return this.sendReply("Use the command like this: /buy customphrase,[phrase]");
 			var err = Shop.addPendingPhrase(user.userid, params[1]);
 			if (err) return this.sendReply(err);
 			Shop.removeMoney(user.name, prize);
-			return this.sendReply("Has solicitado una frase personalizada. Contacta con un admin para que valide tu compra.");
+			return this.sendReply("You have purchased a personalized join phrase. Contact an admin to validate your purchase.");
 			break;	
 		default:
-			return this.sendReply("No has especificado ningún artículo válido.");
+			return this.sendReply("You have not specified a valid item.");
 		
 		}
 	},
 
-	money: 'pd',
-	pd: function (target, room, user) {
+	atm: 'bucks',
+	bucks: function (target, room, user) {
 		let autoData = false;
 		if (!target) autoData = true;
 		if (!this.runBroadcast()) return false;
@@ -181,7 +181,7 @@ exports.commands = {
 			let userh = Users.getExact(target);
 			if (userh) userName = userh.name;
 		}
-		this.sendReplyBox('Ahorros de <b>' + userName + '</b>: ' + pds + ' pd');
+		this.sendReplyBox('Savings for <b>' + userName + '</b>: ' + pds + ' bucks');
 	},
 
 	tclist: function (target, room, user, connection) {
@@ -194,7 +194,7 @@ exports.commands = {
 		let autoData = false;
 		if (!target) autoData = true;
 		if (!this.runBroadcast()) return false;
-		if (room.decision) return this.sendReply('No se pueden poner TCs en las batallas.');
+		if (room.decision) return this.sendReply('Trainer cards cannot be shown in battles.');
 
 		let pds = 0;
 		let userName = user.name;
@@ -207,7 +207,7 @@ exports.commands = {
 			let userh = Users.getExact(target);
 			if (userh) userName = userh.name;
 		}
-		if (!tcData) return this.sendReply(userName + " no tenía ninguna tarjeta de entrenador.");
+		if (!tcData) return this.sendReply(userName + " did not have a trainer card.");
 		if (tcData.customTC) {
 			if (room.id === 'lobby') return this.sendReply('|raw|<div class="infobox infobox-limited">' + tcData.customHtml + '</div>');
 			return this.sendReplyBox(tcData.customHtml);
@@ -223,18 +223,18 @@ exports.commands = {
 
 	givemoney: function (target, room, user) {
 		let params = target.split(',');
-		if (!params || params.length !== 2) return this.sendReply("Usage: /givemoney usuario, pds");
+		if (!params || params.length !== 2) return this.sendReply("Usage: /givemoney user, bucks");
 		if (!this.can('givemoney')) return false;
 
 		let pds = parseInt(params[1]);
-		if (pds <= 0) return this.sendReply("La cantidad no es valida.");
+		if (pds <= 0) return this.sendReply("The quantity is not valid.");
 		let userh = Users.getExact(params[0]);
-		if (!userh || !userh.connected) return this.sendReply("El usuario no existe o no está disponible");
+		if (!userh || !userh.connected) return this.sendReply("The user does not exist or is not online");
 		let userName = userh.name;
 		if (!Shop.giveMoney(params[0], pds)) {
-			this.sendReply("Error desconocido.");
+			this.sendReply("Unknown error.");
 		} else {
-			this.sendReply(userName + ' ha recibido ' + pds + ' pd');
+			this.sendReply(userName + ' has received ' + pds + ' bucks');
 		}
 	},
 
