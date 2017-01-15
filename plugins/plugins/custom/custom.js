@@ -226,7 +226,7 @@ exports.commands = {
 					"<br />" +
 					"<b>8.</b> Do flood chats with spam that has no purpose.<br />" +
 					"<br />" +
-					"<i>Please follow these rules to make the server a friendly and enjoyable place to be. Breaking any rules</i><br />");
+					"<i>Please follow these rules to make the server a friendly and enjoyable place to be. Breaking any rules will result in punishment.</i><br />");
 	},
 
 	roomlist: function (target, room, user) {
