@@ -59,7 +59,7 @@ function buildHand(array, noPlay) {
 function getMyHand(hand) {
 	const html = (
 		'<div class=\"games\">' +
-		'<center><font color="#FFFFFF"><h3>Tus cartas:</h3></font>' + buildHand(hand) + '<br></center>' +
+		'<center><font color="#FFFFFF"><h3>Your cards:</h3></font>' + buildHand(hand) + '<br></center>' +
 		'<br></div>'
 	);
 	return html;
@@ -69,16 +69,16 @@ function getColourChange(cmd, hand, id) {
 	const html = (
 		'<center><table style="border-collapse: collapse;">' +
 		'<tr>' + (
-			'<td style=\"background:#FFAF4B;border-radius:5px 0px 0px 0px\"><center><h3><font color=\"#FFFFF\">Elige un color:</font></h3>' +
-			'<button style="background: red; border: 2px solid rgba(33 , 68 , 72 , 0.59) ; width: 80px ; border-radius: 5px , auto" name="send" value="' + cmd + ' R"><font color="white" size=4>Rojo</font></button>' +
-			'<button style="background: yellow; border: 2px solid rgba(33 , 68 , 72 , 0.59) ; width: 80px ; border-radius: 5px , auto" name="send" value="' + cmd + ' Y"><font color="black" size=3>Amarillo</font></button>' +
-			'<button style="background: blue; border: 2px solid rgba(33 , 68 , 72 , 0.59) ; width: 80px ; border-radius: 5px , auto" name="send" value="' + cmd + ' B"><font color="white" size=4>Azul</font></button>' +
-			'<button style="background: green; border: 2px solid rgba(33 , 68 , 72 , 0.59) ; width: 80px ; border-radius: 5px , auto" name="send" value="' + cmd + ' G"><font color="white" size=4>Verde</font></button>' +
+			'<td style=\"background:#FFAF4B;border-radius:5px 0px 0px 0px\"><center><h3><font color=\"#FFFFF\">Choose a color:</font></h3>' +
+			'<button style="background: red; border: 2px solid rgba(33 , 68 , 72 , 0.59) ; width: 80px ; border-radius: 5px , auto" name="send" value="' + cmd + ' R"><font color="white" size=4>Red</font></button>' +
+			'<button style="background: yellow; border: 2px solid rgba(33 , 68 , 72 , 0.59) ; width: 80px ; border-radius: 5px , auto" name="send" value="' + cmd + ' Y"><font color="black" size=3>Yellow</font></button>' +
+			'<button style="background: blue; border: 2px solid rgba(33 , 68 , 72 , 0.59) ; width: 80px ; border-radius: 5px , auto" name="send" value="' + cmd + ' B"><font color="white" size=4>Blue</font></button>' +
+			'<button style="background: green; border: 2px solid rgba(33 , 68 , 72 , 0.59) ; width: 80px ; border-radius: 5px , auto" name="send" value="' + cmd + ' G"><font color="white" size=4>Green</font></button>' +
 			'</td>'
 		) + '</tr>' +
 		'<tr>' + (
 			'<td style=\"background:#000000;color:#FFFFFF\">' +
-			'<center><h3>Tus Cartas: </h3>' + buildHand(hand, true) + '<br>' +
+			'<center><h3>Your cards: </h3>' + buildHand(hand, true) + '<br>' +
 			'</td>'
 		) + '</tr>' +
 		'</table></center>'
@@ -92,31 +92,31 @@ function getCardName(id) {
 	const isSpecialCard = id.endsWith('R') || id.endsWith('S') || id.endsWith('+2') || id === 'W+4' || id === 'WW';
 
 	if (!isSpecialCard) return `<span style="color:${color}">${localeColor} ${id.slice(1)}</span>`;
-	if (id === 'W+4') return `<span style="color:${color}">Carta Comodín Roba 4</span>`;
-	if (id === 'WW') return `<span style="color:${color}">Carta Comodín de Color</span>`;
-	if (id.endsWith('+2')) return `<span style="color:${color}">Carta Roba 2 ${localeColor.replace(/o$/, 'a')}</span>`;
-	if (id.endsWith('R')) return `<span style="color:${color}">Carta Reversa ${localeColor.replace(/o$/, 'a')}</span>`;
-	if (id.endsWith('S')) return `<span style="color:${color}">Carta Salta ${localeColor.replace(/o$/, 'a')}</span>`;
-	return `<span style="color:red">Carta No Identificada</span>`;
+	if (id === 'W+4') return `<span style="color:${color}">Pick up 4 wild card</span>`;
+	if (id === 'WW') return `<span style="color:${color}">Change color card</span>`;
+	if (id.endsWith('+2')) return `<span style="color:${color}">Pick up 2 card ${localeColor.replace(/o$/, 'a')}</span>`;
+	if (id.endsWith('R')) return `<span style="color:${color}">Reverse Card ${localeColor.replace(/o$/, 'a')}</span>`;
+	if (id.endsWith('S')) return `<span style="color:${color}">Skip Card ${localeColor.replace(/o$/, 'a')}</span>`;
+	return `<span style="color:red">Card not identified</span>`;
 }
 
 function playVerifier(topCard, card, hand, change, special) {
 	//this function returns false if there is nothing wrong;
 	if (special) {
-		if (card !== special) return "!UN MOMENTO! Debes jugar la carta que has pedido (" + getCardName(special) + "). Si no tienes movimientos, dale al botón Pasar";
+		if (card !== special) return "!ONE MOMENT! You must play the card that you picked up (" + getCardName(special) + "). If you have no moves press the pass button";
 	}
 	let currentColour = change || topCard.charAt(0);
 	let currentValue = topCard.slice(1);
-	if (hand.indexOf(card) === -1) return "No posees esta carta";
+	if (hand.indexOf(card) === -1) return "You do not have that card";
 	if (card === "W+4") {
 		for (let i = 0; i < hand.length; i++) {
-			if (hand[i].charAt(0) === currentColour) return "No puedes jugar esta carta cuando todavía tienes una del mismo color que la carta anterior.";
+			if (hand[i].charAt(0) === currentColour) return "You cannot play this card becuase you still have one the same color as the previous card.";
 		}
 		return false;
 	}
 	if (card === "WW") return false;
 	if (card.charAt(0) === currentColour || card.slice(1) === currentValue) return false;
-	return "No puedes jugar esta carta, ten en cuenta que tanto el valor como el color de la carta deben coincidir.";
+	return ,, ten en cuenta que tanto el valor como el color de la carta deben coincidir.";
 }
 
 function verifyAlts(user, playerList) {
