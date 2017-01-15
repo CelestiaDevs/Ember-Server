@@ -1169,7 +1169,7 @@ exports.commands = {
 			return;
 		}
 		let roomfounder = (targetRoom.founder ? (room.founder in targetRoom.users ? "**" + targetRoom.founder + "**" : room.founder) : false);
-		if (roomfounder) buffer.unshift("Room Founder:<br />" + roomfounder);
+		if (roomfounder) buffer.unshift("Room Founder:<br>" + roomfounder);
 		if (targetRoom !== room) buffer.unshift("" + targetRoom.title + " room auth:");
 		connection.popup(buffer.join("\n\n") + userLookup);
 	},
