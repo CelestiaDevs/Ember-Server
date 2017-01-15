@@ -29,7 +29,7 @@ class PassTheBomb {
 			'The game will begin in <b>' + Math.round((this.timeLeft - Date.now()) / 1000) + '</b> seconds<br>' +
 			'<button name = "send" value = "/passthebomb join">Join!</button></center>';
 		if (this.players.size > 0) {
-			msg += '<center><b>' + this.players.size + '</b> ' + (this.players.size === 1 ? 'user has' : 'users have') + ' joined: ' + Array.from(this.players).map(player => Tools.escapeHTML(player[1].name)).join(', ') + '</center>';
+			msg += '<center><b>' + this.players.size + '</b> ' + (this.players.size === 1 ? 'user has' : 'users have') + ' joined: ' + Array.from(this.players).map(player => (player[1].name)).join(', ') + '</center>';
 		}
 		this.room.add('|uhtmlchange|' + msg + '</div>');
 	}
@@ -171,7 +171,7 @@ class PassTheBomb {
 	}
 	getWinner() {
 		let winner = this.getSurvivors()[0][1].name;
-		let msg = '|html|<div class = "infobox"><center>The winner of this game of Pass the Bomb is <b style = "color:' + Plugins.Colors.apply(winner) + '">' + Tools.escapeHTML(winner) + '!</b> Congratulations!</center>';
+		let msg = '|html|<div class = "infobox"><center>The winner of this game of Pass the Bomb is <b style = "color:' + Plugins.Colors.apply(winner) + '">' + (winner) + '!</b> Congratulations!</center>';
 		if (this.room.id === 'marketplace') {
 			msg += '<center>' + Tools.escapeHTML(winner) + ' has also won <b>5</b> credits for winning!</center>';
 			writeCredits(winner, 5, () => this.room.add(msg).update());
@@ -182,7 +182,7 @@ class PassTheBomb {
 	}
 	end(user) {
 		if (user) {
-			let msg = '<div class = "infobox"><center>This game of Pass the Bomb has been forcibly ended by <b>' + Tools.escapeHTML(user.name) + '</b>.</center></div>';
+			let msg = '<div class = "infobox"><center>This game of Pass the Bomb has been forcibly ended by <b>' + (user.name) + '</b>.</center></div>';
 			if (!this.madeMove) {
 				this.room.add('|uhtmlchange|bomb' + this.room.bombCount + this.round + '|' + msg).update();
 			} else {
