@@ -68,27 +68,27 @@ exports.commands = {
 		if (!this.can('customcolor')) return false;
 		target = this.splitTarget(target, true);
 		if (!target) return this.parse('/help customcolor');
-		if (!this.targetUserid || this.targetUsername.length > 18) return this.errorReply(`Indica un nombre de usuario válido.`);
+		if (!this.targetUserid || this.targetUsername.length > 18) return this.errorReply(`The name indicated is not valid.`);
 
 		if (target === 'delete') {
-			if (!(this.targetUserid in customColors)) return this.errorReply(`/customcolor - ${this.targetUsername} no tiene un color personalizado.`);
+			if (!(this.targetUserid in customColors)) return this.errorReply(`/customcolor - ${this.targetUsername} does not have a personalized color.`);
 			delete customColors[this.targetUserid];
 			updateColors();
 
-			this.sendReply(`Eliminaste el color personalizado de ${this.targetUsername}.`);
-			Rooms('staff').add(`${user.name} eliminó el color personalizado de ${this.targetUserid}.`).update();
-			this.privateModCommand(`(Color personalizado de ${this.targetUserid} removido por ${user.name}).`);
+			this.sendReply(`You have remove the personalized color of ${this.targetUsername}.`);
+			Rooms('staff').add(`${user.name} removed the personalized color of ${this.targetUserid}.`).update();
+			this.privateModCommand(`(Personalized color of ${this.targetUserid} removed by ${user.name}).`);
 
 			if (this.targetUser && this.targetUser.connected) {
-				this.targetUser.popup(`${user.name} eliminó tu color personalizado.`);
+				this.targetUser.popup(`${user.name} removed your personalized color.`);
 			}
 			return;
 		}
 
-		if (this.targetUserid in customColors) return this.errorReply(`El usuario indicado ya tiene un color personalizado. Ejecuta antes /customcolor [user], delete.`);
+		if (this.targetUserid in customColors) return this.errorReply(`The user indicated already have a personalized color. Try using /customcolor [user], delete.`);
 
 		const colorData = Plugins.Colors.parse(target, ['en', 'es']);
-		if (!colorData) return this.errorReply(`${target} no es un color válido.`);
+		if (!colorData) return this.errorReply(`${target} is not a valid color.`);
 		const colorHex = colorData.toString('hex');
 
 		const customColorVal = {color: colorHex};
@@ -96,13 +96,13 @@ exports.commands = {
 		customColors[this.targetUserid] = customColorVal;
 		updateColors();
 
-		this.sendReply(`|raw|Has otorgado un color personalizado a ${Plugins.Colors.apply(this.targetUsername).bold()}.`);
-		Rooms('staff').addRaw(Chat.html`${this.targetUserid} obtuvo un <strong><font color="${colorHex}">color personalizado</font></strong> de ${user.name}.`).update();
-		this.privateModCommand(`(${this.targetUserid} obtuvo un color personalizado ${colorData.getName('es')}: ${colorHex} de parte de ${user.name}.)`);
+		this.sendReply(`|raw|You have given a customcolor to ${Plugins.Colors.apply(this.targetUsername).bold()}.`);
+		Rooms('staff').addRaw(Chat.html`${this.targetUserid} obtained a <strong><font color="${colorHex}">custom color</font></strong> from ${user.name}.`).update();
+		this.privateModCommand(`(${this.targetUserid} obtained a customcolor ${colorData.getName('es')}: ${colorHex} from ${user.name}.)`);
 	},
 	customcolorhelp: [
-		`/customcolor [usuario], [color] - Otorga al usuario indicado el color especificado.`,
-		`/customcolor [usuario], delete - Elimina el color personalizado del usuario indicado.`,
+		`/customcolor [user], [color] - Gives the specified user a customcolor.`,
+		`/customcolor [user], delete - Removes a specified user customcolor.`,
 	],
 
 	colorpreview: 'checkcolor',
@@ -116,10 +116,10 @@ exports.commands = {
 		} else {
 			target = this.splitTarget(target || user.name, true);
 			if (this.targetUsername && this.targetUser !== user && (!(this.targetUserid in Users.usergroups))) {
-				if (!target && !user.trusted) return this.errorReply(`No autorizado a verificar el color.`);
+				if (!target && !user.trusted) return this.errorReply(`Not authorized to check a color.`);
 			}
 			if (!this.targetUserid || this.targetUsername.length > 18) {
-				return this.errorReply(`No se encontró un usuario válido "${this.targetUsername}".`);
+				return this.errorReply(`A valid user was not found "${this.targetUsername}".`);
 			}
 			if (!target) {
 				target = Plugins.Colors.get(this.targetUserid);
@@ -133,16 +133,16 @@ exports.commands = {
 		const formattedColor = Chat.html`<span style="font-weight:bold; color:${color.toString('hex')}">${targetColorName}</span>`;
 		const targetColorDesc = (
 			fromName ?
-			`El tono ‘${color.getName('es')}’ de ${Plugins.Colors.apply(fromName).bold()} ${formattedColor}` :
-			`El tono de ‘${color.getName('es')}’ ${formattedColor}`
+			`The tone ‘${color.getName('es')}’ of ${Plugins.Colors.apply(fromName).bold()} ${formattedColor}` :
+			`The tone of ‘${color.getName('es')}’ ${formattedColor}`
 		);
 
 		const error = checkLuminosity(color);
-		const validationText = this.targetUsername === fromName ? `No se detectó problemas al validarlo` : Chat.html`No se detectó problemas al validarlo para <strong style="color:${color.toString('hex')}">${this.targetUsername}</strong>`;
+		const validationText = this.targetUsername === fromName ? `No problems were detected while validating` : Chat.html`No problems were detected while validating for <strong style="color:${color.toString('hex')}">${this.targetUsername}</strong>`;
 		return this.sendReply(
-			`|raw|${targetColorDesc} equivale a <code>${color.toString('hsl')}</code>.\n` +
+			`|raw|${targetColorDesc} is equivalent to <code>${color.toString('hsl')}</code>.\n` +
 			(error || `|raw|${validationText}.`)
 		);
 	},
-	checkcolorhelp: [`/checkcolor [color], [usuario] - Verifica la apariencia y legalidad de un color asociado a un nombre de usuario.`],
+	checkcolorhelp: [`/checkcolor [color], [user] - Verifies the appearance of a color and a user name.`],
 };
