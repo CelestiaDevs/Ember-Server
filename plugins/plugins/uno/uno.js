@@ -380,30 +380,30 @@ exports.commands = {
 			const userid = user.userid;
 			if (games[room.id] && games[room.id].started && userid === games[room.id].player) return this.parse("/uno display");
 			this.sendReplyBox(
-				"<strong style\"padding-left:25px\">Introducción al juego:</strong><br><br>" +
-				"El mecanismo del Juego es simple, cada jugador empieza con 7 cartas (las cuales son distribuidas aleatoriamente), el juego elegirá a un jugador para que sea el primero en jugar, el jugador debe tener en cuenta que la carta a elegir debe coincidir con el color o el valor de la carta anterior.<br>" +
-				"Cuando un jugador solo tenga una sola carta este dirá \"UNO!\" y los otros jugadores deberán hacer todo lo posible para sumarle más cartas. Gana el jugador que quede con 0 cartas." +
+				"<strong style\"padding-left:25px\">Introduction to the game of UNO:</strong><br><br>" +
+				"The mechanism of the Game is simple, each player starts with 7 cards (which are randomly distributed), the game will choose a player to be the first to play, the player must keep in mind that the card to choose must match the Color or the value of the previous card.<br>" +
+				"When a player has only one card, he/she will say \"UNO!\" And the other players will do everything possible to add more cards. The player with 0 cards wins." +
 				"<hr>" +
-			    "<strong style\"padding-left:25px\">Comandos:</strong>" +
-			    "<div style=\"text-align:right; margin-right:10px;\"><em>Prefijados con /uno</em></div>" +
-			    "<ul><li><em>&mdash; new</em> - Inicia las inscripciones para un nuevo juego de UNO.</li>" +
-			    "<li><em>&mdash; join (opcional: tamaño)</em> - Inscríbete en el juego.</li>" +
-			    "<li><em>&mdash; leave</em> - Abandona el juego.</li>" +
-			    "<li><em>&mdash; start</em> - Comienza el juego con los participantes ya inscritos.</li>" +
-			    "<li><em>&mdash; dq</em> - Descalifica a un participante.</li>" +
-			    "<li><em>&mdash; end</em> - Cancela el juego .</li>" +
-			    "<li><em>&mdash; getusers</em> - Obtén una lista de los participantes inscritos en el juego.</li>" +
-			    "<li><em>&mdash; timeout [on|off|tiempo]</em> - Configura el cronómetro de descalificación por inactividad. El tiempo es indicado en segundos.</li>" +
-			    "<li><em>&mdash; hand</em> - Muestra tus cartas aun cuando no es tu turno (puedes mostrarlo públicamente con !).</li>" +
+			    "<strong style\"padding-left:25px\">Commands:</strong>" +
+			    "<div style=\"text-align:right; margin-right:10px;\"><em>Presets with /uno</em></div>" +
+			    "<ul><li><em>&mdash; new</em> - Starts a new game of UNO.</li>" +
+			    "<li><em>&mdash; join (optional: size)</em> - Joins the game of UNO.</li>" +
+			    "<li><em>&mdash; leave</em> - Leaves the game of UNO.</li>" +
+			    "<li><em>&mdash; start</em> - Starts the game with the users that have joined.</li>" +
+			    "<li><em>&mdash; dq</em> - Disqualifies a user.</li>" +
+			    "<li><em>&mdash; end</em> - Ends the game .</li>" +
+			    "<li><em>&mdash; getusers</em> - Shows a list of the users participating in the game.</li>" +
+			    "<li><em>&mdash; timeout [on|off|time]</em> - Sets the timer to disquialy inactive users. Time is indicated in seconds.</li>" +
+			    "<li><em>&mdash; hand</em> - Show your cards even when it is not your turn (you can show it publicly with !).</li>" +
 			    "</ul>"
 			);
 		},
 		create: 'new',
 		'new': function (target, room, user) {
 			if (!this.can('hostgames', null, room)) return false;
-			if (games[room.id]) return this.errorReply("Ya hay un juego en curso.");
+			if (games[room.id]) return this.errorReply("There is currently no game.");
 			let places = target ? parseInt(target, 10) : null;
-			if (places && places < 2) return this.errorReply("El número de jugadores debe ser mayor a 2.");
+			if (places && places < 2) return this.errorReply("The number of players must be greater than 2.");
 
 			const game = new Game(room.id, {
 				host: user.userid,
@@ -413,12 +413,12 @@ exports.commands = {
 		},
 		timeout: function (target, room, user) {
 			const game = games[room.id];
-			if (!game) return this.errorReply("No hay un juego en curso.");
+			if (!game) return this.errorReply("There is currently no game.");
 			if (!target) return this.parse('/help uno timeout');
 
 			if (game.started) {
 				if (game.playerList.length > 2 || !game.playerList.includes(user.userid) || game.player === user.userid) {
-					return this.errorReply("No puedes configurar el cronómetro.");
+					return this.errorReply("You cannot set the timer.");
 				}
 			} else {
 				if (!this.can('hostgames', null, room)) return false;
@@ -429,16 +429,16 @@ exports.commands = {
 			if (targetId === 'on' || targetId === 'off') {
 				targetValue = targetId === 'on';
 			} else if (game.started) {
-				return this.errorReply("Indica si encenderás (ON) o apagarás (OFF) el cronómetro.");
+				return this.errorReply("Indicate if you are going to turn on (ON) or off (OFF) the timer.");
 			} else {
 				targetValue = parseInt(target, 10);
 				if (isNaN(targetValue) || targetValue <= 0 || targetValue > 3600) {
-					return this.errorReply("Indica los segundos para el cronómetro (inferior a una hora).");
+					return this.errorReply("Indicates the seconds for the stopwatch (less than one hour).");
 				}
 			}
 
 			if (typeof targetValue === 'boolean' && game.timeOut.disabled ^ targetValue) {
-				return this.errorReply("El cronómetro ya estaba " + (targetValue ? "encendido" : "apagado") + ".");
+				return this.errorReply("The timer was already turned " + (targetValue ? "on" : "off") + ".");
 			}
 
 			if (typeof targetValue === 'boolean') {
@@ -463,15 +463,15 @@ exports.commands = {
 			const game = games[room.id];
 			const userid = user.userid;
 			if (!game || game.started) return this.errorReply("No hay un juego de Uno en fase de inscripción.");
-			if (!verifyAlts(user, game.playerList) || game.playerList.indexOf(userid) > -1) return this.errorReply("Una de tus alts ya estaba inscrita.");
+			if (!verifyAlts(user, game.playerList) || game.playerList.indexOf(userid) > -1) return this.errorReply("One of your alts is already in the game.");
 			if (game.places && game.playerList.length >= game.places) {
-				return user.sendTo(this.room, "Ya no quedan plazas disponibles.");
+				return user.sendTo(this.room, "There are no more available spots.");
 			}
 			// if (game.playerList.length >= 30) return this.errorReply('Ya no quedan plazas disponibles.');
 			game.playerList.push(userid);
 			game.data[userid] = [];
-			room.addRaw(`<strong>${Chat.escapeHTML(user.name)}</strong> se ha unido al juego.`);
-			this.sendReply("Te has inscrito exitosamente.");
+			room.addRaw(`<strong>${Chat.escapeHTML(user.name)}</strong> has joined the game.`);
+			this.sendReply("You have successfully joined.");
 
 			if (game.places && game.playerList.length === game.places) {
 				game.start();
@@ -484,7 +484,7 @@ exports.commands = {
 			if (!game.data[userid]) return false;
 			game.playerList.splice(game.playerList.indexOf(userid), 1);
 			delete game.data[userid];
-			room.addRaw(`<strong>${Chat.escapeHTML(user.name)}</strong> ha abandonado el juego.`);
+			room.addRaw(`<strong>${Chat.escapeHTML(user.name)}</strong> has left the game.`);
 		},
 		dq: function (target, room, user) {
 			const game = games[room.id];
@@ -497,21 +497,21 @@ exports.commands = {
 				game.nextPlayer();
 				game.initTurn(true);
 			}
-			room.addRaw(`<strong>${Chat.escapeHTML(toUserName(targetId))}</strong> ha sido descalificado del juego..`);
+			room.addRaw(`<strong>${Chat.escapeHTML(toUserName(targetId))}</strong> has been disqualified from the game..`);
 			game.playerList.splice(game.playerList.indexOf(targetId), 1);
 			delete game.data[targetId];
 			if (game.playerList.length === 1) {
 				//Añadir color de usuario a 'game.playerList[0]'
-				room.addRaw(`¡Felicidades <strong>${Chat.escapeHTML(toUserName(game.playerList[0]))}</strong> por ganar el Juego!`);
+				room.addRaw(`Congratulations <strong>${Chat.escapeHTML(toUserName(game.playerList[0]))}</strong> for winning the game!`);
 				game.clearDQ();
 				game.destroy();
 			}
 		},
 		start: function (target, room, user) {
 			const game = games[room.id];
-			if (!game || game.started) return this.errorReply("Nadie ha abierto las inscripciones para un juego.");
-			if (!this.can('hostgames', null, room)) return this.errorReply('No tienes acceso a este comando.');
-			if (game.playerList.length < 2) return this.errorReply("No hay suficientes jugadores para comenzar.");
+			if (!game || game.started) return this.errorReply("No one has started a game of UNO.");
+			if (!this.can('hostgames', null, room)) return this.errorReply('You do not have access to this command.');
+			if (game.playerList.length < 2) return this.errorReply("There are not enough players to start.");
 			game.start();
 		},
 		play: function (target, room, user) {
@@ -544,14 +544,14 @@ exports.commands = {
 			game.clearDQ();
 			user.sendTo(room.id, "|uhtmlchange|" + game.controlsId + "|");
 			game.postId++;
-			this.add("|uhtml|post" + game.postId + "|<strong>" + Chat.escapeHTML(user.name) + " jugó la carta </strong> " + buildCard(game.top));
-			game.lastplay = "|uhtmlchange|post" + game.postId + "|" + Chat.escapeHTML(user.name) + " jugó la carta <strong>" + getCardName(game.top) + "</strong>";
+			this.add("|uhtml|post" + game.postId + "|<strong>" + Chat.escapeHTML(user.name) + " played the card </strong> " + buildCard(game.top));
+			game.lastplay = "|uhtmlchange|post" + game.postId + "|" + Chat.escapeHTML(user.name) + " played the card <strong>" + getCardName(game.top) + "</strong>";
 			//check for a winner or UNO
 			if (game.data[userid].length === 0) {
 				//clear out last card
 				this.add(game.lastplay);
 				//announce winner
-				room.addRaw(`¡Felicidades <strong>${Chat.escapeHTML(user.name)}</strong> por ganar el Juego!`);
+				room.addRaw(`Congratulations <strong>${Chat.escapeHTML(user.name)}</strong> for winning the game!`);
 				//end game
 				game.destroy();
 				return;
@@ -559,7 +559,7 @@ exports.commands = {
 			if (game.data[userid].length === 1) {
 				room.addRaw('<h3>¡UNO!</h3');
 			}
-			if (changedColor) room.addRaw('<font color="' + changedColor.replace("yellow", "orange") + '">El color de la mano ha sido cambiado a <strong>' + changedColor.toUpperCase() + '</strong></font>.');
+			if (changedColor) room.addRaw('<font color="' + changedColor.replace("yellow", "orange") + '">The color of the hand has been changed to <strong>' + changedColor.toUpperCase() + '</strong></font>.');
 			game.initTurn();
 		},
 		draw: function (target, room, user) {
@@ -568,10 +568,10 @@ exports.commands = {
 			if (!game || !game.started || userid !== game.player) return false;
 			if (game.lastDraw) return false;
 			let receivedCards = game.giveCard(userid);
-			let CCC = game.buildGameScreen(userid, game.controlsId, "Has recibido la carta " + receivedCards.map(getCardName).join("") + ".", true);
+			let CCC = game.buildGameScreen(userid, game.controlsId, "Has received a card " + receivedCards.map(getCardName).join("") + ".", true);
 			game.lastDraw = receivedCards.join("");
 			Users(userid).sendTo(room.id, CCC);
-			room.addRaw(`<strong>${Chat.escapeHTML(user.name)}</strong> ha decidido tomar una carta.`);
+			room.addRaw(`<strong>${Chat.escapeHTML(user.name)}</strong> has decided to draw a card.`);
 		},
 		display: function (target, room, user) {
 			const game = games[room.id];
@@ -585,7 +585,7 @@ exports.commands = {
 			const userid = user.userid;
 			if (!game || !game.started || userid !== game.player) return false;
 			if (!game.lastDraw) return false;
-			this.add("|raw|<strong>" + Chat.escapeHTML(user.name) + "</strong> ha decidido cancelar su turno.");
+			this.add("|raw|<strong>" + Chat.escapeHTML(user.name) + "</strong> has decided to skip the turn.");
 			user.sendTo(room.id, "|uhtmlchange|" + game.controlsId + "|");
 			if (game.lastplay) {
 				this.add(game.lastplay);
@@ -600,20 +600,20 @@ exports.commands = {
 			if (game.lastplay) this.add(game.lastplay);
 			game.clearDQ();
 			game.destroy();
-			this.add("|raw|<h3 style=\"color:#F0403A;\">" + Chat.escapeHTML(user.name) + " ha cancelado el juego.</h3>");
+			this.add("|raw|<h3 style=\"color:#F0403A;\">" + Chat.escapeHTML(user.name) + " has ended the game.</h3>");
 		},
 		getusers: function (target, room, user) {
 			const game = games[room.id];
 			if (!game || !game.playerList) return false;
 			if (!this.runBroadcast()) return;
-			this.sendReplyBox("<strong>Participantes:</strong> <em>(" + game.playerList.length + ")</em><br />" + game.playerList.join(", "));
+			this.sendReplyBox("<strong>Participants:</strong> <em>(" + game.playerList.length + ")</em><br />" + game.playerList.join(", "));
 		},
 		hand: function (target, room, user) {
 			const game = games[room.id];
-			if (!game) return this.errorReply("No puedes ver tus cartas mientras no haya un juego en curso.");
+			if (!game) return this.errorReply("You cannot see your cards if there is no game in progress.");
 			if (!this.runBroadcast()) return;
 			const playerData = game.data[user.userid];
-			if (!playerData) return this.errorReply("No estás participando de este juego.");
+			if (!playerData) return this.errorReply("You are not participating in this game.");
 			this.sendReply('|raw|' + getMyHand(playerData));
 		},
 	},
