@@ -1,0 +1,112 @@
+/* Room shop system (economy)
+ * This plugin gives each room that is allowed,
+ * a custom shop for their room.  Room founders
+ * can customize what items they want to be in
+ * their shops.  Only certain rooms can have
+ * their own shops.
+ * by: panpawn and Siiilver
+ */
+
+// OBJECT STRUCTURE:
+// { 'roomid': { 'item1id': ['item1name', 'item1desc', 'item1price'], 'item2id': ['item2name', 'item2desc', 'item2price'] } }
+
+'use strict';
+
+const fs = require('fs');
+
+const ITEM_CAP = 10; // maximum items a room shop can have
+const PATH = 'config/roomshops.json';
+const RoomShop = require('../' + PATH);
+
+function saveShop() {
+	fs.writeFileSync(PATH, JSON.stringify(RoomShop));
+}
+
+function getName(user) {
+	return '<font color="' + hashColor(user) + '">' + Tools.escapeHTML(user) + '</font>';
+}
+
+function getRoomShop(room) {
+	let output = "<center><b><u>" + Tools.escapeHTML(room.title) + " Room Shop</u></b><br />" +
+	'<table border="1" cellspacing ="0" cellpadding="3">' +
+	'<tr><th>Articulo</th><th>Descripcion</th><th>Precio</th></tr>';
+	for (let i in RoomShop[room.id]) {
+		let item = RoomShop[room.id][i];
+		let name = item[0], desc = item[1], price = item[2];
+		output += '<tr><td><button name="send" value="/roomshop buy, ' + Tools.escapeHTML(name) + '">' + Tools.escapeHTML(name) + '</button></td><td>' +
+		Tools.escapeHTML(desc) + '</td><td>' + price + '</td></tr>';
+	}
+	return output + '</table><font size=1>Nota: De acuerdo con las reglas del servidor, el staff global no son responsables de las estafas a traves de una tienda de sala. Sin embargo, si es lo suficientemente grave, informe a un staff global y si habia roto una regla, se tomaran las medidas.</font></center>';
+}
+
+exports.commands = {
+	roomshop: function (target, room, user, connection, cmd, message) {
+		if (!room.founder) return this.errorReply("This room is not designed to have a room shop.");
+		if (!room.isOfficial && !Users.usergroups[room.founder]) return this.errorReply("This room does not qualify to have a room shop.");
+		if (!target || !target.trim()) {
+			if (!RoomShop[room.id] || Object.keys(RoomShop[room.id]).length < 1) return this.errorReply("This room does not have any items in it's room shop at this time.");
+			if (!this.canBroadcast()) return;
+			return this.sendReplyBox(getRoomShop(room));
+		}
+
+		target = target.split(',');
+		for (let u in target) target[u] = target[u].trim();
+		if (!RoomShop[room.id]) RoomShop[room.id] = {};
+		let RS = RoomShop[room.id];
+		let item, desc, price, itemName;
+		switch (toId(target[0])) {
+		case 'add':
+			if (user.userid !== room.founder && !this.can('declare') && room.isPrivate) return false;
+			if (RS.length > ITEM_CAP) return this.errorReply("You have reached the item cap of " + ITEM_CAP + " and cannot add any more items.");
+			item = target[1];
+			desc = target[2];
+			price = target[3];
+			if (!item || !desc || !price) return this.sendReply("Usage: /roomshop add, [item], [description], [price] - Adds an item to the roomshop.");
+			if (item.lenth > 15) return this.errorReply("Item names cannot exceed 15 characters.");
+			if (desc.length > 200) return this.errorReply("Item descriptions cannot exceed 200 characters.");
+			if (isNaN(price) || price < 1 || ~price.indexOf('.') || price > 6000) return this.errorReply("The item's price must be a positive integer, and cannot exceed 6000.");
+			RS[toId(item)] = [item, desc, Number(price)];
+			saveShop();
+			this.sendReply("You have successfully added the item '" + item + "' to your room shop.");
+			break;
+		case 'remove':
+			if ((user.userid !== room.founder) && !this.can('declare')) return false;
+			if (!target[1]) return this.sendReply("Usage: /roomshop remove, [item] - Removes an item from the roomshop.");
+			item = toId(target[1]);
+			if (!RS[item]) return this.errorReply("'" + target[1] + "' is not an item in the room shop. Check spelling?");
+			itemName = RS[item][0];
+			delete RoomShop[room.id][item];
+			saveShop();
+			this.sendReply("You have successfully removed the item '" + itemName + "' from the room's shop.");
+			break;
+		case 'buy':
+			if (room.founder === user.userid) return this.errorReply("You can't buy from your own room shop.");
+			item = toId(target[1]);
+			if (!item) return this.errorReply("Usage: /roomshop buy, [item] - Buys an item from the room's room shop.");
+			if (!RS[item]) return this.errorReply("This item is not in the room shop. Check spelling?");
+			item = RS[item][0];
+			price = RS[toId(item)][2];
+			if (Shop.getUserMoney(user.name) < price) return this.errorReply("No tienes suficiente dinero para comprar un " + item + ". Necesitas " + (price - Shop.getUserMoney(user.name)) + " mas PokeDolares para comprar este articulo.");
+			this.parse('/tb ' + room.founder + ', ' + price);
+			room.add("|raw|<b><u>Room Shop</u>: " + hashColor(user.name) + "</b> ha comprado un <u>" + Tools.escapeHTML(item) + "</u> de el roomshop por " + price + " Pokedolare" + (price > 1 ? "s" : "") + ".").update();
+			this.privateModCommand("(" + user.name + " ha comprado un articulo " + item + " de el room shop.)");
+			break;
+		case 'help':
+			this.parse('/help roomshop');
+			break;
+		default:
+			let check = /add|remove|buy/, correction = '';
+			if (check.test(toId(target[0]))) {
+				let test = toId(target[0]).match(check);
+				correction = '\n(Did you mean: "' + message.replace(test, test + ',') + '")';
+			}
+			this.sendReply("'" + target[0] + "' is not a valid roomshop command. Valid roomshop commands include: add, remove, buy" + correction);
+		}
+	},
+	roomshophelp: ["This plugin allows certain rooms to have their own room shop.  Commands include...",
+		"/roomshop add, [item], [description], [price] - Coloca un articulo nuevo en el roomshop.  Requiere Room Founder.",
+		"/roomshop remove, [item] - Remueve un articulo del roomshop. Requiere Room Founder.",
+		"/roomshop buy, [item] - Compra un articulo del roomshop.",
+		"/roomshop - Muestra el roomshop de la sala.",
+	],
+};
