@@ -6,7 +6,7 @@ exports.commands = {
         if (!this.can('forcewin')) return false;
         if (!room.chatRoomData) return;
         if (!target) {
-            if (!this.canBroadcast()) return;
+            if (!this.runBroadcast()) return;
             if (!room.chatRoomData.user) return this.sendReplyBox("The User of the Week has not been set.");
             return this.sendReplyBox(
                 "The <strong>User of the week</strong>  is: " + room.chatRoomData.user
