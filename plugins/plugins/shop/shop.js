@@ -30,32 +30,31 @@ exports.commands = {
 	shophelp: function () {
 		if (!this.runBroadcast()) return false;
 		this.sendReplyBox(
-			"<center><h3><b><u>Tienda del servidor - Comandos</u></b></h3></center>" +
-			"<b>Comandos Básicos:</b><br /><br />" +
-			"/shop - Muestra los artículos de la tienda.<br />" +
-			"/buy (artículo) - Compra un artículo de la tienda.<br />" +
-			"/pd (user) - muestra los ahorros de un usuario.<br />" +
-			"/donate (user), (money) - Dona una cantidad determinada a otro usuario.<br />" +
+			"<center><h3><b><u>Ember Server Shop - Commands</u></b></h3></center>" +
+			"<b>Basic Commands:</b><br /><br />" +
+			"/shop - Shows the items in the server shop.<br />" +
+			"/buy (item) - Purchases an item in the shop.<br />" +
+			"/bucks (user) - Shows how many bucks a user has.<br />" +
+			"/donate (user), (money) - Donates a determined quantity to another user.<br />" +
 			"<br />" +
-			"<b>Comandos Específicos:</b><br /><br />" +
-			"/tc (user) - Muestra la tarjeta de entrenador de un usuario.<br />" +
-			"/tcimage (link) - Cambia la imagen de la Tc.<br />" +
-			"/tcphrase (text) - Cambia la frase de la Tc.<br />" +
-			"/tcpokemon (pokemon1),(pokemon2)... - Cambia Los sprites de los pokemon de la Tc.<br />" +
-			"/tchtml (html) - Modifica la Tarjeta de entrenador personalizada.<br />" +
-			"/customsymbol (symbol) - Cambia el símbolo a uno personalizado, pero sin cambiar por ello el rango.<br />" +
-			"/resetsymbol - Reestablece el símbolo por omisión.<br />" +
-			"/botphrase (texto) - Establece la frase del Bot para el comando .whois.<br />" +
+			"<b>Specific Commands:</b><br /><br />" +
+			"/tc (user) - Shows the trainer card for a certain user.<br />" +
+			"/tcimage (link) - Chages the image in the TC.<br />" +
+			"/tcphrase (text) - Changes the phrase in the TC.<br />" +
+			"/tcpokemon (pokemon1),(pokemon2)... - Changes the sprites of pokemon in the TC.<br />" +
+			"/tchtml (html) - Modifies the html for a personalized trainer card.<br />" +
+			"/customsymbol (symbol) - Changes symbol for a personalized one, but without changing rank.<br />" +
+			"/resetsymbol - Resets your previous symbol gets rid of the one you had.<br />" +
 			"<br />" +
-			"<b>Comandos Administrativos:</b><br /><br />" +
-			"/givemoney (user), (pds) - Da una cantidad de Pds a un usuario.<br />" +
-			"/removemoney (user), (pds) - Quita una cantidad de Pds a un usuario.<br />" +
-			"/symbolpermision (user), (on/off) - Da o Quita el permiso para usar Custom Symbols.<br />" +
-			"/pendigavatars - Muestra la lista de avtares personalizados pendientes por incluir.<br />" +
-			"/deavatarreq (user) - Eimina una solicitud de avatar de la lista.<br />" +
-			"/removetc (user) - Elimina una tarjeta de entrenador.<br />" +
-			"/setcustomtc (user), (on/off) - Establece el permiso para usar una Tc personalizada.<br />" +
-			"/sethtmltc (user), (html) - Modifica la Tc personalizada de un usuario.<br />"
+			"<b>Administrative Commands:</b><br /><br />" +
+			"/givemoney (user), (bucks) - Gives a quantity of bucks to a user.<br />" +
+			"/removemoney (user), (bucks) - Removes a quantity of bucks from a user.<br />" +
+			"/symbolpermision (user), (on/off) - Gives or removes the permission for a CustomSymbol.<br />" +
+			"/pendingavatars - Shows a list of pending personalized avatars that have been purchased.<br />" +
+			"/deavatarreq (user) - Deletes the request for a personalized avatar.<br />" +
+			"/removetc (user) - Deletes a users trainer card.<br />" +
+			"/setcustomtc (user), (on/off) - Gives or removes the permisson to have a personalized TC.<br />" +
+			"/sethtmltc (user), (html) - Modifies the peronalized trainer card for a user.<br />"
 		);
 	},
 
