@@ -193,13 +193,13 @@ exports.commands = {
 	credits: function (target, room, user) {
 		this.popupReply("|html|" + "<font size=5>Ember Server Credits</font><br />" +
 					"<u>Major Contributors:</u><br />" +
-					"- " + Plugins.Color.apply('DeltaSkiez', true) + " (Owner, Sysadmin, Server CSS)<br />" +
-					"- " + Plugins.Color.apply('Revival Kaine', true) + " (Owner, Sysadmin, Lead Policy)<br />" +
-					"- " + Plugins.Color.apply('Revival Viosmic', true) + " (Admin, Discord Manager)<br />" +
+					"- " + Plugins.Colors.apply('DeltaSkiez', true) + " (Owner, Sysadmin, Server CSS)<br />" +
+					"- " + Plugins.Colors.apply('Revival Kaine', true) + " (Owner, Sysadmin, Lead Policy)<br />" +
+					"- " + Plugins.Colors.apply('Revival Viosmic', true) + " (Admin, Discord Manager)<br />" +
 					"<br />" +
 					"<u>Staff Contributions:</u><br />" +
-					"- " + Plugins.Color.apply('Blooded Kitten', true) + " (Server Website Manager)<br />" +
-					"- " + Plugins.Color.apply('Revival Fleur', true) + " (Server Management)<br />" +
+					"- " + Plugins.Colors.apply('Blooded Kitten', true) + " (Server Website Manager)<br />" +
+					"- " + Plugins.Colors.apply('Revival Fleur', true) + " (Server Management)<br />" +
 					"<br />" +
 					"<u>Special Thanks:</u><br />" +
 					"- Current staff team<br />" +
