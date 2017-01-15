@@ -90,7 +90,7 @@ class PassTheBomb {
 		this.release = setTimeout(() => {
 			this.setBomb();
 			let player = this.players.get(this.holder).name;
-			this.room.add('|uhtmlchange|' + this.getMsg() + '<br><b style = "font-size: 10pt;">The bomb has been passed to <span style = "color:' + hashColor(this.holder) + '">' + Tools.escapeHTML(player) + '</span>!</b></div>').update();
+			this.room.add('|uhtmlchange|' + this.getMsg() + '<br><b style = "font-size: 10pt;">The bomb has been passed to <span style = "color:' + Plugins.Colors.apply(this.holder) + '">' + Tools.escapeHTML(player) + '</span>!</b></div>').update();
 			this.canPass = true;
 			this.resetTimer();
 		}, (Math.floor(Math.random() * 12) + 3) * 1000);
@@ -123,14 +123,14 @@ class PassTheBomb {
 
 		this.madeMove = true;
 		this.setBomb(targetId);
-		this.room.add('|html|' + user.name + ' passed the bomb to <b style = "' + hashColor(targetId) + '">' + this.players.get(targetId).name + '</b>!');
+		this.room.add('|html|' + user.name + ' passed the bomb to <b style = "' + Plugins.Colors.apply(targetId) + '">' + this.players.get(targetId).name + '</b>!');
 
 		if (this.checkWinner()) this.getWinner();
 	}
 	resetTimer() {
 		this.timer = setTimeout(() => {
 			let player = this.players.get(this.holder).name;
-			this.room.add('|html|<b>The bomb exploded and killed <span style = "' + hashColor(this.holder) + '">' + player + '</span>').update();
+			this.room.add('|html|<b>The bomb exploded and killed <span style = "' + Plugins.Colors.apply(this.holder) + '">' + player + '</span>').update();
 			this.players.get(this.holder).status = 'dead';
 			this.canPass = false;
 			setTimeout(() => {
@@ -171,7 +171,7 @@ class PassTheBomb {
 	}
 	getWinner() {
 		let winner = this.getSurvivors()[0][1].name;
-		let msg = '|html|<div class = "infobox"><center>The winner of this game of Pass the Bomb is <b style = "color:' + hashColor(winner) + '">' + Tools.escapeHTML(winner) + '!</b> Congratulations!</center>';
+		let msg = '|html|<div class = "infobox"><center>The winner of this game of Pass the Bomb is <b style = "color:' + Plugins.Colors.apply(winner) + '">' + Tools.escapeHTML(winner) + '!</b> Congratulations!</center>';
 		if (this.room.id === 'marketplace') {
 			msg += '<center>' + Tools.escapeHTML(winner) + ' has also won <b>5</b> credits for winning!</center>';
 			writeCredits(winner, 5, () => this.room.add(msg).update());
