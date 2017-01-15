@@ -9,7 +9,7 @@ exports.commands = {
             if (!this.canBroadcast()) return;
             if (!room.chatRoomData.user) return this.sendReplyBox("The User of the Week has not been set.");
             return this.sendReplyBox(
-                "El <strong>Usuario de la semana</strong>  es: " + room.chatRoomData.user
+                "The <strong>User of the week</strong>  is: " + room.chatRoomData.user
             );
         }
         if (!this.can('declare', null, room)) return false;
@@ -24,7 +24,7 @@ exports.commands = {
         room.chatRoomData.user = Tools.escapeHTML(target);
         Rooms.global.writeChatRoomData();
         room.addRaw(
-            "<div class=\"broadcast-green\"><strong>El usuario de la semana es: " + room.chatRoomData.user + ".</strong></div>"
+            "<div class=\"broadcast-green\"><strong>The user of the week is: " + room.chatRoomData.user + ".</strong></div>"
         );
         this.logModCommand(Tools.escapeHTML(user.name) + " updated the User of the Week to \"" + room.chatRoomData.user + "\".");
     },
