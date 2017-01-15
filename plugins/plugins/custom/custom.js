@@ -228,6 +228,12 @@ exports.commands = {
 					"<br />" +
 					"<i>Please follow these rules to make the server a friendly and enjoyable place to be. Breaking any rules will result in punishment.</i><br />");
 	},
+	
+	'!discord': true,
+	    discord: function (target, room, user) {
+		        if (!this.runBroadcast()) return;
+		        this.sendReplyBox('Join our server discord by clicking <a href="http://whiteflare.freeforums.net/">here</a>.');
+	},
 
 	roomlist: function (target, room, user) {
 		let header = ['<b><font color="#1aff1a" size="2">Total users connected: ' + Rooms.global.userCount + '</font></b><br />'],
