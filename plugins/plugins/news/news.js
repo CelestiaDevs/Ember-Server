@@ -84,10 +84,10 @@ exports.commands = {
 			this.popupReply("|wide||html|You will no longer automatically receive Ember News.<br><hr><button class='button' name='send' value='/news'>Go Back</button>");
 		},
 	},
-	serverannouncementshelp: ["/news view - Views current SpacialGaze news.",
+	serverannouncementshelp: ["/news view - Views current Ember news.",
 		"/news delete [news title] - Deletes announcement with the [title]. Requires @, &, ~",
 		"/news add [news title], [news desc] - Adds news [news]. Requires @, &, ~",
-		"/news subscribe - Subscribes to SpacialGaze News.",
-		"/news unsubscribe - Unsubscribes to SpacialGaze News.",
+		"/news subscribe - Subscribes to Ember News.",
+		"/news unsubscribe - Unsubscribes to Ember News.",
 	],
 };
