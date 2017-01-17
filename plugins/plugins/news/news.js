@@ -5,7 +5,7 @@ function generateNews(user) {
 	user = toId(user);
 	Object.keys(Db('news').object()).forEach(announcement => {
 		newsData = Db('news').get(announcement);
-		newsDisplay.push(`<h4>${announcement}</h4>${newsData[1]}<br /><br />—${SG.nameColor(newsData[0], true)} <small>on ${newsData[2]}</small>`);
+		newsDisplay.push(`<h4>${announcement}</h4>${newsData[1]}<br /><br />—${Plugins.Colors.apply(newsData[0], true)} <small>on ${newsData[2]}</small>`);
 	});
 	return newsDisplay;
 }
@@ -30,7 +30,7 @@ SG.showNews = function (userid, user) {
 	if (newsDisplay.length > 0) {
 		newsDisplay = newsDisplay.join('<hr>');
 		newsDisplay += showSubButton(userid);
-		return user.send(`|pm| SG Server|${user.getIdentity()}|/raw ${newsDisplay}`);
+		return user.send(`|pm| Ember News|${user.getIdentity()}|/raw ${newsDisplay}`);
 	}
 };
 
@@ -42,7 +42,7 @@ exports.commands = {
 		display: 'view',
 		view: function (target, room, user) {
 			if (!this.runBroadcast()) return;
-			let output = "<center><strong>SpacialGaze News:</strong></center>";
+			let output = "<center><strong>Ember News:</strong></center>";
 			output += generateNews().join('<hr>') + showSubButton(user.userid);
 			if (this.broadcasting) return this.sendReplyBox("<div class =\"infobox-limited\"" + output + "</div>");
 			return user.send('|popup||wide||html|' + output);
@@ -71,17 +71,17 @@ exports.commands = {
 		},
 		subscribe: function (target, room, user) {
 			if (!user.named) return this.errorReply('You must choose a name before subscribing');
-			if (hasSubscribed(user.userid)) return this.errorReply("You are alreading subscribing SpacialGaze News.");
+			if (hasSubscribed(user.userid)) return this.errorReply("You are alreading subscribing Ember News.");
 			Db('NewsSubscribers').set(user.userid, true);
-			this.sendReply("You have subscribed SpacialGaze News.");
-			this.popupReply("|wide||html|You will receive SpacialGaze News automatically once you connect to the SpacialGaze next time.<br><hr><button class='button' name = 'send' value = '/news'>Go Back</button>");
+			this.sendReply("You have subscribed Ember News.");
+			this.popupReply("|wide||html|You will receive Ember News automatically once you connect to the Ember next time.<br><hr><button class='button' name = 'send' value = '/news'>Go Back</button>");
 		},
 		unsubscribe: function (target, room, user) {
 			if (!user.named) return this.errorReply('You must choose a name before unsubscribing');
-			if (!hasSubscribed(user.userid)) return this.errorReply("You have not subscribed SpacialGaze News.");
+			if (!hasSubscribed(user.userid)) return this.errorReply("You have not subscribed Ember News.");
 			Db('NewsSubscribers').delete(user.userid);
-			this.sendReply("You have unsubscribed SpacialGaze News.");
-			this.popupReply("|wide||html|You will no longer automatically receive SpacialGaze News.<br><hr><button class='button' name='send' value='/news'>Go Back</button>");
+			this.sendReply("You have unsubscribed Ember News.");
+			this.popupReply("|wide||html|You will no longer automatically receive Ember News.<br><hr><button class='button' name='send' value='/news'>Go Back</button>");
 		},
 	},
 	serverannouncementshelp: ["/news view - Views current SpacialGaze news.",
