@@ -22,7 +22,7 @@ function showSubButton(user) {
 	output = "<hr><center><button class = \"button\" name=\"send\" value=\"/news " + (hasSubscribed(user) ? "unsubscribe" : "subscribe") + "\">" + (hasSubscribed(user) ? "Unsubscribe from the news" : "Subscribe to the news") + "</button></center>";
 	return output;
 }
-SG.showNews = function (userid, user) {
+showNews = function (userid, user) {
 	if (!user || !userid) return false;
 	userid = toId(userid);
 	let newsDisplay = generateNews(user);
