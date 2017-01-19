@@ -525,6 +525,37 @@ exports.Formats = [
 		banlist: ['Arena Trap', 'Huge Power', 'Moody', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Wonder Guard', 'Chatter', 'Extreme Evoboost'],
 	},
 	{
+		name: "[Gen 7] Pokébilities",
+		desc: [
+			"Pok&eacute;mon have all their natural abilities at the same time.",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3588652/\">Pokébilities</a>",
+		],
+
+		mod: 'pokebilities',
+		ruleset: ['[Gen 7] Pokebank OU', 'Evasion Abilities Clause'],
+		banlist: ['Excadrill'],
+		onBegin: function () {
+			let banlistTable = this.getBanlistTable(this.getFormat('gen7pokbilities'));
+			let allPokemon = this.p1.pokemon.concat(this.p2.pokemon);
+			for (let i = 0, len = allPokemon.length; i < len; i++) {
+				let pokemon = allPokemon[i];
+				if (pokemon.ability === 'battlebond') {
+					pokemon.innates = [];
+					continue;
+				}
+				pokemon.innates = Object.keys(pokemon.template.abilities).filter(key => key !== 'S' && (key !== 'H' || !pokemon.template.unreleasedHidden)).map(key => toId(pokemon.template.abilities[key])).filter(ability => ability !== pokemon.ability && !banlistTable[ability]);
+			}
+		},
+		onSwitchInPriority: 1,
+		onSwitchIn: function (pokemon) {
+			pokemon.innates.forEach(innate => pokemon.addVolatile("other" + innate, pokemon));
+		},
+		onAfterMega: function (pokemon) {
+			pokemon.innates.forEach(innate => pokemon.removeVolatile("other" + innate, pokemon));
+			pokemon.innates = [];
+		},
+	},
+	{
 		name: "[Gen 7] 350 Cup",
 		desc: [
 			"Pok&eacute;mon with a base stat total of 350 or lower get their stats doubled.",
