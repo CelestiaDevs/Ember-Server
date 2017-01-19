@@ -11,15 +11,15 @@ exports.commands = {
 		this.sendReplyBox(
 			'<center><h3><b><u>Ember Server Shop</u></b></h3><table border="1" cellspacing="0" cellpadding="3" target="_blank"><tbody>' +
 			'<tr><th>Item</th><th>Description</th><th>Cost</th></tr>' +
-			'<tr><td>Chatroom</td><td>Purchases a chatroom in the server.</td><td>500</td></tr>' +
-			'<tr><td>CustomTC</td><td>Purchases a custom trainer card (provide html). Contact an admin if the code is too long for one message.</td><td>1000</td></tr>' +
-			'<tr><td>CustomAvatar</td><td>Purchases a personalized avatar. It should be of small sizes and be appropriate. Contact an admin to obtain this item.</td><td>800</td></tr>' +
-			'<tr><td>CustomIcon</td><td>Purchases a personalized icon. It should be a small image of dimensions (32x32) and appropriate. Contact an admin to obtain this item.</td><td>800</td></tr>' +
-			'<tr><td>CustomColor</td><td>Purchases a personalized color for your name. Contact an admin to obtain this item.</td><td>800</td></tr>' +
-			'<tr><td>CustomPhrase</td><td>Purchases a personalized phrase for when you enter. Contact an admin to obtain this item.</td><td>500</td></tr>' +
-			'<tr><td>Symbol</td><td>Purchases access to the command /customsymbol that allows you to have a symbol (except staff) to appear at the top of the userlist.</td><td>20</td></tr>' +
-			'<tr><td>TC</td><td>Purchases a basic trainer card. With an image you can modify using /tcimage and a trainer phrase that you can modify using /tcphrase</td><td>550</td></tr>' +
-			'<tr><td>Sprite</td><td>Adds a pokemon sprite to your basic trainer card. Maximum of 6. You can change the pokemon by using the command /tcpokemon</td><td>50</td></tr>' +
+			'<tr><td>Chatroom</td><td>Purchases a chatroom in the server.</td><td>5000</td></tr>' +
+			'<tr><td>CustomTC</td><td>Purchases a custom trainer card (provide html). Contact an admin if the code is too long for one message.</td><td>2000</td></tr>' +
+			'<tr><td>CustomAvatar</td><td>Purchases a personalized avatar. It should be of small sizes and be appropriate. Contact an admin to obtain this item.</td><td>1500</td></tr>' +
+			'<tr><td>CustomIcon</td><td>Purchases a personalized icon. It should be a small image of dimensions (32x32) and appropriate. Contact an admin to obtain this item.</td><td>1000</td></tr>' +
+			'<tr><td>CustomColor</td><td>Purchases a personalized color for your name. Contact an admin to obtain this item.</td><td>1000</td></tr>' +
+			'<tr><td>CustomPhrase</td><td>Purchases a personalized phrase for when you enter. Contact an admin to obtain this item.</td><td>800</td></tr>' +
+			'<tr><td>Symbol</td><td>Purchases access to the command /customsymbol that allows you to have a symbol (except staff) to appear at the top of the userlist.</td><td>200</td></tr>' +
+			'<tr><td>TC</td><td>Purchases a basic trainer card. With an image you can modify using /tcimage and a trainer phrase that you can modify using /tcphrase</td><td>500</td></tr>' +
+			'<tr><td>Sprite</td><td>Adds a pokemon sprite to your basic trainer card. Maximum of 6. You can change the pokemon by using the command /tcpokemon</td><td>100</td></tr>' +
 			'</tbody></table><br /> To purchase an item use the command /buy (item)' +
 			'<br /> Some items can only be purchased by contacting an administrator. For more information use the command /shophelp' +
 			'</center>'
@@ -66,7 +66,7 @@ exports.commands = {
 		let article = toId(params[0]);
 		switch (article) {
 		case 'customtc':
-			prize = 1000;
+			prize = 2000;
 			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
 			var tcUser = Shop.getTrainerCard(user.name);
 			if (!tcUser) {
@@ -79,7 +79,7 @@ exports.commands = {
 			return this.sendReply("You have purchased a personalized trainer card. Use /shophelp for more information.");
 			break;
 		case 'tc':
-			prize = 550;
+			prize = 500;
 			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
 			var tcUser = Shop.getTrainerCard(user.name);
 			if (tcUser) return this.sendReply("You already have this item.");
@@ -88,7 +88,7 @@ exports.commands = {
 			return this.sendReply("You have purchased a trainer card. Use /shophelp for help on how to make changes.");
 			break;
 		case 'sprite':
-			prize = 50;
+			prize = 100;
 			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
 			var tcUser = Shop.getTrainerCard(user.name);
 			if (!tcUser) return this.sendReply("You must purchase a trainer card first.");
@@ -99,7 +99,7 @@ exports.commands = {
 			return this.sendReply("You have purchased a sprite of a pokemon for your TC. Use /shophelp for more information.");
 			break;
 		case 'chatroom':
-			prize = 500;
+			prize = 5000;
 			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
 			if (params.length !== 2) return this.sendReply("Use the command like this: /buy chatroom,[roomname]");
 			var id = toId(params[1]);
@@ -115,7 +115,7 @@ exports.commands = {
 			return this.sendReply("The room was not able to be purchased becuase of the following error '" + params[1] + "'.");
 			break;
 		case 'symbol':
-			prize = 20;
+			prize = 200;
 			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
 			if (Shop.symbolPermision(user.name)) return this.sendReply("You already have this item.");
 			Shop.setSymbolPermision(user.name, true);
@@ -123,7 +123,7 @@ exports.commands = {
 			return this.sendReply("You have purchased the permission to the following commands /customsymbol and /resetsymbol. For more information use /shophelp.");
 			break;
 		case 'customavatar':
-			prize = 800;
+			prize = 1500;
 			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
 			if (Config.customavatars[user.userid]) return this.sendReply("You have already purchased this item. To change it please speak to an admin.");
 			if (params.length !== 2) return this.sendReply("Use the command like this: /buy avatar,[image]");
@@ -133,7 +133,7 @@ exports.commands = {
 			return this.sendReply("You have purchased a personalized avatar. Contact an admin to validate your purchase.");
 			break;
 		case 'customicon':
-			prize = 800;
+			prize = 1000;
 			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
 			if (params.length !== 2) return this.sendReply("Use the command like this: /buy customicon,[image]");
 			var err = Shop.addPendingIcon(user.userid, params[1]);
@@ -142,7 +142,7 @@ exports.commands = {
 			return this.sendReply("You have purchased a personalized icon. Contact an admin to validate your purchase.");
 			break;
 		case 'customcolor':
-			prize = 800;
+			prize = 1000;
 			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
 			if (params.length !== 2) return this.sendReply("Use the command like this: /buy customcolor,[hex]");
 			var err = Shop.addPendingColor(user.userid, params[1]);
@@ -151,7 +151,7 @@ exports.commands = {
 			return this.sendReply("You have purchased a personalized name color. Contact an admin to validate your purchase.");
 			break;
 		case 'customphrase':
-			prize = 500;
+			prize = 800;
 			if (Shop.getUserMoney(user.name) < prize) return this.sendReply("You do not have enough bucks.");
 			if (params.length !== 2) return this.sendReply("Use the command like this: /buy customphrase,[phrase]");
 			var err = Shop.addPendingPhrase(user.userid, params[1]);
