@@ -29,7 +29,7 @@ class PassTheBomb {
 			'The game will begin in <b>' + Math.round((this.timeLeft - Date.now()) / 1000) + '</b> seconds<br>' +
 			'<button name = "send" value = "/passthebomb join">Join!</button></center>';
 		if (this.players.size > 0) {
-			msg += '<center><b>' + this.players.size + '</b> ' + (this.players.size === 1 ? 'user has' : 'users have') + ' joined: ' + Array.from(this.players).map(player => (player[1].name)).join(', ') + '</center>';
+			msg += '<center><b>' + this.players.size + '</b> ' + (this.players.size === 1 ? 'user has' : 'users have') + ' joined: ' + Array.from(this.players).map(player => Chat.escapeHTML(player[1].name)).join(', ') + '</center>';
 		}
 		this.room.add('|uhtmlchange|' + msg + '</div>');
 	}
@@ -69,7 +69,7 @@ class PassTheBomb {
 	}
 	getMsg() {
 		let msg = 'bomb' + this.room.bombCount + this.round + '|<div class = "infobox"><center><b>Round ' + this.round + '</b><br>' +
-			'Players: ' + this.getSurvivors().map(player => (player[1].name)).join(', ') +
+			'Players: ' + this.getSurvivors().map(player => Chat.escapeHTML(player[1].name)).join(', ') +
 			'<br><small>Use /pb or /passbomb [player] to pass the bomb to another player!</small>';
 		return msg;
 	}
@@ -90,7 +90,7 @@ class PassTheBomb {
 		this.release = setTimeout(() => {
 			this.setBomb();
 			let player = this.players.get(this.holder).name;
-			this.room.add('|uhtmlchange|' + this.getMsg() + '<br><b style = "font-size: 10pt;">The bomb has been passed to <span style = "color:' + Plugins.Colors.apply(this.holder) + '">' + (player) + '</span>!</b></div>').update();
+			this.room.add('|uhtmlchange|' + this.getMsg() + '<br><b style = "font-size: 10pt;">The bomb has been passed to <span style = "color:' + Plugins.Colors.apply(this.holder) + '">' + Chat.escapeHTML(player) + '</span>!</b></div>').update();
 			this.canPass = true;
 			this.resetTimer();
 		}, (Math.floor(Math.random() * 12) + 3) * 1000);
@@ -153,7 +153,7 @@ class PassTheBomb {
 	removeUser(userid, left) {
 		if (!this.players.has(userid)) return;
 
-		this.room.add('|html|<b>' + (this.players.get(userid).name) + ' has ' + (left ? 'left' : 'been disqualified from') + ' the game.</b>');
+		this.room.add('|html|<b>' + Chat.escapeHTML(this.players.get(userid).name) + ' has ' + (left ? 'left' : 'been disqualified from') + ' the game.</b>');
 		this.players.delete(userid);
 		this.madeMove = true;
 		if (this.checkWinner()) {
@@ -163,7 +163,7 @@ class PassTheBomb {
 		} else if (this.holder === userid) {
 			this.setBomb();
 			let player = this.players.get(this.holder).name;
-			this.room.add('|html|The bomb has been passed to <b>' + (player) + '!</b>').update();
+			this.room.add('|html|The bomb has been passed to <b>' + Chat.escapeHTML(player) + '!</b>').update();
 		}
 	}
 	checkWinner() {
@@ -171,9 +171,9 @@ class PassTheBomb {
 	}
 	getWinner() {
 		let winner = this.getSurvivors()[0][1].name;
-		let msg = '|html|<div class = "infobox"><center>The winner of this game of Pass the Bomb is <b style = "color:' + Plugins.Colors.apply(winner) + '">' + (winner) + '!</b> Congratulations!</center>';
+		let msg = '|html|<div class = "infobox"><center>The winner of this game of Pass the Bomb is <b style = "color:' + Plugins.Colors.apply(winner) + '">' + Chat.escapeHTML(winner) + '!</b> Congratulations!</center>';
 		if (this.room.id === 'marketplace') {
-			msg += '<center>' + (winner) + ' has also won <b>5</b> credits for winning!</center>';
+			msg += '<center>' + Chat.escapeHTML(winner) + ' has also won <b>5</b> credits for winning!</center>';
 			writeCredits(winner, 5, () => this.room.add(msg).update());
 		} else {
 			this.room.add(msg).update();
@@ -182,7 +182,7 @@ class PassTheBomb {
 	}
 	end(user) {
 		if (user) {
-			let msg = '<div class = "infobox"><center>This game of Pass the Bomb has been forcibly ended by <b>' + (user.name) + '</b>.</center></div>';
+			let msg = '<div class = "infobox"><center>This game of Pass the Bomb has been forcibly ended by <b>' + Chat.escapeHTML(user.name) + '</b>.</center></div>';
 			if (!this.madeMove) {
 				this.room.add('|uhtmlchange|bomb' + this.room.bombCount + this.round + '|' + msg).update();
 			} else {
