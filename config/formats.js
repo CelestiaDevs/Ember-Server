@@ -656,22 +656,21 @@ exports.Formats = [
 		},
 	},
 	{
-		name: "Almost Any Ability",
+		name: "[Gen 7] Almost Any Ability",
 		desc: [
 			"Pok&eacute;mon can use any ability, barring the few that are banned.",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3528058/\">Almost Any Ability</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3578707/\">AAA Resources</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587901/\">Almost Any Ability</a>",
 		],
 
+		mod: 'gen7',
 		ruleset: ['Pokemon', 'Standard', 'Ability Clause', 'Baton Pass Clause', 'Swagger Clause', 'Team Preview'],
 		banlist: ['Ignore Illegal Abilities',
-			'Arceus', 'Archeops', 'Bisharp', 'Chatot', 'Darkrai', 'Deoxys', 'Deoxys-Attack', 'Dialga', 'Dragonite', 'Giratina', 'Giratina-Origin', 'Groudon',
-			'Ho-Oh', 'Hoopa-Unbound', 'Keldeo', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Mamoswine', 'Mewtwo', 'Palkia', 'Rayquaza', 'Regigigas',
-			'Reshiram', 'Shaymin-Sky', 'Shedinja', 'Slaking', 'Smeargle', 'Snorlax', 'Suicune', 'Terrakion', 'Weavile', 'Xerneas', 'Yveltal', 'Zekrom',
-			'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Mawilite', 'Salamencite', 'Soul Dew', 'Shadow Tag', 'Dynamic Punch', 'Zap Cannon',
+			'Aegislash', 'Arceus', 'Archeops', 'Blaziken', 'Darkrai', 'Deoxys', 'Dialga', 'Genesect', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre', 'Kyurem-White', 'Lugia',
+			'Lunala', 'Mewtwo', 'Palkia', 'Pheromosa', 'Rayquaza', 'Regigigas', 'Reshiram', 'Shaymin-Sky', 'Shedinja', 'Slaking', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
+			'Power Construct', 'Shadow Tag', 'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Salamencite',
 		],
 		onValidateSet: function (set) {
-			let bannedAbilities = {'Arena Trap': 1, 'Contrary': 1, 'Fur Coat': 1, 'Huge Power': 1, 'Illusion': 1, 'Imposter': 1, 'Parental Bond': 1, 'Protean': 1, 'Pure Power': 1, 'Simple':1, 'Speed Boost': 1, 'Wonder Guard': 1};
+			let bannedAbilities = {'Arena Trap': 1, 'Comatose': 1, 'Contrary': 1, 'Fur Coat': 1, 'Huge Power': 1, 'Imposter': 1, 'Parental Bond': 1, 'Pure Power': 1, 'Simple':1, 'Speed Boost': 1, 'Water Bubble': 1, 'Wonder Guard': 1};
 			if (set.ability in bannedAbilities) {
 				let template = this.getTemplate(set.species || set.name);
 				let legalAbility = false;
@@ -679,6 +678,34 @@ exports.Formats = [
 					if (set.ability === template.abilities[i]) legalAbility = true;
 				}
 				if (!legalAbility) return ['The ability ' + set.ability + ' is banned on Pok\u00e9mon that do not naturally have it.'];
+			}
+		},
+	},
+	{
+		name: "[Gen 7] Sketchmons (suspect test)",
+		desc: [
+			"Pok&eacute;mon gain access to one Sketched move.",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587743/\">Sketchmons</a>",
+		],
+
+		mod: 'gen7',
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Baton Pass Clause'],
+		banlist: ['Allow One Sketch',
+			'Aegislash', 'Arceus', 'Blaziken', 'Darkrai', 'Deoxys', 'Dialga', 'Genesect', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre', 'Kyurem-White',
+			'Landorus-Base', 'Lugia', 'Lunala', 'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
+			'Power Construct', 'Shadow Tag', 'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Salamencite',
+			'Arena Trap + Dark Void', 'Arena Trap + Grass Whistle', 'Arena Trap + Hypnosis', 'Arena Trap + Relic Song', 'Arena Trap + Sing', 'Arena Trap + Sleep Powder',
+		],
+		noSketch: ['Geomancy', 'Lovely Kiss', 'Shell Smash', 'Spore'],
+		onValidateTeam: function (team) {
+			let sketchedMoves = {};
+			for (let i = 0; i < team.length; i++) {
+				let move = team[i].sketchmonsMove;
+				if (!move) continue;
+				if (move in sketchedMoves) {
+					return ["You are limited to sketching one of each move by Move Clause.", "(You have sketched " + this.getMove(move).name + " more than once)"];
+				}
+				sketchedMoves[move] = (team[i].name || team[i].species);
 			}
 		},
 	},
@@ -732,15 +759,28 @@ exports.Formats = [
 		banlist: ['Kangaskhanite', 'Perish Song'],
 	},
 	{
-		name: "Hidden Type",
+		name: "[Gen 7] Hidden Type",
 		desc: [
 			"Pok&eacute;mon have an added type determined by their IVs. Same as the Hidden Power type.",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3516349/\">Hidden Type</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3591194/\">Hidden Type</a>",
 		],
 
 		searchShow: false,
 		mod: 'hiddentype',
-		ruleset: ['OU'],
+		ruleset: ['[Gen 7] Pokebank OU'],
+	},
+	{
+		name: "[Gen 7] BH Doubles",
+		desc: [
+			"Anything that can be hacked in-game and is usable in local battles is allowed.",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587475/\">Balanced Hackmons</a>",
+		],
+
+		mod: 'gen7',
+		gameType: 'doubles',
+		searchShow: false,
+		ruleset: ['[Gen 7] Balanced Hackmons'],
+		banlist: [],
 	},
 	{
 		name: "OU Theorymon",
