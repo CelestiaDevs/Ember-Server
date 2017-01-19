@@ -219,6 +219,19 @@ exports.Formats = [
 		banlist: ['Illegal', 'Unreleased', 'Solgaleo', 'Lunala', 'Necrozma', 'Magearna', 'Marshadow', 'Zygarde', 'Mega'],
 		requirePentagon: true,
 	},
+	{
+		name: "[Gen 7] Battle Spot Doubles",
+
+		mod: 'gen7',
+		gameType: 'doubles',
+		maxForcedLevel: 50,
+		teamLength: {
+			validate: [4, 6],
+			battle: 4,
+		},
+		ruleset: ['Pokemon', 'Standard GBU', 'Team Preview'],
+		requirePentagon: true,
+	},
 
 	// ORAS Singles
 	///////////////////////////////////////////////////////////////////
