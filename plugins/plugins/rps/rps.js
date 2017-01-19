@@ -1,9 +1,5 @@
 'use strict';
 
-nameColor = function (name, bold) {
-	return (bold ? "<b>" : "") + "<font color=" + hashColor(name) + ">" + (Users(name) && Users(name).connected && Users.getExact(name) ? Chat.escapeHTML(Users.getExact(name).name) : Chat.escapeHTML(name)) + "</font>" + (bold ? "</b>" : "");
-};
-
 //rps
 var rockpaperscissors  = false;
 var numberofspots = 2;
