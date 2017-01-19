@@ -18,6 +18,10 @@ function clearRoom(room) {
 	}, 1000);
 }
 
+nameColor = function (name, bold) {
+	return (bold ? "<b>" : "") + "<font color=" + Plugins.Colors.apply(name) + ">" + (Users(name) && Users(name).connected && Users.getExact(name) ? Chat.escapeHTML(Users.getExact(name).name) : Chat.escapeHTML(name)) + "</font>" + (bold ? "</b>" : "");
+}
+
 exports.commands = {
 	gclearall: 'globalclearall',
 	globalclearall: function (target, room, user) {
