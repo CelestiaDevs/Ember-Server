@@ -525,6 +525,18 @@ exports.Formats = [
 		banlist: ['Arena Trap', 'Huge Power', 'Moody', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Wonder Guard', 'Chatter', 'Extreme Evoboost'],
 	},
 	{
+		name: "[Gen 7] 350 Cup",
+		desc: [
+			"Pok&eacute;mon with a base stat total of 350 or lower get their stats doubled.",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3589641/\">350 Cup</a>",
+		],
+
+		mod: '350cup',
+		searchShow: false,
+		ruleset: ['[Gen 7] Pokebank Ubers'],
+		banlist: ['Deep Sea Tooth', 'Eevium Z', 'Eviolite', 'Light Ball'],
+	},
+	{
 		name: "STABmons",
 		desc: [
 			"Pok&eacute;mon can use any move of their typing, in addition to the moves they can normally learn.",
