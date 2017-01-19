@@ -27,8 +27,8 @@ const COLOR_NAMES_LOCALE = new Map([
 
 const INACTIVE_TIMEOUT = 90 * 1000;
 
-const DRAW_BUTTON = '<div style="text-align:center"><button style="background: #FFAF4B; border: 2px solid #FFAF4B ; width: 56px ; border-radius: 5px , auto" name="send" value="/uno draw"><span style="color:white">Pedir</span></button></div>';
-const PASS_BUTTON = '<div style="text-align:center"><button style="background: #FFAF4B; border: 2px solid #FFAF4B ; width: 56px ; border-radius: 5px , auto" name="send" value="/uno pass"><span style="color:white">Pasar</span></button></div>';
+const DRAW_BUTTON = '<div style="text-align:center"><button style="background: #FFAF4B; border: 2px solid #FFAF4B ; width: 56px ; border-radius: 5px , auto" name="send" value="/uno draw"><span style="color:white">Draw</span></button></div>';
+const PASS_BUTTON = '<div style="text-align:center"><button style="background: #FFAF4B; border: 2px solid #FFAF4B ; width: 56px ; border-radius: 5px , auto" name="send" value="/uno pass"><span style="color:white">Pass</span></button></div>';
 
 const WW_FACE = '<div style="background:#FFF;border-radius: 40px 5px 40px 5px;width:43px 10px;height:43px;padding-top:10px;padding-left:1px;padding.right:5px" ><img src="https://play.pandorashowdown.net/resources/hotlink-ok/color-wheel.png" height="27" width="27"></div>';
 const VALUE_FACE = '<div style="background:#FFF;border-radius: 40px 5px 40px 5px;width:43px 10px;height:43px;padding-top:10px;padding-bottom:5px;padding-left:1px;padding.right:5px" ><font color="%s" size="6">%s</font></div>';
