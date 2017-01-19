@@ -93,6 +93,16 @@ exports.Formats = [
 		banlist: ['Illegal', 'Unreleased'],
 	},
 	{
+		name: "[Gen 7] CAP",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587865/\">CAP Metagame Discussion</a>",
+		],
+
+		mod: 'gen7',
+		ruleset: ['[Gen 7] Pokebank OU'],
+		banlist: ['Allow CAP'],
+	},
+	{
 		name: "[Gen 7] Battle Spot Singles",
 		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3587201/\">Battle Spot Singles Viability Ranking</a>"],
 
@@ -114,6 +124,37 @@ exports.Formats = [
 				return [template.baseSpecies + " is not permitted in Battle Spot Singles."];
 			}
 		},
+	},
+	{
+		name: "[Gen 7] Battle Spot Special 1",
+		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3587169/\">Battle Spot Special</a>"],
+
+		mod: 'gen7',
+		maxForcedLevel: 50,
+		teamLength: {
+			validate: [3, 6],
+			battle: 3,
+		},
+		ruleset: ['Pokemon', 'Species Clause', 'Nickname Clause', 'Team Preview', 'Cancel Mod'],
+		banlist: ['Illegal', 'Unreleased'],
+		requirePentagon: true,
+		onValidateSet: function (set) {
+			if (set.item) return ["Items are not permitted in Battle Spot Special."];
+		},
+	},
+	{
+		name: "[Gen 7] Alola Friendly",
+		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3591710/\">Alola Friendly</a>"],
+
+		mod: 'gen7',
+		maxForcedLevel: 50,
+		teamLength: {
+			validate: [3, 6],
+			battle: 3,
+		},
+		ruleset: ['Pokemon', 'Species Clause', 'Nickname Clause', 'Item Clause', 'Team Preview', 'Cancel Mod', 'Alola Pokedex'],
+		banlist: ['Illegal', 'Unreleased', 'Solgaleo', 'Lunala', 'Necrozma', 'Magearna', 'Marshadow', 'Zygarde', 'Mega'],
+		requirePentagon: true,
 	},
 	{
 		name: "[Gen 7] Custom Game",
