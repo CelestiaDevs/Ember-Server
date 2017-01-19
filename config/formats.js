@@ -861,6 +861,23 @@ exports.Formats = [
 		},
 	},
 	{
+		name: "[Gen 7] Hackmons Cup",
+		desc: ["Randomized teams of level-balanced Pok&eacute;mon with absolutely any ability, moves, and item."],
+
+		mod: 'gen7',
+		team: 'randomHC',
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
+	},
+	{
+		name: "[Gen 7] Doubles Hackmons Cup",
+
+		mod: 'gen7',
+		gameType: 'doubles',
+		team: 'randomHC',
+		searchShow: false,
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
+	},
+	{
 		name: "[Gen 7] Random Sky Battle",
 		mod: 'randoms',
 
@@ -915,6 +932,16 @@ exports.Formats = [
 			this.p2.pokemon = this.p2.pokemon.slice(0, 2);
 			this.p2.pokemonLeft = this.p2.pokemon.length;
 		},
+	},
+	{
+		name: "[Gen 7] Challenge Cup 1v1",
+
+		mod: 'gen7',
+		team: 'randomCC',
+		teamLength: {
+			battle: 1,
+		},
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
 	},
 	{
 		name: "[Gen 7] Challenge Cup Metronome",
