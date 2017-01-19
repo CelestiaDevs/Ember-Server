@@ -399,7 +399,7 @@ function startBattle(p1, p2, format, p1team, p2team, options) {
 
 function requestKickInactive(user, force) {
 	if (this.resetTimer) {
-		if (user) this.sendUser(user, "|inactive|El reloj de batalla esta encendido.");
+		if (user) this.sendUser(user, "|inactive|Battle timer is now ON.");
 		return false;
 	}
 
@@ -410,10 +410,10 @@ function requestKickInactive(user, force) {
 	if (user) {
 		if (!force && !(user in this.game.players)) return false;
 		this.resetUser = user.userid;
-		this.send("|inactive|Reloj de batalla ENCENDIDO por : " + user.name + ". El jugador inactivo sera descalificado.");
+		this.send("|inactive|Battle timer is now ON: inactive players will automatically lose when time's up. (requested by " + user.name + ")");
 	} else if (user === false) {
 		this.resetUser = '~';
-		this.add("|inactive|Reloj de batalla ENCENDIDO. El jugador inactivo sera descalificado.");
+		this.add("|inactive|Battle timer is now ON. Inactive players will automatically lose when time's up.");
 	}
 
 	// a tick is 10 seconds
@@ -442,12 +442,12 @@ function requestKickInactive(user, force) {
 	if (inactiveSide !== 1) {
 		// side 0 is inactive
 		const ticksLeft0 = Math.min(this.sideTicksLeft[0] + 1, maxTicksLeft);
-		this.sendPlayer(0, "|inactive|Tienes " + (ticksLeft0 * 10) + " segundos para tomar una decision.");
+		this.sendPlayer(0, "|inactive|You have " + (ticksLeft0 * 10) + " seconds left.");
 	}
 	if (inactiveSide !== 0) {
 		// side 1 is inactive
 		const ticksLeft1 = Math.min(this.sideTicksLeft[1] + 1, maxTicksLeft);
-		this.sendPlayer(1, "|inactive|Tienes " + (ticksLeft1 * 10) + " segundos para tomar una decision.");
+		this.sendPlayer(1, "|inactive|You have " + (ticksLeft1 * 10) + " seconds left.");
 	}
 
 	this.resetTimer = setTimeout(this.kickInactive.bind(this), 10 * 1000);
