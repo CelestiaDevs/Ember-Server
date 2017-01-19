@@ -868,42 +868,35 @@ exports.commands = {
 	},
 
 	topic: 'roomintro',
-	roomintro: function (target, room, user, connection, cmd) {
-		if (!target) {
-			if (!this.runBroadcast()) return;
-			if (!room.introMessage) return this.sendReply("This room does not have an introduction set.");
-			this.sendReply('|raw|<div class="infobox infobox-limited">' + room.introMessage.replace(/\n/g, '') + '</div>');
-			if (!this.broadcasting && user.can('declare', null, room) && cmd !== 'topic') {
-				this.sendReply('Source:');
-				this.sendReplyBox(
-					'<code>/roomintro ' + Chat.escapeHTML(room.introMessage).split('\n').map(line => {
-						return line.replace(/^(\t+)/, (match, $1) => '&nbsp;'.repeat(4 * $1.length)).replace(/^(\s+)/, (match, $1) => '&nbsp;'.repeat($1.length));
-					}).join('<br />') + '</code>'
-				);
-			}
-			return;
-		}
-		if (!this.can('declare', null, room)) return false;
-		if (target === 'off' || target === 'disable' || target === 'delete') return this.errorReply('Did you mean "/deleteroomintro"?');
-		target = this.canHTML(target);
-		if (!target) return;
-		if (!/</.test(target)) {
-			// not HTML, do some simple URL linking
-			let re = /(https?:\/\/(([-\w\.]+)+(:\d+)?(\/([\w/_\.]*(\?\S+)?)?)?))/g;
-			target = target.replace(re, '<a href="$1">$1</a>');
-		}
-		if (target.substr(0, 11) === '/roomintro ') target = target.substr(11);
+	roomintro: function (target, room, user) {
+        if (!target) {
+            if (!this.runBroadcast()) return;
+            if (!room.introMessage) return this.sendReply("This room does not have an introduction set.");
+            this.sendReplyBox(room.introMessage);
+            if (!this.broadcasting && user.can('declare', null, room)) {
+                this.sendReply('Source:');
+                this.sendReplyBox('<code>/roomintro ' + Chat.escapeHTML(room.introMessage) + '</code>');
+            }
+            return;
+        }
+        if (!this.can('declare', null, room)) return false;
+        if (!this.canHTML(target)) return;
+        if (!/</.test(target)) {
+            // not HTML, do some simple URL linking
+            var re = /(https?:\/\/(([-\w\.]+)+(:\d+)?(\/([\w/_\.]*(\?\S+)?)?)?))/g;
+            target = target.replace(re, '<a href="$1">$1</a>');
+        }
 
-		room.introMessage = target.replace(/\r/g, '');
-		this.sendReply("(The room introduction has been changed to:)");
-		this.sendReply('|raw|<div class="infobox infobox-limited">' + room.introMessage.replace(/\n/g, '') + '</div>');
+        if (!target.trim()) target = '';
+        room.introMessage = target;
+        this.sendReply("(The room introduction has been changed to:)");
+        this.sendReplyBox(target);
 
-		this.privateModCommand(`(${user.name} changed the roomintro.)`);
-		this.logEntry(room.introMessage.replace(/\n/g, ''));
+        this.privateModCommand("(" + user.name + " changed the roomintro.)");
 
-		if (room.chatRoomData) {
-			room.chatRoomData.introMessage = room.introMessage;
-			Rooms.global.writeChatRoomData();
+        if (room.chatRoomData) {
+            room.chatRoomData.introMessage = room.introMessage;
+            Rooms.global.writeChatRoomData();
 		}
 	},
 	deletetopic: 'deleteroomintro',
