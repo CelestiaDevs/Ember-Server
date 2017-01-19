@@ -31,7 +31,7 @@ class Ambush {
 			'The game will begin in <b>' + Math.round((this.timeLeft - Date.now()) / 1000) + '</b> seconds<br>' +
 			'<button name = "send" value = "/ambush join">Join!</button></center>';
 		if (this.players.size > 0) {
-			msg += '<center><b>' + this.players.size + '</b> ' + (this.players.size === 1 ? 'user has' : 'users have') + ' joined: ' + Array.from(this.players).map(player => (player[0].name)).join(', ') + '</center>';
+			msg += '<center><b>' + this.players.size + '</b> ' + (this.players.size === 1 ? 'user has' : 'users have') + ' joined: ' + Array.from(this.players).map(player => Chat.escapeHTML(player[0].name)).join(', ') + '</center>';
 		}
 		this.room.add('|uhtmlchange|' + msg + '</div>');
 	}
@@ -50,7 +50,7 @@ class Ambush {
 		if (!this.round) {
 			this.updateJoins();
 		} else {
-			this.room.add('|html|<b>' + (user.name) + ' has left the game!</b>');
+			this.room.add('|html|<b>' + Chat.escapeHTML(user.name) + ' has left the game!</b>');
 		}
 	}
 	getSurvivors() {
@@ -70,7 +70,7 @@ class Ambush {
 		this.round++;
 		this.loadGuns();
 		let msg = 'ambush' + this.room.ambushCount + this.round + '|<div class = "infobox"><center><b>Round ' + this.round + '</b><br>' +
-			'Players: ' + survivors.map(player => (player[0].name)).join(', ') +
+			'Players: ' + survivors.map(player => Chat.escapeHTML(player[0].name)).join(', ') +
 			'<br><small>Use /fire [player] to shoot another player!</small>';
 		this.room.add('|uhtml|' + msg + '<br><i>Wait for it...</i></div>').update();
 
@@ -100,10 +100,10 @@ class Ambush {
 		if (targetUser === user) {
 			this.room.add('|html|<b>' + user.name + ' shot themself!</b>');
 		} else if (!this.players.get(targetUser).rounds) {
-			this.room.add('|html|<b>' + (user.name) + ' fired at ' + (targetUser.name) + ', but ' + (targetUser.name) + ' has an active shield!</b>');
+			this.room.add('|html|<b>' + Chat.escapeHTML(user.name) + ' fired at ' + Chat.escapeHTML(targetUser.name) + ', but ' + Chat.escapeHTML(targetUser.name) + ' has an active shield!</b>');
 			return;
 		} else {
-			this.room.add('|html|<b>' + (user.name) + ' fired at ' + (targetUser.name) + '!</b>');
+			this.room.add('|html|<b>' + Chat.escapeHTML(user.name) + ' fired at ' + Chat.escapeHTML(targetUser.name) + '!</b>');
 		}
 		this.players.get(targetUser).status = 'dead';
 
@@ -130,7 +130,7 @@ class Ambush {
 		if (getUser.status === 'dead') return self.sendReply(targetUser.name + ' has already been killed!');
 
 		this.players.delete(targetUser);
-		this.room.add('|html|<b>' + (targetUser.name) + ' has been disqualified from the game.</b>');
+		this.room.add('|html|<b>' + Chat.escapeHTML(targetUser.name) + ' has been disqualified from the game.</b>');
 		if (this.checkWinner()) this.getWinner();
 	}
 	checkWinner() {
@@ -138,9 +138,9 @@ class Ambush {
 	}
 	getWinner() {
 		let winner = this.getSurvivors()[0][0].name;
-		let msg = '|html|<div class = "infobox"><center>The winner of this game of ambush is <b>' + (winner) + '!</b> Congratulations!</center>';
+		let msg = '|html|<div class = "infobox"><center>The winner of this game of ambush is <b>' + Chat.escapeHTML(winner) + '!</b> Congratulations!</center>';
 		if (this.room.id === 'marketplace') {
-			msg += '<center>' + (winner) + ' has also won <b>5</b> credits for winning!</center>';
+			msg += '<center>' + Chat.escapeHTML(winner) + ' has also won <b>5</b> credits for winning!</center>';
 			writeCredits(winner, 5, () => this.room.add(msg).update());
 		} else {
 			this.room.add(msg).update();
@@ -149,7 +149,7 @@ class Ambush {
 	}
 	end(user) {
 		if (user) {
-			let msg = '<div class = "infobox"><center>This game of ambush has been forcibly ended by <b>' + (user.name) + '</b></center></div>';
+			let msg = '<div class = "infobox"><center>This game of ambush has been forcibly ended by <b>' + Chat.escapeHTML(user.name) + '</b></center></div>';
 			if (!this.madeMove) {
 				this.room.add('|uhtmlchange|ambush' + this.room.ambushCount + this.round + '|' + msg).update();
 			} else {
