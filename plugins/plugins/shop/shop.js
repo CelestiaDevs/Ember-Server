@@ -240,50 +240,50 @@ exports.commands = {
 
 	removemoney: function (target, room, user) {
 		let params = target.split(',');
-		if (!params || params.length !== 2) return this.sendReply("Usage: /removemoney usuario, pds");
+		if (!params || params.length !== 2) return this.sendReply("Usage: /removemoney user, bucks");
 		if (!this.can('givemoney')) return false;
 
 		let pds = parseInt(params[1]);
-		if (pds <= 0) return this.sendReply("La cantidad no es valida.");
+		if (pds <= 0) return this.sendReply("The quantity is not valid.");
 		let userh = Users.getExact(params[0]);
 		let userName = toId(params[0]);
 		if (userh) userName = userh.name;
 		if (!Shop.removeMoney(params[0], pds)) {
-			this.sendReply("El usuario no tenía suficientes Pds.");
+			this.sendReply("The user did not have enough bucks.");
 		} else {
-			this.sendReply(userName + ' ha perdido ' + pds + ' pd');
+			this.sendReply(userName + ' has lost ' + pds + ' bucks');
 		}
 	},
 
 	donar: 'donate',
 	donate: function (target, room, user) {
 		let params = target.split(',');
-		if (!params || params.length !== 2) return this.sendReply("Usage: /donate usuario, pds");
+		if (!params || params.length !== 2) return this.sendReply("Usage: /donate user, bucks");
 
 		let pds = parseInt(params[1]);
-		if (!pds || pds <= 0) return this.sendReply("La cantidad no es valida.");
+		if (!pds || pds <= 0) return this.sendReply("The quantity is not valid.");
 		let userh = Users.getExact(params[0]);
-		if (!userh || !userh.connected) return this.sendReply("El usuario no existe o no está disponible");
+		if (!userh || !userh.connected) return this.sendReply("The user does bot exist or is not online");
 		let userName = userh.name;
 		if (!Shop.transferMoney(user.name, params[0], pds)) {
-			this.sendReply("No tienes suficientes pds.");
+			this.sendReply("You do not have enough bucks.");
 		} else {
-			this.sendReply('Has donado ' + pds + ' pd al usuario ' + userName + '.');
+			this.sendReply('Has donated ' + pds + ' bucks to the user ' + userName + '.');
 		}
 	},
 
 	symbolpermision: function (target, room, user) {
 		if (!this.can('givemoney')) return false;
 		let params = target.split(',');
-		if (!params || params.length !== 2) return this.sendReply("Usage: /symbolpermision usuario, [on/off]");
+		if (!params || params.length !== 2) return this.sendReply("Usage: /symbolpermision user, [on/off]");
 		let permision = false;
-		if (toId(params[1]) !== 'on' && toId(params[1]) !== 'off') return this.sendReply("Usage: /symbolpermision usuario, [on/off]");
+		if (toId(params[1]) !== 'on' && toId(params[1]) !== 'off') return this.sendReply("Usage: /symbolpermision user, [on/off]");
 		if (toId(params[1]) === 'on') permision = true;
 		if (permision) {
 			let userh = Users.getExact(params[0]);
-			if (!userh || !userh.connected) return this.sendReply("El usuario no existe o no está disponible");
-			if (Shop.setSymbolPermision(params[0], permision)) return this.sendReply("Permiso para customsymbols concedido a " + userh.name);
-			return this.sendReply("El usuario ya poseía permiso para usar los customsymbols.");
+			if (!userh || !userh.connected) return this.sendReply("The user does not exist or is not available");
+			if (Shop.setSymbolPermision(params[0], permision)) return this.sendReply("Customsymbol permission given to " + userh.name);
+			return this.sendReply("The user already had the permission for customsymbol.");
 		} else {
 			if (Shop.setSymbolPermision(params[0], permision)) return this.sendReply("Permiso para customsymbols retirado a " + params[0]);
 			return this.sendReply("El usuario no tenía ningún permiso que quitar.");
