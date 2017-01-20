@@ -199,7 +199,7 @@ exports.commands = {
 					"<br />" +
 					"<u>Staff Contributions:</u><br />" +
 					"- " + Plugins.Colors.apply('Blooded Kitten', true) + " (Server Website Manager)<br />" +
-					"- " + Plugins.Colors.apply('Revival Fleur', true) + " (Server Management)<br />" +
+					"- " + Plugins.Colors.apply('Fleur Fee', true) + " (Server Management)<br />" +
 					"<br />" +
 					"<u>Special Thanks:</u><br />" +
 					"- Current staff team<br />" +
