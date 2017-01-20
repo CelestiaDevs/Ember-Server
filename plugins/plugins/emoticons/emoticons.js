@@ -134,7 +134,7 @@ function create_table() {
 		}
 	}
 
-	return "<div class='infobox'><div class = 'broadcast-blue'><center><b><u>Lista de caritas</u></b></center>" + "<div class='infobox-limited'><table cellspacing='0' cellpadding='5' width='100%'>" + "<tbody>" + emotes_group_list.join("") + "</tbody>" + "</table></div></div>";
+	return "<div class='infobox'><div class = 'broadcast-blue'><center><b><u>List of Emoticons</u></b></center>" + "<div class='infobox-limited'><table cellspacing='0' cellpadding='5' width='100%'>" + "<tbody>" + emotes_group_list.join("") + "</tbody>" + "</table></div></div>";
 }
 
 let emotes_table = create_table();
@@ -176,9 +176,9 @@ exports.commands = {
 		room.disableEmoticons = !room.disableEmoticons;
 		this.sendReply("Disallowing emoticons is set to " + room.disableEmoticons + " in this room.");
 		if (room.disableEmoticons) {
-			this.add("|raw|<div class=\"broadcast-red\"><b>las caritas han sido desactivadas!</b><br />No se podran utilizar emoticones hasta nuevo aviso.</div>");
+			this.add("|raw|<div class=\"broadcast-red\"><b>Emoticons have been disabled!</b><br />Emoticons can not be used at this time.</div>");
 		} else {
-			this.add("|raw|<div class=\"broadcast-green\"><b>Las caritas han sido activadas!</b><br />Ya se pueden usar emoticones.</div>");
+			this.add("|raw|<div class=\"broadcast-green\"><b>Emoticons have been enabled!</b><br />Emoticons can now be used in this room.</div>");
 		}
 	},
 	toggleemoticonshelp: ["/toggleemoticons - Toggle emoticons on or off."],
