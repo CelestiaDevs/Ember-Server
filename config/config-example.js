@@ -347,6 +347,8 @@ exports.grouplist = [
 		name: "Driver",
 		inherit: '$',
 		jurisdiction: 'u',
+		warn: true,
+		kick: true,
 		mute: '\u2605u',
 		lock: true,
 		forcerename: true,
