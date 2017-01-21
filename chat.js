@@ -661,7 +661,7 @@ class CommandContext {
 
 			//servers Spam
 			if (!user.can('bypassall') && Rooms('staff')) {
-				let serverexceptions = {'kekroleplay': 1, 'showdown': 1, 'smogtours': 1};
+				let serverexceptions = {'ember': 1, 'showdown': 1, 'smogtours': 1};
 				if (Config.serverexceptions) {
 					for (var i in Config.serverexceptions) serverexceptions[i] = 1;
 				}
@@ -672,7 +672,7 @@ class CommandContext {
 						if (!serverexceptions[serverAd[i]]) {
 							if (!room && targetUser) {
 								connection.send('|pm|' + user.getIdentity() + '|' + targetUser.getIdentity() + '|' + message);
-								Rooms('staff').add('|c|' + user.getIdentity() + '|(__PM a ' + targetUser.getIdentity() + '__) -- ' + message);
+								Rooms('staff').add('|c|' + user.getIdentity() + '|(__PM to ' + targetUser.getIdentity() + '__) -- ' + message);
 								Rooms('staff').update();
 							} else if (room) {
 								connection.sendTo(room, '|c|' + user.getIdentity(room.id) + '|' + message);
