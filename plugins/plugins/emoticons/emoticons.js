@@ -105,7 +105,7 @@ function parseEmoticons(message, room, user, pm) {
 	// add emotes
 	message = message.replace(patternRegex, function (match) {
 		let emote = emotes[match];
-		return typeof emote === 'string' ? '<img src="' + emote + '" title="' + match + '" style="height:3.5em;"/>' : match;
+		return typeof emote === 'string' ? '<img src="' + emote + '" title="' + match + '" style="height:4em;"/>' : match;
 	});
 
 	return message;
