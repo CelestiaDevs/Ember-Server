@@ -29,6 +29,7 @@ let emotes = {
 	'feelshp': 'http://i.imgur.com/1W19BDG.png',
 	'feelskink': 'http://i.imgur.com/ubnzm6w.gif',
 	'feelsmd': 'http://i.imgur.com/DJHMdSw.png',
+	'feelsmylittlepepe': 'https://derpicdn.net/img/2015/5/31/907398/thumb.jpg',
 	'feelsnv': 'http://i.imgur.com/XF6kIdJ.png',
 	'feelsok': 'http://i.imgur.com/gu3Osve.png',
 	'feelspac': 'http://i.imgur.com/Dc9DBUz.png',
