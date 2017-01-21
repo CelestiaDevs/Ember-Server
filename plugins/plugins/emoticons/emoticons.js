@@ -34,7 +34,7 @@ let emotes = {
 	'feelsrs': 'http://i.imgur.com/qGEot0R.png',
 	'feelssc': 'http://i.imgur.com/cm6oTZ1.png',
 	'feelstea': 'http://i.imgur.com/XQc8yZ2.gif',
-	'Focus': 'http://i.imgur.com/dUN6xWl.gif',
+	'focus': 'http://i.imgur.com/dUN6xWl.gif',
 	'fukya': 'http://i.imgur.com/ampqCZi.gif',
 	'funnylol': 'http://i.imgur.com/SlzCghq.png',
 	'hmmface': 'http://i.imgur.com/Z5lOwfZ.png',
