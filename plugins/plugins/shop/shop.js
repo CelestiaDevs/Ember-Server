@@ -263,7 +263,7 @@ exports.commands = {
 		let pds = parseInt(params[1]);
 		if (!pds || pds <= 0) return this.sendReply("The quantity is not valid.");
 		let userh = Users.getExact(params[0]);
-		if (!userh || !userh.connected) return this.sendReply("The user does bot exist or is not online");
+		if (!userh || !userh.connected) return this.sendReply("The user does not exist or is not online");
 		let userName = userh.name;
 		if (!Shop.transferMoney(user.name, params[0], pds)) {
 			this.sendReply("You do not have enough bucks.");
