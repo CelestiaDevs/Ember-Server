@@ -8,6 +8,7 @@ exports.parse = parseEmoticons;
 
 let emotes = {
 	'(ditto)': 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/2x',
+	'#focus': 'http://i.imgur.com/dUN6xWl.gif',
 	'#freewolf': 'http://i.imgur.com/ybxWXiG.png',
 	'4Head': 'https://static-cdn.jtvnw.net/emoticons/v1/354/1.0',
 	'Boi': 'http://funkyimg.com/i/2nHeX.jpg',
@@ -85,8 +86,7 @@ let emotes = {
 	'feelsvolc': 'http://i.imgur.com/QXlKzZd.png?1',
 	'feelsvpn': 'http://i.imgur.com/ODTZISl.gif',
 	'feelswin': 'http://i.imgur.com/rbs9pZG.png?1',
-	'feelswnk': 'http://i.imgur.com/K1GhJaN.png', 
-	'focus': 'http://i.imgur.com/dUN6xWl.gif',
+	'feelswnk': 'http://i.imgur.com/K1GhJaN.png',
 	'fukya': 'http://i.imgur.com/ampqCZi.gif',
 	'funnylol': 'http://i.imgur.com/SlzCghq.png',
 	'hmmface': 'http://i.imgur.com/Z5lOwfZ.png',
