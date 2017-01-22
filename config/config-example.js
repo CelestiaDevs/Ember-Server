@@ -361,6 +361,7 @@ exports.grouplist = [
 		jeopardy: true,
 		joinbattle: true,
 		minigame: true,
+		hostgames: true,
 	},
 	{
 		symbol: '$',
