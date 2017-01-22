@@ -43,7 +43,7 @@ function generateNews () {
 			if (!lobby.news) lobby.news = {};
 			let news = lobby.news, newsDisplay = [];
 			Object.keys(news).forEach(announcement => {
-				newsDisplay.push(`<h4>${announcement}</h4>${news[announcement].desc}<br /><br /><strong>—<font color="${Equ.Color(news[announcement].by)}">${news[announcement].by}</font></strong> on ${moment(news[announcement].posted).format("MMM D, YYYY")}`);
+				newsDisplay.push(`<h4>${announcement}</h4>${news[announcement].desc}<br /><br /><strong>—<font color="${Plugins.Colors.apply(news[announcement].by)}">${news[announcement].by}</font></strong> on ${moment(news[announcement].posted).format("MMM D, YYYY")}`);
 			});
 			return newsDisplay;
 		}
@@ -55,7 +55,7 @@ function newsDisplay(user) {
 
 			if (newsDis.length > 0) {
 				newsDis = newsDis.join('<hr>');
-				return Users(user).send(`|pm| Equestria News|${Users(user).getIdentity()}|/raw ${newsDis}`);
+				return Users(user).send(`|pm| Ember News|${Users(user).getIdentity()}|/raw ${newsDis}`);
 			}
 }
 
