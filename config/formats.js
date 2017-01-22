@@ -1129,7 +1129,7 @@ exports.Formats = [
 			
 		},
 		mod: 'gen7',
-		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
+		ruleset: ['Pokemon', 'Standard', 'Sleep Clause Mod', 'OHKO Clause', 'Species Clause', 'Team Preview'],
 		banlist: ['Uber', 'Soul Dew', 'Toxapex']
 	},
 	{
