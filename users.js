@@ -33,8 +33,31 @@ const THROTTLE_MULTILINE_WARN_STAFF = 6;
 const PERMALOCK_CACHE_TIME = 90 * 24 * 60 * 60 * 1000;
 
 const fs = require('fs');
-
+const moment = require('moment');
 let Users = module.exports = getUser;
+
+function generateNews () {
+			let lobby = Rooms('lobby');
+			if (!lobby) return false;
+			if (!lobby.news || Object.keys(lobby.news).length < 0) return false;
+			if (!lobby.news) lobby.news = {};
+			let news = lobby.news, newsDisplay = [];
+			Object.keys(news).forEach(announcement => {
+				newsDisplay.push(`<h4>${announcement}</h4>${news[announcement].desc}<br /><br /><strong>—<font color="${Equ.Color(news[announcement].by)}">${news[announcement].by}</font></strong> on ${moment(news[announcement].posted).format("MMM D, YYYY")}`);
+			});
+			return newsDisplay;
+		}
+
+function newsDisplay(user) {
+			if (!Users(user)) return false;
+			let newsDis = generateNews();
+			if (newsDis.length === 0) return false;
+
+			if (newsDis.length > 0) {
+				newsDis = newsDis.join('<hr>');
+				return Users(user).send(`|pm| Equestria News|${Users(user).getIdentity()}|/raw ${newsDis}`);
+			}
+}
 
 /*********************************************************
  * Users map
@@ -1530,6 +1553,8 @@ Users.socketConnect = function (worker, workerid, socketid, ip, protocol) {
 	});
 
 	user.joinRoom('global', connection);
+	newsDisplay(user.name);
+	
 };
 
 Users.socketDisconnect = function (worker, workerid, socketid) {
