@@ -1130,7 +1130,7 @@ exports.Formats = [
 		},
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
-		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Shuckle', 'Sableye']
+		banlist: ['Uber', 'Soul Dew', 'Toxapex']
 	},
 	{
 		name: "Balanced Hackmons (Doubles)",
