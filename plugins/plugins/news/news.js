@@ -27,8 +27,6 @@ function newsDisplay(user) {
 				return Users(user).send(`|pm| News|${Users(user).getIdentity()}|/raw ${newsDis}`);
 			}
 }
-
-];
  exports.commands = {
     	news: 'serverannouncements',
 	announcements: 'serverannouncements',
@@ -41,7 +39,7 @@ function newsDisplay(user) {
 			let news = Rooms('lobby').news;
 			if (Object.keys(news).length === 0) return this.sendReply("There are currently no new server announcements at this time.");
 			return user.send('|popup||wide||html|' +
-				"<center><strong>Noticias del servidor:</strong></center>" +
+				"<center><strong>Ember Server News:</strong></center>" +
 					generateNews().join('<hr>')
 			);
 		},
