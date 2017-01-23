@@ -40,7 +40,6 @@ let emotes = {
 	'feelsemo': 'http://funkyimg.com/i/2nHf3.jpg',
 	'feelsfdra': 'http://i.imgur.com/ZIcl9Zy.jpg',
 	'feelsfro': 'http://i.imgur.com/ijJakJT.png',
-	'feelsgay': 'http://i.imgur.com/zQAacwu.png?1',
 	'feelsgd': 'http://i.imgur.com/Jf0n4BL.png',
 	'feelsgn': 'http://i.imgur.com/juJQh0J.png',
 	'feelsgro': 'http://i.imgur.com/jLhP0bZ.png?1',
