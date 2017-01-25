@@ -1,0 +1,13 @@
+{
+  "name": "Pokemon-Showdown-Plugin-Musicbox",
+  "version": "0.2",
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "main": "musicbox.js",
+  "scripts": {},
+  "author": {
+    "name": "PS Contributors"
+  },
+  "private": true
+}
