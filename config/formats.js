@@ -527,7 +527,7 @@ exports.Formats = [
 		],
 
 		mod: 'pokebilities',
-		ruleset: ['[Gen 7] Pokebank OU', 'Evasion Abilities Clause'],
+		ruleset: ['[Gen 7] OU', 'Evasion Abilities Clause'],
 		banlist: ['Excadrill'],
 		onBegin: function () {
 			let banlistTable = this.getBanlistTable(this.getFormat('gen7pokbilities'));
@@ -559,7 +559,7 @@ exports.Formats = [
 
 		mod: '350cup',
 		searchShow: false,
-		ruleset: ['[Gen 7] Pokebank Ubers'],
+		ruleset: ['[Gen 7] Ubers'],
 		banlist: ['Deep Sea Tooth', 'Eevium Z', 'Eviolite', 'Light Ball'],
 	},
 	{
@@ -666,7 +666,7 @@ exports.Formats = [
 			if (template.baseSpecies === item.megaEvolves || (template.baseSpecies === 'Groudon' && item.id === 'redorb') || (template.baseSpecies === 'Kyogre' && item.id === 'blueorb')) return;
 			if (template.evos.length) return ["" + template.species + " is not allowed to hold " + item.name + " because it's not fully evolved."];
 			let uberStones = ['beedrillite', 'gengarite', 'kangaskhanite', 'mawilite', 'medichamite'];
-			if (template.tier === 'Uber' || template.tier === 'Bank-Uber' || set.ability === 'Power Construct' || uberStones.includes(item.id)) return ["" + template.species + " is not allowed to hold " + item.name + "."];
+			if (template.tier === 'Uber' || set.ability === 'Power Construct' || uberStones.includes(item.id)) return ["" + template.species + " is not allowed to hold " + item.name + "."];
 		},
 		onBegin: function () {
 			let allPokemon = this.p1.pokemon.concat(this.p2.pokemon);
@@ -805,7 +805,7 @@ exports.Formats = [
 
 		searchShow: false,
 		mod: 'hiddentype',
-		ruleset: ['[Gen 7] Pokebank OU'],
+		ruleset: ['[Gen 7] OU'],
 	},
 	{
 		name: "[Gen 7] BH Doubles",
