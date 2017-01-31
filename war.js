@@ -15,14 +15,14 @@ exports.tourTiers = tourTiers;
 
 exports.getTours = function () {
 	if (!wars)		{
-		return 'No hay ninguna guerra en curso.';
+		return 'There is currently no war.';
 	}
 	let tourList = '';
 	for (let w in wars) {
 		if (wars[w].tourRound === 0) {
-			tourList += '<a class="ilink" href="/' + w + '"> Guerra de formato ' + wars[w].format + ' entre  ' + wars[w].teamA + ' y ' + wars[w].teamB + ' en la sala ' + w + '</a> <br />';
+			tourList += '<a class="ilink" href="/' + w + '"> War of format ' + wars[w].format + ' between  ' + wars[w].teamA + ' and ' + wars[w].teamB + ' in the room ' + w + '</a> <br />';
 		} else {
-			tourList += '<a class="ilink" href="/' + w + '"> Guerra de formato ' + wars[w].format + ' entre  ' + wars[w].teamA + ' y ' + wars[w].teamB + ' en la sala ' + w + ' (Iniciada)</a> <br />';
+			tourList += '<a class="ilink" href="/' + w + '"> War of format ' + wars[w].format + ' between  ' + wars[w].teamA + ' and ' + wars[w].teamB + ' in the room ' + w + ' (Started)</a> <br />';
 		}
 	}
 	if (!tourList || tourList === '')		{
