@@ -391,7 +391,7 @@ exports.commands = {
 			    "<li><em>&mdash; leave</em> - Leaves the game of UNO.</li>" +
 			    "<li><em>&mdash; start</em> - Starts the game with the users that have joined.</li>" +
 			    "<li><em>&mdash; dq</em> - Disqualifies a user.</li>" +
-			    "<li><em>&mdash; end</em> - Ends the game .</li>" +
+			    "<li><em>&mdash; end</em> - Ends the game.</li>" +
 			    "<li><em>&mdash; getusers</em> - Shows a list of the users participating in the game.</li>" +
 			    "<li><em>&mdash; timeout [on|off|time]</em> - Sets the timer to disquialy inactive users. Time is indicated in seconds.</li>" +
 			    "<li><em>&mdash; hand</em> - Show your cards even when it is not your turn (you can show it publicly with !).</li>" +
@@ -462,7 +462,7 @@ exports.commands = {
 		join: function (target, room, user) {
 			const game = games[room.id];
 			const userid = user.userid;
-			if (!game || game.started) return this.errorReply("No hay un juego de Uno en fase de inscripción.");
+			if (!game || game.started) return this.errorReply("There is currently no UNO game to join.");
 			if (!verifyAlts(user, game.playerList) || game.playerList.indexOf(userid) > -1) return this.errorReply("One of your alts is already in the game.");
 			if (game.places && game.playerList.length >= game.places) {
 				return user.sendTo(this.room, "There are no more available spots.");
