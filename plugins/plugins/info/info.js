@@ -1208,6 +1208,16 @@ exports.commands = {
 		);
 	},
 	
+	'!embermono': true,
+	embermonotype: 'embermono',
+	embermono: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		this.sendReplyBox(
+			"A tier to enjoy monotype with your favorite Pok&eacute;mon!(special thanks to Fleur Fee)<br />" +
+			"- <a href=\"https://docs.google.com/spreadsheets/d/1cWrH1yIQshJP5CSmZe5Ey0nOgk0phKeGSv-9U65budA/htmlview\">Ember Monotype Spreadsheet</a><br />" +
+			"- <a href=\"https://www.smogon.com/forums/threads/3589809/\">Monotype Viability Ranking</a><br />"
+		);
+	},
 
 	'!othermetas': true,
 	om: 'othermetas',
