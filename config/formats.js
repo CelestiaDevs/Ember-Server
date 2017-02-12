@@ -1082,11 +1082,11 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 
-	// Local Metagames
+	// Ember Metagames
 	///////////////////////////////////////////////////////////////////
 
 	{
-		section: 'Local Metagames',
+		section: 'Ember Metagames',
 		column: 3,
 	},
 	{
@@ -1229,8 +1229,8 @@ exports.Formats = [
 	{
 		name: "[Gen 7] Ember Monotype",
 		desc: [
-			"All the Pok&eacute;mon on a team must share a type.",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587204/\">Monotype</a>",
+			"A tier to enjoy monotype with your favorite Pok&eacute;mon!.",
+			"&bullet; <a href=\"https://docs.google.com/spreadsheets/d/1cWrH1yIQshJP5CSmZe5Ey0nOgk0phKeGSv-9U65budA/htmlview\">Ember Monotype Spreadsheet</a>",
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3589809/\">Monotype Viability Ranking</a>",
 		],
 
