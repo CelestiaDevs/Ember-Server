@@ -1134,6 +1134,22 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Ability Clause', '-ate Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod'],
 		banlist: ['Arena Trap', 'Huge Power', 'Parental Bond', 'Pure Power', 'Shadow Tag', 'Wonder Guard', 'Assist', 'Chatter'],
 	},
+	{
+		name: "Ember Monotype",
+		desc: [
+			"All the Pok&eacute;mon on a team must share a type.",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587204/\">Monotype</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3589809/\">Monotype Viability Ranking</a>",
+		],
+
+		mod: 'embermono',
+		ruleset: ['Pokemon', 'Standard', 'Baton Pass Clause', 'Swagger Clause', 'Same Type Clause', 'Team Preview'],
+		banlist: [
+			'Aegislash', 'Arceus', 'Blaziken', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Dialga', 'Genesect', 'Giratina', 'Groudon', 'Ho-Oh', 'Kartana', 'Kyogre', 'Kyurem-White',
+			'Lugia', 'Lunala', 'Mewtwo', 'Palkia', 'Pheromosa', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Solgaleo',  'Xerneas', 'Yveltal', 'Zekrom', 'Zygarde',
+			'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Mawilite', 'Salamencite',  
+		],
+	},
 
 	// RoA Spotlight
 	///////////////////////////////////////////////////////////////////
