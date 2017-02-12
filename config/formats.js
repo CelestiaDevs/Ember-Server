@@ -1229,8 +1229,8 @@ exports.Formats = [
 	{
 		name: "[Gen 7] Ember Monotype",
 		desc: [
-			"A tier to enjoy monotype with your favorite Pok&eacute;mon!.",
-			"&bullet; <a href=\"https://docs.google.com/spreadsheets/d/1cWrH1yIQshJP5CSmZe5Ey0nOgk0phKeGSv-9U65budA/htmlview\">Ember Monotype Spreadsheet</a>",
+			"All the Pok&eacute;mon on a team must share a type.",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587204/\">Monotype</a>",
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3589809/\">Monotype Viability Ranking</a>",
 		],
 
