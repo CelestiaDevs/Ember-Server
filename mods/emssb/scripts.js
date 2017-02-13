@@ -1,4 +1,3 @@
-// Custom SpacialGaze scripts.
 'use strict';
 
 exports.BattleScripts = {
@@ -8,7 +7,7 @@ exports.BattleScripts = {
 
 		let sets = {
 			// Admins.
-			'~HoeenHero': {
+			'~DeltaSkiez': {
 				species: 'Ludicolo',
 				ability: 'Swift Swim',
 				item: 'Leftovers',
@@ -24,7 +23,23 @@ exports.BattleScripts = {
 				},
 				nature: 'Modest',
 			},
-			'~Mystifi': {
+			'~HurriKaine': {
+				species: 'Clefairy',
+				ability: 'Analytic',
+				item: 'Eviolite',
+				gender: 'F',
+				moves: [
+					['Calm Mind', 'Cosmic Power'][variant], 'Soft-Boiled', 'Stored Power',
+				],
+				signatureMove: 'Mystic Mirage',
+				evs: {
+					hp: 252,
+					def: 252,
+					spd: 4,
+				},
+				nature: 'Bold',
+			},
+			'~Revival Viosmic': {
 				species: 'Clefairy',
 				ability: 'Analytic',
 				item: 'Eviolite',
@@ -42,7 +57,7 @@ exports.BattleScripts = {
 			},
 
 			// Global Leaders:
-			'&HiroZ': {
+			'&Blooded Kitten': {
 				species: 'Genesect',
 				ability: 'Download',
 				item: 'Choice Scarf',
@@ -56,7 +71,7 @@ exports.BattleScripts = {
 				},
 				nature: 'Hasty',
 			},
-			'&Opple': {
+			'&Fleur Fee': {
 				species: 'Dragonite',
 				ability: 'Multiscale',
 				item: 'Weakness Policy',
@@ -71,24 +86,9 @@ exports.BattleScripts = {
 				},
 				nature: 'Adamant',
 			},
-			'&Kraken Mare': {
-				species: 'Gardevoir',
-				ability: 'Moody',
-				shiny: true,
-				item: 'Gardevoirite',
-				gender: 'F',
-				moves: ['Moonblast', 'Calm Mind', 'Psychic',
-				],
-				signatureMove: 'Mega Rage',
-				evs: {
-					hp: 248,
-					spa: 252,
-					def: 8,
-				},
-				nature: 'Modest',
-			},
+			
 			// Global Moderators:
-			'@C733937 123': {
+			'@Imp Latios': {
 				species: 'Tyranitar',
 				ability: 'Bulletproof',
 				item: 'Safety Goggles',
@@ -102,7 +102,7 @@ exports.BattleScripts = {
 				},
 				nature: 'Adamant',
 			},
-			'@Desokoro': {
+			'@Revival Hanna': {
 				species: 'Gyarados',
 				ability: 'Guts',
 				item: 'Leftovers',
@@ -117,54 +117,9 @@ exports.BattleScripts = {
 				},
 				nature: 'Adamant',
 			},
-			'@BDH93': {
-				species: 'Dunsparce',
-				ability: 'Serene Grace',
-				item: 'Kings Rock',
-				gender: 'M',
-				moves: ['Roost', 'Coil', 'Rock Slide', ['Glare', 'Body Slam'][variant],
-				],
-				signatureMove: 'Getting Trolled',
-				evs: {
-					hp: 252,
-					atk: 252,
-					def: 4,
-				},
-				nature: 'Naughty',
-			},
-			'@Mimiroppu': {
-				species: 'Lopunny',
-				ability: 'Limber',
-				item: 'Lopunnite',
-				gender: 'F',
-				moves: ['Fake out', 'Return', 'High Jump Kick',
-				 ],
-				signatureMove: 'Charm Up',
-				evs: {
-					atk: 252,
-					spe: 252,
-					def: 4,
-				},
-				nature: 'Jolly',
-			},
-			'@Vacuo': {
-				species: 'Magnezone',
-				ability: 'Levitate',
-				item: 'Choice Specs',
-				moves: [
-					['Volt Switch', 'Thunderbolt'][this.random(2)], 'Hidden Power Ice', 'Aura Sphere',
-				],
-				signatureMove: 'Mechanical Dysfunction',
-				evs: {
-					spa: 252,
-					spe: 252,
-					hp: 4,
-				},
-				nature: 'Modest',
-			},
 
 			// Global Drivers:
-			'%Ashley the Pikachu': {
+			'%Flaming Aurora': {
 				species: 'Pikachu',
 				ability: 'Electric Surge',
 				item: 'Light Ball',
@@ -182,7 +137,7 @@ exports.BattleScripts = {
 				},
 				nature: 'Modest',
 			},
-			'%ducktown': {
+			'%SakuraShaymin': {
 				species: 'Golduck',
 				ability: 'Cloud Nine',
 				item: 'Leftovers',
@@ -197,38 +152,9 @@ exports.BattleScripts = {
 				},
 				nature: 'Modest',
 			},
-			'%Serperiorater': {
-				species: 'Serperior',
-				ability: 'Sturdy',
-				item: 'Leftovers',
-				gender: 'M',
-				moves: ['Psychic', 'Aura Sphere', 'Dark Pulse',
-				],
-				signatureMove: 'Saber Strike',
-				evs: {
-					spa: 252,
-					spe: 252,
-					spd: 4,
-				},
-				nature: 'Timid',
-			},
-			'%Vulcaron': {
-				species: 'Murkrow',
-				ability: 'Prankster',
-				item: 'Eviolite',
-				gender: 'M',
-				moves: ['Thunder Wave', 'Mean Look', 'Confuse Ray',
-				],
-				signatureMove: 'Troll',
-				evs: {
-					hp: 252,
-					def: 252,
-					spd: 4,
-				},
-				nature: 'Impish',
-			},
+			
 			// Former Bots
-			'*SpaceGazer': {
+			'*EmberBoTT': {
 				species: 'Registeel',
 				ability: 'No Guard',
 				item: 'Weakness Policy',
@@ -242,22 +168,9 @@ exports.BattleScripts = {
 				},
 				nature: 'Adamant',
 			},
-			'*Spacial Bot': {
-				species: 'Regirock',
-				ability: 'Wonder Guard',
-				item: 'Leftovers',
-				moves: [
-					['Stone Edge', 'Earthquake'][variant], 'Explosion', 'Iron Head',
-				],
-				signatureMove: 'Ancient Ritual',
-				evs: {
-					atk: 252,
-					spd: 252,
-					hp: 4,
-				},
-				nature: 'Adamant',
-			},
-			'*SG Bot': {
+			
+			// Global Operators:
+			'$RevivalLeaderClair': {
 				species: 'Regice',
 				ability: 'Flash Fire',
 				item: 'Leftovers',
@@ -271,8 +184,23 @@ exports.BattleScripts = {
 				},
 				nature: 'Adamant',
 			},
+			'$VaporeonHydroxide': {
+				species: 'Regice',
+				ability: 'Flash Fire',
+				item: 'Leftovers',
+				moves: ['Ice Beam', 'Ancient Power', 'Thunderbolt',
+				],
+				signatureMove: 'Frostbite',
+				evs: {
+					spa: 252,
+					spd: 252,
+					hp: 4,
+				},
+				nature: 'Adamant',
+			},
+			
 			// Global Voices:
-			'+Admewn': {
+			'+Perfect Rose': {
 				species: 'Mew',
 				ability: 'Protean',
 				item: 'Expert Belt',
@@ -286,126 +214,7 @@ exports.BattleScripts = {
 				},
 				nature: 'Timid',
 			},
-			'+Almighty Bronzong': {
-				species: 'Bronzong',
-				ability: 'Levitate',
-				item: 'Leftovers',
-				gender: (variant === 1) ? 'M' : 'F',
-				moves: ['Gyro Ball', 'Confuse Ray', 'Toxic', 'Earthquake',
-				],
-				signatureMove: 'Blast Furnace',
-				evs: {
-					hp: 252,
-					def: 168,
-					spd: 88,
-				},
-				nature: 'Sassy',
-			},
-
-			'+Auction': {
-				species: 'Aegislash',
-				ability: 'Water Absorb',
-				item: 'Leftovers',
-				gender: 'M',
-				moves: ['Swords Dance', 'Sacred Sword', 'Shadow Sneak', 'Kings Shield',
-				],
-				signatureMove: 'Zeo-Bash',
-				evs: {
-					atk: 252,
-					spd: 8,
-					hp: 248,
-				},
-				nature: 'Adamant',
-			},
-			'+Hydrostatics': {
-				species: 'Charizard',
-				ability: 'Solar Power',
-				item: 'Charizardite X',
-				gender: 'M',
-				moves: ['Outrage', 'Flare Blitz', 'Thunder Punch',
-				],
-				signatureMove: 'Nature\'s Fury',
-				evs: {
-					spa: 252,
-					spe: 252,
-					hp: 4,
-				},
-				nature: 'Jolly',
-			},
-			'+Ranfen': {
-				species: 'Flygon',
-				ability: 'Levitate',
-				item: 'Choice Band',
-				moves: ['Outrage', 'Dragon Dance', 'Earthquake',
-				],
-				signatureMove: 'Out Ripper',
-				evs: {
-					atk: 252,
-					spe: 252,
-					hp: 4,
-				},
-				nature: 'Adamant',
-			},
-			'+The Run': {
-				species: 'Volcanion',
-				ability: 'Protean',
-				item: 'Life Orb',
-				moves: ['Fire Blast', 'Steam Eruption', 'Recover',
-				],
-				signatureMove: 'Vapor Boost',
-				evs: {
-					spa: 252,
-					spe: 252,
-					hp: 4,
-				},
-				nature: 'Timid',
-			},
-			'+UmichBrendan': {
-				species: 'Slaking',
-				ability: 'Guts',
-				item: 'Flame Orb',
-				gender: 'M',
-				moves: ['Fire Punch', 'Thunder Punch', 'Facade',
-				],
-				signatureMove: 'Vacation Time',
-				evs: {
-					atk: 252,
-					spe: 4,
-					hp: 252,
-				},
-				nature: 'Modest',
-			},
-			'+Xavier1942': {
-				species: 'Porygon2',
-				ability: 'Prankster',
-				item: 'Eviolite',
-				moves: ['Tri Attack', 'Recover', 'Ice Beam',
-				],
-				signatureMove: 'Xavier Hax',
-				evs: {
-					hp: 252,
-					def: 136,
-					spa: 24,
-					spd: 96,
-				},
-				nature: 'Bold',
-			},
-			'+Hurricane\'d': {
-				species: 'Tomohawk',
-				ability: 'Gale Wings',
-				item: 'Rocky Helmet',
-				gender: 'M',
-				moves: ['Aura Sphere', 'Taunt', 'Hurricane',
-				],
-				signatureMove: 'Rainbust Orb',
-				evs: {
-					spa: 252,
-					spe: 252,
-					hp: 4,
-				},
-				nature: 'Bold',
-			},
-			'+CelestialTater': {
+			'+Legacy Saffron': {
 				species: 'Armaldo',
 				ability: 'Unburden',
 				item: 'White Herb',
