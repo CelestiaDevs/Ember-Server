@@ -6486,7 +6486,7 @@ exports.BattleMovedex = {
 	},
 	"grasswhistle": {
 		num: 320,
-		accuracy: 55,
+		accuracy: 75,
 		basePower: 0,
 		category: "Status",
 		desc: "Causes the target to fall asleep.",
@@ -8138,7 +8138,7 @@ exports.BattleMovedex = {
 	},
 	"hypnosis": {
 		num: 95,
-		accuracy: 60,
+		accuracy: 75,
 		basePower: 0,
 		category: "Status",
 		desc: "Causes the target to fall asleep.",
@@ -14240,7 +14240,7 @@ exports.BattleMovedex = {
 	"shadowpunch": {
 		num: 325,
 		accuracy: true,
-		basePower: 60,
+		basePower: 90,
 		category: "Physical",
 		desc: "This move does not check accuracy.",
 		shortDesc: "This move does not check accuracy.",
@@ -14549,7 +14549,7 @@ exports.BattleMovedex = {
 	},
 	"sing": {
 		num: 47,
-		accuracy: 55,
+		accuracy: 75,
 		basePower: 0,
 		category: "Status",
 		desc: "Causes the target to fall asleep.",
