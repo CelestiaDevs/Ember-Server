@@ -214,6 +214,20 @@ exports.BattleScripts = {
 				},
 				nature: 'Timid',
 			},
+			'+Crystal gray': {
+				species: 'Greninja',
+				ability: 'Protean',
+				item: 'Expert Belt',
+				moves: ['Dark Pulse', 'Extrasensory', 'Ice Beam',
+				],
+				signatureMove: 'Hydro Smash',
+				evs: {
+					spa: 252,
+					spe: 252,
+					hp: 4,
+				},
+				nature: 'Timid',
+			},
 			'+Legacy Saffron': {
 				species: 'Armaldo',
 				ability: 'Unburden',
