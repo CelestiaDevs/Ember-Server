@@ -194,7 +194,7 @@ exports.commands = {
 		this.popupReply("|html|" + "<font size=5>Ember Server Credits</font><br />" +
 					"<u>Major Contributors:</u><br />" +
 					"- " + Plugins.Colors.apply('DeltaSkiez', true) + " (Owner, Sysadmin, Server CSS)<br />" +
-					"- " + Plugins.Colors.apply('Revival Kaine', true) + " (Owner, Sysadmin, Lead Policy)<br />" +
+					"- " + Plugins.Colors.apply('HurriKaine', true) + " (Owner, Sysadmin, Lead Policy)<br />" +
 					"- " + Plugins.Colors.apply('Revival Viosmic', true) + " (Admin, Discord Manager)<br />" +
 					"<br />" +
 					"<u>Staff Contributions:</u><br />" +
@@ -224,7 +224,7 @@ exports.commands = {
 					"<br />" +
 					"<b>7.</b> Please treat everyone with respect this included staff and regular users.<br />" +
 					"<br />" +
-					"<b>8.</b> Do flood chats with spam that has no purpose.<br />" +
+					"<b>8.</b> Do not flood chats with spam that has no purpose.<br />" +
 					"<br />" +
 					"<i>Please follow these rules to make the server a friendly and enjoyable place to be. Breaking any rules will result in punishment.</i><br />");
 	},
