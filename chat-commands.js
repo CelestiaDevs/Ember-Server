@@ -1093,6 +1093,7 @@ exports.commands = {
 		} else {
 			room.auth[userid] = nextGroup;
 		}
+		if (room.founder === userid && nextGroup !== '#') room.founder = false; //Must be a demotion as
 
 		// Only show popup if: user is online and in the room, the room is public, and not a groupchat or a battle.
 		let needsPopup = targetUser && room.users[targetUser.userid] && !room.isPrivate && !room.isPersonal && !room.battle;
