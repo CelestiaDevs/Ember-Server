@@ -72,52 +72,52 @@ exports.BattleStatuses = {
 			this.add('c', '~Revival Viosmic', 'I done goofed.');
 		},
 	},
-	hurricaned: {
+	legacysaffron: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '+Hurricane\'d', 'Ay lmao it\'s ya boi. CAP is the best tier, so let me show you.');
+			this.add('c', '+Legacy Saffron', 'Hello.');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '+Hurricane\'d', 'Ay ya boi is gettin outta here. Later asshat');
+			this.add('c', '+Legacy Saffron', 'I\'ll be right back.');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '+Hurricane\'d', 'You did this because I like CAP didn\'t you. I bet you like OU as well. You\'re tier-ist');
+			this.add('c', '+Legacy Saffron', 'Well played.');
 		},
 	},
-	hoeenhero: {
+	deltaskiez: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '~HoeenHero', 'Do I have to? I\'m in the middle of programming.');
+			this.add('c', '~DeltaSkiez', 'Good luck you\'ll need it!');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '~Hoeenhero', 'I can\'t battle now, i\'m too busy.');
+			this.add('c', '~DeltaSkiez', 'I\'ll be back.');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '~HoeenHero', 'Hey! Thats more hax than I get to use >:(');
+			this.add('c', '~DeltaSkiez', 'I have failed.');
 		},
 	},
-	hiroz: {
+	emberbott: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '&HiroZ', 'Your wing isn\'t able to fly anywhere!');
+			this.add('c', '*EmberBoTT', 'You will never beat me!');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '&HiroZ', 'Crawl like the insect you are, I\'ll be back!');
+			this.add('c', '*EmberBoTT', 'You haven\'t won yet I shall return.');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '&HiroZ', 'Argh... scumbag...');
+			this.add('c', '*EmberBoTT', 'That was not fair I\'m out.');
 		},
 	},
-	admewn: {
+	bloodedkitten: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '+Admewn', 'This battle will be amewsing :]');
+			this.add('c', '&Blooded Kitten', 'This battle will be amewsing :]');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '+Admewn', 'Brb, I\'ll be mewting someone :]');
+			this.add('c', '&Blooded Kitten', 'Brb, I\'ll be mewting someone :]');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '+Admewn', 'Turn off the mewsic! I\'m out!');
+			this.add('c', '&Blooded Kitten', 'Turn off the mewsic! I\'m out!');
 		},
 	},
 	vulcaron: {
