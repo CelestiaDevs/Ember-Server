@@ -48,28 +48,28 @@ exports.BattleStatuses = {
 			this.add('c', '$RevivalLeaderClair', 'I have been defeated');
 		},
 	},
-	umichbrendan: {
+	fleurfee: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '+UmichBrendan', 'All right, time for a Umich sweep!');
+			this.add('c', '&Fleur Fee', 'Ohayo-yo!');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '+UmichBrendan', 'I\'m gonna hand this over to a friend, you\'re not worth the effort');
+			this.add('c', '&Fleur Fee', 'Oyasumi-mi! <3');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '+UmichBrendan', 'I lost? How is that possible?');
+			this.add('c', '&Fleur Fee', 'Owchies...');
 		},
 	},
-	ducktown: {
+	revivalviosmic: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '%ducktown', 'Beware! You are entering a town of ducks!');
+			this.add('c', '~Revival Viosmic', 'You done goofed!');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '%ducktown', 'My other ducks will come attack you!');
+			this.add('c', '~Revival Viosmic', 'About 99.9% done.');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '%ducktown', 'Quack Quack Quaaaaaa...');
+			this.add('c', '~Revival Viosmic', 'I done goofed.');
 		},
 	},
 	hurricaned: {
