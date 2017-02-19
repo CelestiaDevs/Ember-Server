@@ -9,7 +9,7 @@ exports.BattleStatuses = {
 			this.add('c', '+Crystal Gray', 'you can get wet later ;)');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '+Crystal Gray', 'So much for being faster...');
+			this.add('c', '+Crystal Gray', 'Shit I got cleaned');
 		},
 	},
 	flamingaurora: {
@@ -36,16 +36,16 @@ exports.BattleStatuses = {
 			this.add('c', '@Imp Latios', 'You had the high ground...');
 		},
 	},
-	ashleythepikachu: {
+	revivalleaderclair: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '%Ashley the Pikachu', 'Pika-Pikachu');
+			this.add('c', '$RevivalLeaderClair', 'Good Luck');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '%Ashley the Pikachu', 'Pi-kaPika');
+			this.add('c', '$RevivalLeaderClair', 'I\'ll be back!');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '%Ashley the Pikachu', 'PikaPikaaaa');
+			this.add('c', '$RevivalLeaderClair', 'I have been defeated');
 		},
 	},
 	umichbrendan: {
