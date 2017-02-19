@@ -8,14 +8,14 @@ exports.BattleScripts = {
 		let sets = {
 			// Admins.
 			'~DeltaSkiez': {
-				species: 'Ludicolo',
-				ability: 'Swift Swim',
-				item: 'Leftovers',
+				species: 'Serperior',
+				ability: 'Overgrow',
+				item: 'Focus Sash',
 				gender: 'M',
 				moves: [
-					['Hydro Pump', 'Scald'][variant], 'Ice Beam', 'Giga Drain',
+					['Giga Drain', 'Leaf Storm'][variant], 'Return', 'Rest',
 				],
-				signatureMove: 'Scripting',
+				signatureMove: 'Mega Grow',
 				evs: {
 					spa: 252,
 					spe: 252,
