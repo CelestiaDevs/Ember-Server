@@ -240,12 +240,12 @@ exports.BattleMovedex = {
 		},
 	},
 	// VaporeonHydroxide
-	frostbite: {
+	devotion: {
 		category: "Physical",
-		id: "frostbite",
+		id: "devotion",
 		isNonstandard: true,
 		basePower: 40,
-		name: "Frostbite",
+		name: "Devotion",
 		pp: 20,
 		secondary: {
 			chance: 30,
