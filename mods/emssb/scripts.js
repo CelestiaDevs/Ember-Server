@@ -181,12 +181,12 @@ exports.BattleScripts = {
 				nature: 'Jolly',
 			},
 			'$VaporeonHydroxide': {
-				species: 'Regice',
-				ability: 'Flash Fire',
+				species: 'Vaporeon',
+				ability: 'Water Absorb',
 				item: 'Leftovers',
-				moves: ['Ice Beam', 'Ancient Power', 'Thunderbolt',
+				moves: ['Scald', 'Protect', 'Toxic',
 				],
-				signatureMove: 'Frostbite',
+				signatureMove: 'Devotion',
 				evs: {
 					spa: 252,
 					spd: 252,
