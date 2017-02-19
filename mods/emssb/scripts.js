@@ -167,18 +167,18 @@ exports.BattleScripts = {
 			
 			// Global Operators:
 			'$RevivalLeaderClair': {
-				species: 'Regice',
-				ability: 'Flash Fire',
+				species: 'Garchomp',
+				ability: 'Rough Skin',
 				item: 'Leftovers',
-				moves: ['Ice Beam', 'Ancient Power', 'Thunderbolt',
+				moves: ['Rock Tomb', 'Earthquake', 'Swords Dance',
 				],
-				signatureMove: 'Frostbite',
+				signatureMove: 'Dragon Blitz',
 				evs: {
-					spa: 252,
-					spd: 252,
-					hp: 4,
+					atk: 252,
+					spe: 252,
+					spd: 4,
 				},
-				nature: 'Adamant',
+				nature: 'Jolly',
 			},
 			'$VaporeonHydroxide': {
 				species: 'Regice',
@@ -225,19 +225,18 @@ exports.BattleScripts = {
 				nature: 'Timid',
 			},
 			'+Legacy Saffron': {
-				species: 'Armaldo',
-				ability: 'Unburden',
-				item: 'White Herb',
-				gender: 'M',
-				moves: ['Drain Punch', 'Stone Edge', 'Megahorn',
+				species: 'Luxray',
+				ability: 'Rivalry',
+				item: 'Leftovers',
+				moves: ['Discharge', 'Crunch', 'Ice Fang',
 				],
-				signatureMove: 'Shell Break',
+				signatureMove: 'Power Cut',
 				evs: {
-					atk: 128,
-					spe: 128,
-					hp: 252,
+					atk: 252,
+					spe: 252,
+					spd: 4,
 				},
-				nature: 'Adamant',
+				nature: 'Jolly',
 			},
 		};
 		// convert moves to ids.
