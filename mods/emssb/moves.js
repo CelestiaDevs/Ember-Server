@@ -23,12 +23,12 @@ exports.BattleMovedex = {
 		target: "Normal",
 		type: "Water",
 	},
-	// HoeenHero
-	scripting: {
+	// DeltaSkiez
+	grassstorm: {
 		category: "Status",
-		id: "scripting",
+		id: "grassstorm",
 		isNonstandard: true,
-		name: "Scripting",
+		name: "Grass Storm",
 		pp: 10,
 		secondary: {
 			chance: 100,
@@ -51,12 +51,12 @@ exports.BattleMovedex = {
 		target: "Normal",
 		type: "Psychic",
 	},
-	// Vulcaron
-	troll: {
+	// Revival Viosmic
+	papercut: {
 		category: "Status",
-		id: "troll",
+		id: "papercut",
 		isNonstandard: true,
-		name: "Troll",
+		name: "Paper Cut",
 		pp: 10,
 		secondary: {
 			chance: 100,
@@ -77,12 +77,12 @@ exports.BattleMovedex = {
 		target: "Normal",
 		type: "Dark",
 	},
-	// Almighty Bronzong
-	blastfurnace: {
+	// Fleur Fee
+	bloodyrose: {
 		category: "Status",
-		id: "blastfurnace",
+		id: "bloodyrose",
 		isNonstandard: true,
-		name: "Blast Furnace",
+		name: "Bloody Rose",
 		pp: 10,
 		priority: 0,
 		self: {
@@ -99,14 +99,15 @@ exports.BattleMovedex = {
 		target: "Normal",
 		type: "Fire",
 	},
-	// HiroZ
-	crystallizedukaku: {
+	// Imp Latios
+	
+	dracoshower: {
 		accuracy: 100,
 		basePower: 140,
 		category: "Special",
-		id: "crystallizedukaku",
+		id: "dracoshower",
 		isNonstandard: true,
-		name: "Crystallized Ukaku",
+		name: "Draco Shower",
 		pp: 10,
 		priority: 0,
 		target: "Normal",
@@ -120,13 +121,13 @@ exports.BattleMovedex = {
 			this.add('-anim', source, "Blizzard", target);
 		},
 	},
-	// Kraken Mare
-	megarage: {
+	// Flaming Aurora
+	crestofdeath: {
 		category: "Special",
 		basePower: 150,
-		id: "megarage",
+		id: "crestofdeath",
 		isNonstandard: true,
-		name: "Mega Rage",
+		name: "Crest of Death",
 		pp: 15,
 		priority: 0,
 		self: {
@@ -142,13 +143,13 @@ exports.BattleMovedex = {
 		target: "Normal",
 		type: "Fairy",
 	},
-	// C733937 123
-	lightshotgigalance: {
+	// EmberBoTT
+	emberstorm: {
 		category: "Physical",
 		basePower: 150,
-		id: "lightshotgigalance",
+		id: "emberstorm",
 		isNonstandard: true,
-		name: "Lightshot Giga-Lance",
+		name: "Ember Storm",
 		self: {
 			volatileStatus: 'mustrecharge',
 		},
@@ -173,13 +174,13 @@ exports.BattleMovedex = {
 		target: "Normal",
 		type: "Rock",
 	},
-	// Serperiorater
-	saberstrike: {
+	// RevivalLeaderClair
+	dragonblitz: {
 		category: "Special",
 		basePower: 140,
-		id: "saberstrike",
+		id: "dragonblitz",
 		isNonstandard: true,
-		name: "Saber Strike",
+		name: "Dragon Blitz",
 		secondary: {
 			chance: 100,
 			self: {
@@ -199,12 +200,12 @@ exports.BattleMovedex = {
 		target: "Normal",
 		type: "Grass",
 	},
-	// Hydrostatics
-	naturesfury: {
+	// Legacy Saffron
+	powercut: {
 		category: "Status",
-		id: "naturesfury",
+		id: "powercut",
 		isNonstandard: true,
-		name: "Nature's Fury",
+		name: "Power Cut",
 		pp: 10,
 		priority: 0,
 		self: {
@@ -221,14 +222,14 @@ exports.BattleMovedex = {
 		target: "Normal",
 		type: "Fire",
 	},
-	// Ashley the Pikachu
-	rocketpunch: {
+	// Perfect Rose
+	mewtation: {
 		accuracy: 100,
 		basePower: 100,
 		category: "Special",
-		id: "rocketpunch",
+		id: "mewtation",
 		isNonstandard: true,
-		name: "Rocket Punch",
+		name: "Mewtation",
 		pp: 10,
 		priority: 1,
 		target: "Normal",
@@ -239,13 +240,13 @@ exports.BattleMovedex = {
 			this.add('-anim', source, "Mach Punch", target);
 		},
 	},
-	// BDH93
-	gettingtrolled: {
+	// VaporeonHydroxide
+	frostbite: {
 		category: "Physical",
-		id: "gettingtrolled",
+		id: "frostbite",
 		isNonstandard: true,
 		basePower: 40,
-		name: "Getting Trolled",
+		name: "Frostbite",
 		pp: 20,
 		secondary: {
 			chance: 30,
@@ -261,12 +262,12 @@ exports.BattleMovedex = {
 		target: "Normal",
 		type: "Normal",
 	},
-	// Mystifi
-	mysticmirage: {
+	// SakuraShaymin
+	duckpower: {
 		category: "Status",
-		id: "mysticmirage",
+		id: "duckpower",
 		isNonstandard: true,
-		name: "Mystic Mirage",
+		name: "Duck Power",
 		self: {
 			boosts: {
 				def: 1,
@@ -283,12 +284,12 @@ exports.BattleMovedex = {
 		target: "self",
 		type: "Fairy",
 	},
-	// Mimiroppu
-	charmup: {
+	// Revival Hanna
+	tsunamicrash: {
 		category: "Status",
-		id: "charmup",
+		id: "tsunamicrash",
 		isNonstandard: true,
-		name: "Charm Up",
+		name: "Tsunami Crash",
 		pp: 10,
 		secondary: {
 			volatileStatus: 'attract',
@@ -306,13 +307,13 @@ exports.BattleMovedex = {
 		target: "Normal",
 		type: "Normal",
 	},
-	// Auction
-	zeobash: {
+	// Blooded Kitten
+	crystallizedukaku: {
 		category: "Physical",
 		basePower: 90,
-		id: "zeobash",
+		id: "crystallizedukaku",
 		isNonstandard: true,
-		name: "Zeo-Bash",
+		name: "Crystallized Ukaku",
 		pp: 15,
 		priority: 0,
 		onPrepareHit: function (target, source, move) {
@@ -322,12 +323,12 @@ exports.BattleMovedex = {
 		target: "Normal",
 		type: "Steel",
 	},
-	// Opple
-	ancientorb: {
+	// HurriKaine
+	mysticmirage: {
 		category: "Status",
-		id: "ancientorb",
+		id: "mysticmirage",
 		isNonstandard: true,
-		name: "Ancient Orb",
+		name: "Mystic Mirage",
 		pp: 10,
 		priority: 0,
 		self: {
@@ -343,247 +344,5 @@ exports.BattleMovedex = {
 		},
 		target: "Normal",
 		type: "Dragon",
-	},
-	// Spacial Bot
-	ancientritual: {
-		category: "Status",
-		id: "ancientritual",
-		isNonstandard: true,
-		name: "Ancient Ritual",
-		pp: 10,
-		priority: 0,
-		self: {
-			boosts: {
-				spe: 2,
-				atk: 1,
-			},
-		},
-		onPrepareHit: function (target, source) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Dragon Dance", source);
-		},
-		target: "Normal",
-		type: "Rock",
-	},
-	// ducktown
-	duckpower: {
-		category: "Status",
-		id: "duckpower",
-		isNonstandard: true,
-		name: "Duck Power",
-		pp: 5,
-		priority: 0,
-		self: {
-			boosts: {
-				spa: 8,
-				spd: 8,
-			},
-		},
-		onPrepareHit: function (target, source) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Calm Mind", source);
-		},
-		weather: 'raindance',
-		target: "Normal",
-		type: "Water",
-	},
-	// Hurricane'd
-	rainbustorb: {
-		category: "Status",
-		id: "rainbustorb",
-		isNonstandard: true,
-		name: "Rainbust Orb",
-		pp: 10,
-		priority: 0,
-		boosts: {
-			spa: 2,
-			def: 2,
-		},
-		onPrepareHit: function (target, source) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Bulk Up", source);
-		},
-		weather: 'raindance',
-		target: "self",
-		type: "Water",
-	},
-	// UmichBrendan
-	vacationtime: {
-		category: "Status",
-		id: "vacationtime",
-		isNonstandard: true,
-		name: "Vacation Time",
-		pp: 5,
-		priority: 0,
-		boosts: {
-			atk: 2,
-			spe: 1,
-		},
-		onPrepareHit: function (target, source) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Wish", source);
-			this.add('-anim', source, "Swords Dance", source);
-		},
-		target: "self",
-		type: "Normal",
-	},
-	// Admewn
-	mewtation: {
-		category: "Status",
-		id: "mewtation",
-		isNonstandard: true,
-		name: "Mewtation",
-		pp: 10,
-		priority: 0,
-		onPrepareHit: function (target, source) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Transform", target);
-		},
-		target: "Normal",
-		type: "Dark",
-	},
-	// Ranfen
-	outripper: {
-		category: "Physical",
-		id: "outripper",
-		basePower: 100,
-		isNonstandard: true,
-		name: "Out Ripper",
-		pp: 10,
-		critRatio: 2,
-		priority: 0,
-		onPrepareHit: function (target, source) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Dragonbreath", target);
-		},
-		target: "Normal",
-		type: "Dragon",
-	},
-	// Xavier1942
-	xavierhax: {
-		category: "Status",
-		id: "xavierhax",
-		isNonstandard: true,
-		name: "Xavier Hax",
-		pp: 8,
-		priority: 0,
-		boosts: {
-			spd: 1,
-			spa: 1,
-			def: 1,
-		},
-		onPrepareHit: function (target, source) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Calm Mind", source);
-		},
-		target: "self",
-		type: "Normal",
-	},
-	// SpaceGazer
-	spacialblast: {
-		category: "Physical",
-		basePower: 150,
-		id: "spacialblast",
-		isNonstandard: true,
-		name: "Spacial Blast",
-		secondary: {
-			chance: 70,
-			status: 'par',
-		},
-		pp: 10,
-		priority: 0,
-		onPrepareHit: function (target, source, move) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Wish", source);
-			this.add('-anim', source, "Hyper Beam", target);
-		},
-		target: "Normal",
-		type: "Fairy",
-	},
-	// SG Bot
-	frostbite: {
-		category: "Special",
-		basePower: 100,
-		id: "frostbite",
-		isNonstandard: true,
-		name: "Frost Bite",
-		secondary: {
-			chance: 70,
-			status: 'frz',
-		},
-		pp: 10,
-		priority: 0,
-		onPrepareHit: function (target, source, move) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Blizzard", target);
-			this.add('-anim', target, "Bite", target);
-		},
-		target: "Normal",
-		type: "Ice",
-	},
-	// Vacuo
-	mechanicaldysfunction: {
-		category: "Special",
-		basePower: 110,
-		accuracy: 90,
-		id: "mechanicaldysfunction",
-		isNonstandard: true,
-		name: "Mechanical Dysfunction",
-		secondary: {
-			chance: 50,
-			status: 'par',
-		},
-		pp: 8,
-		priority: 0,
-		onPrepareHit: function (target, source, move) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Zap Cannon", target);
-		},
-		target: "Normal",
-		type: "Electric",
-	},
-	// Desokoro
-	tsunamicrash: {
-		category: "Physical",
-		basePower: 150,
-		id: "tsunamicrash",
-		isNonstandard: true,
-		name: "Tsunami Crash",
-		secondary: {
-			chance: 35,
-			volatileStatus: 'flinch',
-		},
-		pp: 5,
-		priority: 0,
-		onPrepareHit: function (target, source, move) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Water Pledge", source);
-			this.add('-anim', source, "Waterfall", target);
-		},
-		target: "Normal",
-		type: "Water",
-	},
-	//CelestialTater
-	shellbreak: {
-		category: "Status",
-		id: "shellbreak",
-		isNonstandard: true,
-		name: "Shell Break",
-		boosts: {
-			spa: 2,
-			atk: 2,
-			spe: 2,
-			def: -1,
-			spd: -1,
-			accuracy: 1,
-		},
-		pp: 5,
-		priority: 1,
-		onPrepareHit: function (target, source) {
-			this.add('-anim', source, "Brick Break", source);
-			this.add('-anim', source, "Shell Smash", source);
-		},
-		target: "self",
-		type: "Water",
 	},
 };
