@@ -119,22 +119,19 @@ exports.BattleScripts = {
 
 			// Global Drivers:
 			'%Flaming Aurora': {
-				species: 'Pikachu',
-				ability: 'Electric Surge',
-				item: 'Light Ball',
+				species: 'Rayquaza-Mega',
+				ability: 'Delta Stream',
+				item: 'Assault Vest',
 				gender: 'F',
-				moves: ['Thunderbolt', 'Surf', 'Hidden Power Ice',
+				moves: ['Dragon Dance', 'Dragon Ascent', 'Air Slash',
 				],
-				signatureMove: 'Rocket Punch',
+				signatureMove: 'Crest of Death',
 				evs: {
-					spa: 252,
 					spe: 252,
+					atk: 252,
 					hp: 4,
 				},
-				ivs: {
-					atk: 0,
-				},
-				nature: 'Modest',
+				nature: 'Adamant',
 			},
 			'%SakuraShaymin': {
 				species: 'Golduck',
@@ -152,14 +149,14 @@ exports.BattleScripts = {
 				nature: 'Modest',
 			},
 			
-			// Former Bots
+			// Global Bots:
 			'*EmberBoTT': {
-				species: 'Registeel',
-				ability: 'No Guard',
-				item: 'Weakness Policy',
-				moves: ['Zap Cannon', 'Iron Head', 'Stone Edge',
+				species: 'Porygon-Z',
+				ability: 'Adaptability',
+				item: 'Leftovers',
+				moves: ['Double-Edge', 'Protect', 'Psyshock',
 				],
-				signatureMove: 'Spacial Blast',
+				signatureMove: 'Ember Storm',
 				evs: {
 					atk: 252,
 					spd: 252,
