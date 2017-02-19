@@ -159,13 +159,13 @@ exports.BattleStatuses = {
 	vaporeonhydroxide: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '$VaporeonHydroxide', 'Mimiroppu, charm up~');
+			this.add('c', '$VaporeonHydroxide', ' I\'m here to help!');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '$VaporeonHydroxide', 'I\'ll be back soon bitches');
+			this.add('c', '$VaporeonHydroxide', 'I\'ll be back soon');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '$VaporeonHydroxide', 'Sorry \'bout it...');
+			this.add('c', '$VaporeonHydroxide', 'Guess I couldn\'t help out after all...');
 		},
 	},
 	perfectrose: {
