@@ -1242,6 +1242,47 @@ exports.Formats = [
 			'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Mawilite', 'Salamencite', 'lightball',   
 		],
 	},
+	{
+		name: "[Gen 7] Super Staff Bros",
+
+		mod: 'emssb',
+		team: 'randomSeasonalRegStaff',
+		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+		onBegin: function () {
+			this.add('message', 'GET READY FOR THE NEXT BATTLE!');
+
+			let allPokemon = this.p1.pokemon.concat(this.p2.pokemon);
+			for (let i = 0, len = allPokemon.length; i < len; i++) {
+				let pokemon = allPokemon[i];
+				let last = pokemon.moves.length - 1;
+				if (pokemon.moves[last]) {
+					pokemon.moves[last] = toId(pokemon.set.signatureMove);
+					pokemon.moveset[last].move = pokemon.set.signatureMove;
+					pokemon.baseMoveset[last].move = pokemon.set.signatureMove;
+				}
+			}
+		},
+		onSwitchIn: function (pokemon) {
+			let name = toId(pokemon.illusion ? pokemon.illusion.name : pokemon.name);
+			//Add the mon's status effect to it as a volatile.
+			if (this.data.Statuses[name] && this.data.Statuses[name].exists) {
+				pokemon.addVolatile(name, pokemon);
+			}
+		},
+		onModifyPokemon: function (pokemon) {
+			//let name = toId(pokemon.name);
+			// Enforce choice item locking on custom moves.
+			let moves = pokemon.moveset;
+			if (pokemon.getItem().isChoice && pokemon.lastMove === moves[3].id) {
+				for (let i = 0; i < 3; i++) {
+					if (!moves[i].disabled) {
+						pokemon.disableMove(moves[i].id, false);
+						moves[i].disabled = true;
+					}
+				}
+			}
+		},
+	},
 
 	// RoA Spotlight
 	///////////////////////////////////////////////////////////////////
