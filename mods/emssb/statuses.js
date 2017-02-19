@@ -1,15 +1,15 @@
 'use strict';
 exports.BattleStatuses = {
-	therun: {
+	crystalgray: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '+The Run', 'Are you fast enough?');
+			this.add('c', '+Crystal Gray', 'Ayyyyyyy lmao');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '+The Run', 'I\'ll be back faster than the speed of light');
+			this.add('c', '+Crystal Gray', 'you can get wet later ;)');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '+The Run', 'So much for being faster...');
+			this.add('c', '+Crystal Gray', 'So much for being faster...');
 		},
 	},
 	flamingaurora: {
