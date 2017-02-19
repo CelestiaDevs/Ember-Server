@@ -1,13 +1,13 @@
 "use strict";
 
 exports.BattleMovedex = {
-	// The Run
-	vaporboost: {
+	// Crystal Gray
+	hydrosmash: {
 		category: "Status",
-		id: "vaporboost",
+		id: "hydrosmash",
 		isNonstandard: true,
-		name: "Vapor Boost",
-		pp: 5,
+		name: "Hydro Smash",
+		pp: 10,
 		priority: 0,
 		self: {
 			boosts: {
@@ -16,12 +16,12 @@ exports.BattleMovedex = {
 		},
 		onPrepareHit: function (target, source) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Geomancy", source);
+			this.add('-anim', source, "Hydro Pump", source);
 			this.add('-anim', source, "Haze", source);
 		},
 		secondary: false,
 		target: "Normal",
-		type: "Ice",
+		type: "Water",
 	},
 	// HoeenHero
 	scripting: {
