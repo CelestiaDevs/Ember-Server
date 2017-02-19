@@ -120,86 +120,64 @@ exports.BattleStatuses = {
 			this.add('c', '&Blooded Kitten', 'Turn off the mewsic! I\'m out!');
 		},
 	},
-	vulcaron: {
+	hurrikaine: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '%Vulcaron', 'I will scorch you with 628 blue flames!!! ...I\'m really bad at this.');
+			this.add('c', '~HurriKaine', 'I will scorch you with 628 blue flames!!! ...I\'m really bad at this.');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '%Vulcaron', 'I\'ll be back, I have a lot of free time');
+			this.add('c', '~HurriKaine', 'I\'ll be back, I have a lot of free time');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '%Vulcaron', 'The flames are dowsed.');
+			this.add('c', '~HurriKaine', 'The flames are dowsed.');
 		},
 	},
-	mystifi: {
+	revivalhanna: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '~Mystifi', '__I\'ll HM01 u faster then sanic m89__');
+			this.add('c', '@Revival Hanna', 'You can\'t touch the master of RAGE!');
 		},
 		onSwitchOut: function (pokemon) {
+			this.add('c', '@Revival Hanna', 'I shall spare you today, young one!');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '~Mystifi', '**WOW U HACKER I\'M REPORTING YOU TO ZAREL**');
+			this.add('c', '@Revival Hanna', 'The RAGE wasn\'t enough to overpower you!');
 		},
 	},
-	krakenmare: {
+	sakurashaymin: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '&Kraken Mare', 'You can\'t touch the master of RAGE!');
+			this.add('c', '%SakuraShaymin', '``All hail.``');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '&Kraken Mare', 'I shall spare you today, young one!');
+			this.add('c', '%SakuraShaymin', '``I\'m off, night``');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '&Kraken Mare', 'The RAGE wasn\'t enough to overpower you!');
+			this.add('c', '%SakuraShaymin', '``Nice achievement.``');
 		},
 	},
-	almightybronzong: {
+	vaporeonhydroxide: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '+Almighty Bronzong', '``All hail.``');
+			this.add('c', '$VaporeonHydroxide', 'Mimiroppu, charm up~');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '+Almighty Bronzong', '``I\'m off, night``');
+			this.add('c', '$VaporeonHydroxide', 'I\'ll be back soon bitches');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '+Almighty Bronzong', '``Nice achievement.``');
+			this.add('c', '$VaporeonHydroxide', 'Sorry \'bout it...');
 		},
 	},
-	opple: {
+	perfectrose: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '&Opple', 'lol hi');
+			this.add('c', '+Perfect Rose', 'Time for some trolling');
 		},
 		onSwitchOut: function (pokemon) {
+			this.add('c', '+Perfect Rose', 'I\'ll be back for more trolling');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '&Opple', 'I call hacks, fine. You got me, lol, I\'ll get you next time!');
-		},
-	},
-	mimiroppu: {
-		exists: true,
-		onStart: function () {
-			this.add('c', '@Mimiroppu', 'Mimiroppu, charm up~');
-		},
-		onSwitchOut: function (pokemon) {
-			this.add('c', '@Mimiroppu', 'I\'ll be back soon bitches');
-		},
-		onFaint: function (pokemon) {
-			this.add('c', '@Mimiroppu', 'Sorry \'bout it...');
-		},
-	},
-	bdh93: {
-		exists: true,
-		onStart: function () {
-			this.add('c', '@BDH93', 'Time for some trolling');
-		},
-		onSwitchOut: function (pokemon) {
-			this.add('c', '@BDH93', 'I\'ll be back for more trolling');
-		},
-		onFaint: function (pokemon) {
-			this.add('c', '@BDH93', 'Aww man! No more trolling :(');
+			this.add('c', '+Perfect Rose', 'Aww man! No more trolling :(');
 		},
 	},
 	c733937123: {
@@ -212,32 +190,6 @@ exports.BattleStatuses = {
 		},
 		onFaint: function (pokemon) {
 			this.add('c', '@C733937 123', 'What, I...got defeated by some lousy fighter like you??? Well...Good luck next time we fight for both of us....but why did I lose?');
-		},
-	},
-	spacialbot: {
-		exists: true,
-		onStart: function () {
-			this.add('c', '%Spacial Bot', '``Bot rebooting...``');
-			this.add('c', '%Spacial Bot', '``Rebooting complete. Beginning to engage in battle.``');
-		},
-		onSwitchOut: function (pokemon) {
-			this.add('c', '+The Run', '.battleswitchout');
-			this.add('c', '%Spacial Bot', '``var returnMessage = alert("Will return with more power.")``');
-		},
-		onFaint: function (pokemon) {
-			this.add('c', '%Spacial Bot', 'I blame my creator for my loss');
-		},
-	},
-	hydrostatics: {
-		exists: true,
-		onStart: function () {
-			this.add('c', '+Hydrostatics', 'Dare to fight me??');
-		},
-		onSwitchOut: function (pokemon) {
-			this.add('c', '+Hydrostatics', '/me has studies');
-		},
-		onFaint: function (pokemon) {
-			this.add('c', '+Hydrostatics', 'Ok! It was a nice warm up for me! Let\'s battle for real the next time! ;)');
 		},
 	},
 	auction: {
