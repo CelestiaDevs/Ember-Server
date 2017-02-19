@@ -100,7 +100,6 @@ exports.BattleMovedex = {
 		type: "Fire",
 	},
 	// Imp Latios
-	
 	dracoshower: {
 		accuracy: 100,
 		basePower: 140,
