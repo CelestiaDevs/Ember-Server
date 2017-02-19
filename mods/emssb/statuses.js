@@ -12,28 +12,28 @@ exports.BattleStatuses = {
 			this.add('c', '+The Run', 'So much for being faster...');
 		},
 	},
-	serperiorater: {
+	flamingaurora: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '%Serperiorater', 'The badossness has arrived.');
+			this.add('c', '%Flaming Aurora', 'Imp Latios Sucks');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '%Serperiorater', 'Don\'t worry, I\'ll be back later, so be prepared.');
+			this.add('c', '%Flaming Aurora', 'Lemme Go Sleep');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '%Serperiorater', 'Dammit Benny, why ya gotta be that guy?');
+			this.add('c', '%Flaming Aurora', 'llamatea');
 		},
 	},
-	vacuo: {
+	implatios: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '@Vacuo', 'glhf');
+			this.add('c', '@Imp Latios', 'My powers have doubled since last time we\'ve met.');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '@Vacuo', 'lmfao brb');
+			this.add('c', '@Imp Latios', 'I\'ll be back!');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '@Vacuo', 'yeah so I\'mma go get some food see you later');
+			this.add('c', '@Imp Latios', 'You had the high ground...');
 		},
 	},
 	ashleythepikachu: {
