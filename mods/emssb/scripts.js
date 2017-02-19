@@ -15,7 +15,7 @@ exports.BattleScripts = {
 				moves: [
 					['Giga Drain', 'Leaf Storm'][variant], 'Return', 'Rest',
 				],
-				signatureMove: 'Mega Grow',
+				signatureMove: 'Grass Storm',
 				evs: {
 					spa: 252,
 					spe: 252,
@@ -40,22 +40,20 @@ exports.BattleScripts = {
 				nature: 'Bold',
 			},
 			'~Revival Viosmic': {
-				species: 'Clefairy',
-				ability: 'Analytic',
-				item: 'Eviolite',
-				gender: 'F',
-				moves: [
-					['Calm Mind', 'Cosmic Power'][variant], 'Soft-Boiled', 'Stored Power',
+				species: 'Kartana',
+				ability: 'Beast Boost',
+				item: 'Choice Scarf',
+				moves: ['Power Whip', 'V-create', 'Bolt Strike',
 				],
-				signatureMove: 'Mystic Mirage',
+				signatureMove: 'Paper Cut',
 				evs: {
-					hp: 252,
-					def: 252,
-					spd: 4,
+					atk: 252,
+					spe: 252,
+					hp: 4,
 				},
-				nature: 'Bold',
+				nature: 'Jolly',
 			},
-
+			
 			// Global Leaders:
 			'&Blooded Kitten': {
 				species: 'Genesect',
@@ -72,19 +70,19 @@ exports.BattleScripts = {
 				nature: 'Hasty',
 			},
 			'&Fleur Fee': {
-				species: 'Dragonite',
-				ability: 'Multiscale',
-				item: 'Weakness Policy',
-				gender: 'M',
-				moves: ['Fire Punch', 'Dragon Claw', 'Waterfall',
+				species: 'Roserade',
+				ability: 'Natural Cure',
+				item: 'Expert Belt',
+				gender: 'F',
+				moves: ['Sludge Bomb', 'Shadow Ball', 'Aromatherapy',
 				],
-				signatureMove: 'Ancient Orb',
+				signatureMove: 'Bloody Rose',
 				evs: {
-					atk: 252,
+					spa: 252,
 					spe: 252,
 					hp: 4,
 				},
-				nature: 'Adamant',
+				nature: 'Timid',
 			},
 			
 			// Global Moderators:
