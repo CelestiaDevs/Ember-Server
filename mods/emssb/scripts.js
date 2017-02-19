@@ -87,18 +87,19 @@ exports.BattleScripts = {
 			
 			// Global Moderators:
 			'@Imp Latios': {
-				species: 'Tyranitar',
-				ability: 'Bulletproof',
-				item: 'Safety Goggles',
+				species: 'Latios',
+				ability: 'Levitate',
+				item: 'Soul Dew',
 				gender: 'M',
-				moves: ['Assist', 'Beat Up', 'Sucker Punch', 'Heavy Slam',
+				moves: ['Thunderbolt', 'Ice Beam', 'Psyshock',
 				],
-				signatureMove: 'Lightshot Giga-Lance',
+				signatureMove: 'Draco Shower',
 				evs: {
-					hp: 252,
-					atk: 252,
+					hp: 4,
+					spa: 252,
+					spe: 252,
 				},
-				nature: 'Adamant',
+				nature: 'Timid',
 			},
 			'@Revival Hanna': {
 				species: 'Gyarados',
