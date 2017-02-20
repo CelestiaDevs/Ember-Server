@@ -235,7 +235,7 @@ exports.BattleMovedex = {
 		type: "Fire",
 		onPrepareHit: function (target, source) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Flare Blitz", source);
+			this.add('-anim', source, "Aerial Ace", source);
 			this.add('-anim', source, "Mach Punch", target);
 		},
 	},
