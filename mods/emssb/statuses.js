@@ -171,13 +171,13 @@ exports.BattleStatuses = {
 	perfectrose: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '+Perfect Rose', 'Time for some trolling');
+			this.add('c', '+Perfect Rose', 'You\'re a figment of my imagination.');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '+Perfect Rose', 'I\'ll be back for more trolling');
+			this.add('c', '+Perfect Rose', 'I\'ll come back later.');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '+Perfect Rose', 'Aww man! No more trolling :(');
+			this.add('c', '+Perfect Rose', ' I will never fall.');
 		},
 	},
 };
