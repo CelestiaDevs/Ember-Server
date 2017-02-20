@@ -197,18 +197,18 @@ exports.BattleScripts = {
 			
 			// Global Voices:
 			'+Perfect Rose': {
-				species: 'Mew',
-				ability: 'Protean',
-				item: 'Expert Belt',
-				moves: ['Earth Power', 'Oblivion Wing', 'Shadow Ball',
+				species: 'Aggron',
+				ability: 'Sturdy',
+				item: 'Leftovers',
+				moves: ['Head Smash', 'Thunder Punch', 'Earthquake',
 				],
-				signatureMove: 'Mewtation',
+				signatureMove: 'Tri-Horn Bash',
 				evs: {
-					spa: 252,
-					spe: 252,
-					hp: 4,
+					def: 8,
+					atk: 252,
+					hp: 248,
 				},
-				nature: 'Timid',
+				nature: 'Adamant',
 			},
 			'+Crystal gray': {
 				species: 'Greninja',
