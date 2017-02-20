@@ -222,13 +222,13 @@ exports.BattleMovedex = {
 		type: "Fire",
 	},
 	// Perfect Rose
-	mewtation: {
+	trihornbash: {
 		accuracy: 100,
 		basePower: 100,
 		category: "Special",
-		id: "mewtation",
+		id: "trihornbash",
 		isNonstandard: true,
-		name: "Mewtation",
+		name: "Tri-Horn Bash",
 		pp: 10,
 		priority: 1,
 		target: "Normal",
