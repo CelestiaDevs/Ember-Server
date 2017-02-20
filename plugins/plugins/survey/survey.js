@@ -50,8 +50,8 @@ class Survey {
 	generateQuestion() {
 		let output = '<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>';
 		output += '<div style="margin-top: 3px">Please note that anyone can see what you reply.</div>';
-		output += '<div style="margin-top: 5px"><button value="/survey answer" name="send" title="Answer the survey."><b>Answer the survey</b></button></div>';
-		output += '<div style="margin-top: 7px; padding-left: 12px"><button value="/survey results" name="send" title="View results - you will not be able to answer the survey after viewing results"><small>(View Results)</small></button><small>(you will not be able to answer the survey after viewing results)</small></div>';
+		output += '<div style="margin-top: 5px"><button class="button" value="/survey answer" name="send" title="Answer the survey."><b>Answer the survey</b></button></div>';
+		output += '<div style="margin-top: 7px; padding-left: 12px"><button class="button" value="/survey results" name="send" title="View results - you will not be able to answer the survey after viewing results"><small>(View Results)</small></button><small>(you will not be able to answer the survey after viewing results)</small></div>';
 		output += '</div>';
 		return output;
 	}
@@ -60,7 +60,7 @@ class Survey {
 		for (let i in this.room.users) {
 			let thisUser = this.room.users[i];
 			if (thisUser.userid in this.repliers || thisUser.latestIp in this.repliersIps) {
-				thisUser.sendTo(this.room, '|uhtml|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button value="/survey results" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
+				thisUser.sendTo(this.room, '|uhtml|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button value="/survey results" class="button" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
 			}
 		}
 	}
@@ -71,9 +71,9 @@ class Survey {
 		for (let i in this.room.users) {
 			let thisUser = this.room.users[i];
 			if (thisUser.userid in this.repliers) {
-				thisUser.sendTo(this.room, '|uhtml|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button value="/survey results" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
+				thisUser.sendTo(this.room, '|uhtml|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button class="button" value="/survey results" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
 			} else if (thisUser.latestIp in this.repliersIps) {
-				thisUser.sendTo(this.room, '|uhtml|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button value="/survey results" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
+				thisUser.sendTo(this.room, '|uhtml|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button class="button" value="/survey results" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
 			} else {
 				thisUser.sendTo(this.room, '|uhtml|survey' + this.room.surveyNumber + '|' + toAnswer);
 			}
@@ -83,9 +83,9 @@ class Survey {
 	displayTo(user, connection) {
 		if (!connection) connection = user;
 		if (user.userid in this.repliers) {
-			connection.sendTo(this.room, '|uhtml|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button value="/survey results" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
+			connection.sendTo(this.room, '|uhtml|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button value="/survey results" class="button" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
 		} else if (user.latestIp in this.repliersIps) {
-			connection.sendTo(this.room, '|uhtml|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button value="/survey results" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
+			connection.sendTo(this.room, '|uhtml|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button value="/survey results" class="button" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
 		} else {
 			connection.sendTo(this.room, '|uhtml|survey' + this.room.surveyNumber + '|' + this.generateQuestion());
 		}
@@ -95,9 +95,9 @@ class Survey {
 		let icon = '<span style="border:1px solid #' + (ended ? '777;color:#555' : '6A6;color:#484') + ';border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> ' + (ended ? "Survey ended" : "Survey") + '</span>';
 		let output = '<div class="infobox"><p style="margin: 2px 0 5px 0">' + icon + ' <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>';
 		for (let i in this.repliers) {
-			if (this.repliers[i]) output += '<div><b>' + i + ': </b><i>"' + this.repliers[i] + '"</i><div><br/>';
+			if (this.repliers[i]) output += '<div>' + Plugins.Colors.apply(i, true) + ': <i>"' + this.repliers[i] + '"</i><div><br/>';
 		}
-		if (!ended) output += '<div style="margin-top: 7px; padding-left: 12px"><button value="/survey hideresults" name="send" title="Hide results - hide the results."><small>(Hide Results)</small></div>';
+		if (!ended) output += '<div style="margin-top: 7px; padding-left: 12px"><button value="/survey hideresults" class="button" name="send" title="Hide results - hide the results."><small>(Hide Results)</small></div>';
 		output += '</div>';
 		return output;
 	}
@@ -116,13 +116,13 @@ class Survey {
 			if (getResults) {
 				user.sendTo(this.room, '|uhtmlchange|survey' + this.room.surveyNumber + '|' + results);
 			} else {
-				user.sendTo(this.room, '|uhtmlchange|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button value="/survey results" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
+				user.sendTo(this.room, '|uhtmlchange|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button class="button" value="/survey results" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
 			}
 		} else if (user.latestIp in this.repliersIps) {
 			if (getResults) {
 				user.sendTo(this.room, '|uhtmlchange|survey' + this.room.surveyNumber + '|' + results);
 			} else {
-				user.sendTo(this.room, '|uhtmlchange|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button value="/survey results" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
+				user.sendTo(this.room, '|uhtmlchange|survey' + this.room.surveyNumber + '|<div class="infobox"><p style="margin: 2px 0 5px 0"><span style="border:1px solid #6A6;color:#484;border-radius:4px;padding:0 3px"><i class="fa fa-bar-chart"></i> Survey</span> <strong style="font-size:11pt">' + (this.allowHTML ? this.question : Chat.escapeHTML(this.question)) + '</strong></p>Thank you for answering the survey.<br/><div style="margin-top: 7px; padding-left: 12px"><button class="button" value="/survey results" name="send" title="Show results - view all replies"><small>(View Results)</small></div></div>');
 			}
 		}
 	}
