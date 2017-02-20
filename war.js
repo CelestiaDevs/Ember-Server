@@ -534,19 +534,19 @@ let cmds = {
 			this.sendReplyBox(
 					'<font size = 2>Clan Wars</font><br />' +
 					'It is an automated system of wars (clashes) between two clans within a scoring system or ranking. The wars can only be started in rooms intended for it. Voiced can create and finish them and the staff can handle all other administrative commands. Likewise, officers and clan leaders may disqualify and replace their members.<br />' +
-					'Los comandos están compactados en /war y son los siguientes:<br />' +
-					'<ul><li>/war new, [standard/total], [tier/multitier], [tamaño], [clanA], [clanB] - Crea una guerra.</li>' +
-					'<li>/war new, [lineups], [tier/multitier], [tamaño], [clanA], [clanB], [capitanA], [capitanB] - Crea una guerra con alinaciones fijas.</li>' +
-					'<li>/war end - finaliza una guerra en curso.</li>' +
-					'<li>/war join - Comando para unirse.</li>' +
-					'<li>/war leave - Comando para salir.</li>' +
-					'<li>/war - Muestra el estado de la guerra.</li>' +
-					'<li>/war dq, [usuario] - Comando para descalificar.</li>' +
-					'<li>/war replace, [usuario1], [usuario2] - Comando para reemplazar.</li>' +
-					'<li>/war invalidate, [participante] - Comando para invalidar una batalla o un resultado.</li>' +
-					'<li>/war size, [Jugadores por team] - Cambia el tamaño de la guerra.</li>' +
-					'<li>/war auth, [Capitan1], [Capitan2] - Establece los capitanes de los clanes.</li>' +
-					'<li>/war reg, [P1], [P2]... - Comando para registrar alineaciones, solo usable por los capitanes.</li>' +
+					'The commands are compressed in / war and are as follows:<br />' +
+					'<ul><li>/war new, [standard/total], [tier/multitier], [size], [clanA], [clanB] - Creates a war.</li>' +
+					'<li>/war new, [lineups], [tier/multitier], [size], [clanA], [clanB], [captainA], [captainB] - Create a war with fixed solutions.</li>' +
+					'<li>/war end - Ends an ongoing war.</li>' +
+					'<li>/war join - Command to join.</li>' +
+					'<li>/war leave - Command to leave.</li>' +
+					'<li>/war - Shows the state of war.</li>' +
+					'<li>/war dq, [user] - Command to disqualify.</li>' +
+					'<li>/war replace, [user1], [user2] - Command to replace.</li>' +
+					'<li>/war invalidate, [participant] - Command to invalidate a battle or result.</li>' +
+					'<li>/war size, [Players per team] - Change the size of the war.</li>' +
+					'<li>/war auth, [captain1], [captain2] - Sets the captains of the clans.</li>' +
+					'<li>/war reg, [P1], [P2]... - Command to register alignments, only usable by captains.</li>' +
 					'<li>/war start - Inicia una guerra una vez registradas las alineaciones.</li>' +
 					'<li>/war search - Muestra las guerras en curso del servidor.</li>' +
 					'</ul>');
