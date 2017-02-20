@@ -433,10 +433,10 @@ exports.invalidate = function (room, matchup) {
 exports.replaceParticipant = function (room, p1, p2) {
 	let roomId = toId(room);
 	if (!wars[roomId]) return 'There was no war in this room.';
-	if (!wars[roomId].tourRound === 0) return 'La guerra no habia empezado';
+	if (!wars[roomId].tourRound === 0) return 'The war had not started';
 	let matchupId = exports.findMatchup(room, p1);
-	if (!matchupId) return 'El usuario no participaba en nungún combate de esta guerra.';
-	if (wars[roomId].matchups[matchupId].result > 0) return 'No se puede reemplazar si el combate ya ha empezado.';
+	if (!matchupId) return 'The user does not participate in any combat of this war.';
+	if (wars[roomId].matchups[matchupId].result > 0) return 'Can not be replaced if combat has already started.';
 	if (wars[roomId].teamAMembers[p1]) {
 		delete wars[roomId].teamAMembers[p1];
 		wars[roomId].teamAMembers[p2] = 1;
@@ -459,28 +459,28 @@ exports.endTeamTour = function (room) {
 
 exports.viewTourStatus = function (room) {
 	let roomId = toId(room);
-	if (!wars[roomId]) return 'No había ninguna guerra en esta sala.';
+	if (!wars[roomId]) return 'There was no war in this room.';
 	let rawStatus = '';
 	if (wars[roomId].tourRound === 0) {
 		switch (wars[roomId].type) {
 		case 'standard':
-			rawStatus = '<hr /><h2><font color="green"> Inscribanse a la guerra en formato ' + wars[roomId].format + ' entre ' + wars[roomId].teamA + " y " + wars[roomId].teamB + '.</font></h2><b>Para unirse a la war: <button name="send" value="/war join">/war join</button></b><br /><b><font color="blueviolet">Jugadores por clan:</font></b> ' + wars[roomId].size + '<br /><font color="blue"><b>FORMATO:</b></font> ' + wars[roomId].format + '<hr /><br /><font color="red"><b>Recuerda que debes mantener tu nombre durante toda la duración de la guerra.</b></font>';
+			rawStatus = '<hr /><h2><font color="green"> Sign up for the war in format ' + wars[roomId].format + ' between ' + wars[roomId].teamA + " and " + wars[roomId].teamB + '.</font></h2><b>To join the war: <button name="send" value="/war join">/war join</button></b><br /><b><font color="blueviolet">Players by clan:</font></b> ' + wars[roomId].size + '<br /><font color="blue"><b>FORMAT:</b></font> ' + wars[roomId].format + '<hr /><br /><font color="red"><b>Remember that you must keep your name for the duration of the war.</b></font>';
 			break;
 		case 'total':
-			rawStatus = '<hr /><h2><font color="green"> Inscribanse a la guerra total en formato ' + wars[roomId].format + ' entre ' + wars[roomId].teamA + " y " + wars[roomId].teamB + '.</font></h2><b>Para unirse a la war: <button name="send" value="/war join">/war join</button></b><br /><b><font color="blueviolet">Jugadores por clan:</font></b> ' + wars[roomId].size + '<br /><font color="blue"><b>FORMATO:</b></font> ' + wars[roomId].format + '<hr /><br /><font color="red"><b>Recuerda que debes mantener tu nombre durante toda la duración de la guerra.</b></font>';
+			rawStatus = '<hr /><h2><font color="green"> Sign up for the total war in format ' + wars[roomId].format + ' between ' + wars[roomId].teamA + " and " + wars[roomId].teamB + '.</font></h2><b>To join the war: <button name="send" value="/war join">/war join</button></b><br /><b><font color="blueviolet">Players by clan:</font></b> ' + wars[roomId].size + '<br /><font color="blue"><b>FORMAT:</b></font> ' + wars[roomId].format + '<hr /><br /><font color="red"><b>Remember that you must keep your name for the duration of the war.</b></font>';
 			break;
 		case 'lineups':
-			rawStatus = '<hr /><h2><font color="green"> Guerra en formato ' + wars[roomId].format + ' entre ' + wars[roomId].teamA + " y " + wars[roomId].teamB + '.</font></h2><b><font color="orange">Capitanes de equipo: </font>' + wars[roomId].authA + ' y ' + wars[roomId].authB + '</font></b> <br /><b><font color="blueviolet">Jugadores por equipo:</font></b> ' + wars[roomId].size + '<br /><font color="blue"><b>FORMATO:</b></font> ' + wars[roomId].format + '<hr /><br /><b><font color="red">Recuerda que debes mantener tu nombre durante toda la duración de la guerra.</font> <br />Los capitales deben usar /war reg, [miembro1], [miembro2]... para registrar las alineaciones.</b>';
+			rawStatus = '<hr /><h2><font color="green"> War in format ' + wars[roomId].format + ' between ' + wars[roomId].teamA + " and " + wars[roomId].teamB + '.</font></h2><b><font color="orange">Team captains: </font>' + wars[roomId].authA + ' and ' + wars[roomId].authB + '</font></b> <br /><b><font color="blueviolet">Team Players:</font></b> ' + wars[roomId].size + '<br /><font color="blue"><b>FORMAT:</b></font> ' + wars[roomId].format + '<hr /><br /><b><font color="red">Remember that you must keep your name for the duration of the war.</font> <br />Capitals should use /war reg, [member1], [member2]... to record alignments.</b>';
 		}
 		return rawStatus;
 	} else {
 		//round
-		let htmlSource = '<hr /><h3><center><font color=green><big>Guerra entre ' + wars[roomId].teamA + " y " + wars[roomId].teamB + '</big></font></center></h3><center><b>FORMATO:</b> ' + wars[roomId].format + "</center><hr /><center><small><font color=red>Red</font> = descalificado, <font color=green>Green</font> = paso a la siguiente ronda, <a class='ilink'><b>URL</b></a> = combatiendo</small></center><br />";
-		if (wars[roomId].type === 'total') htmlSource = '<hr /><h3><center><font color=green><big>Guerra entre ' + wars[roomId].teamA + " y " + wars[roomId].teamB + ' (Total)</big></font></center></h3><center><b>FORMATO:</b> ' + wars[roomId].format + "</center><hr /><center><small><font color=red>Red</font> = descalificado, <font color=green>Green</font> = paso a la siguiente ronda, <a class='ilink'><b>URL</b></a> = combatiendo</small></center><br />";
+		let htmlSource = '<hr /><h3><center><font color=green><big>War between ' + wars[roomId].teamA + " and " + wars[roomId].teamB + '</big></font></center></h3><center><b>FORMAT:</b> ' + wars[roomId].format + "</center><hr /><center><small><font color=red>Red</font> = disqualified, <font color=green>Green</font> = moved on to the next round, <a class='ilink'><b>URL</b></a> = battling</small></center><br />";
+		if (wars[roomId].type === 'total') htmlSource = '<hr /><h3><center><font color=green><big>War between ' + wars[roomId].teamA + " and " + wars[roomId].teamB + ' (Total)</big></font></center></h3><center><b>FORMAT:</b> ' + wars[roomId].format + "</center><hr /><center><small><font color=red>Red</font> = disqualified, <font color=green>Green</font> = moved on to the next round, <a class='ilink'><b>URL</b></a> = battling</small></center><br />";
 		for (let t in wars[roomId].byes) {
 			let userFreeBye = Users.getExact(t);
 			if (!userFreeBye) {userFreeBye = t;} else {userFreeBye = userFreeBye.name;}
-			htmlSource += '<center><small><font color=green>' + userFreeBye + ' ha pasado a la siguiente ronda.</font></small></center>';
+			htmlSource += '<center><small><font color=green>' + userFreeBye + ' has moved on to the next round.</font></small></center>';
 		}
 		let matchupsTable = '<br /><table  align="center" border="0" cellpadding="0" cellspacing="0"><tr><td align="right"><img width="100" height="100" src="' + encodeURI(Clans.getProfile(wars[roomId].teamA).logo) + '" />&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="center"><table  align="center" border="0" cellpadding="0" cellspacing="0">';
 		for (let i in wars[roomId].matchups) {
@@ -532,8 +532,8 @@ let cmds = {
 		case 'help':
 			if (!this.runBroadcast()) return false;
 			this.sendReplyBox(
-					'<font size = 2>Guerras entre clanes</font><br />' +
-					'Se trata de un sistema automatizado de guerras (enfrentamientos) entre 2 clanes dentro de un sistema de puntuación o ranking. Las wars solo pueden ser iniciadas en las salas destinadas a ello. Los Voiced pueden crearlas y terminarlas y el staff puede manejar el resto de comandos administrativos. Asi mismo, los oficiales y líderes de los clanes pueden descalificar y reemplazar a sus miembros.<br />' +
+					'<font size = 2>Clan Wars</font><br />' +
+					'It is an automated system of wars (clashes) between two clans within a scoring system or ranking. The wars can only be started in rooms intended for it. Voiced can create and finish them and the staff can handle all other administrative commands. Likewise, officers and clan leaders may disqualify and replace their members.<br />' +
 					'Los comandos están compactados en /war y son los siguientes:<br />' +
 					'<ul><li>/war new, [standard/total], [tier/multitier], [tamaño], [clanA], [clanB] - Crea una guerra.</li>' +
 					'<li>/war new, [lineups], [tier/multitier], [tamaño], [clanA], [clanB], [capitanA], [capitanB] - Crea una guerra con alinaciones fijas.</li>' +
