@@ -26,7 +26,7 @@ exports.getTours = function () {
 		}
 	}
 	if (!tourList || tourList === '')		{
-		return 'No hay ninguna guerra en curso.';
+		return 'There is currently no war.';
 	}
 	return tourList;
 };
@@ -156,10 +156,10 @@ exports.joinable = function (room, user) {
 exports.joinTeamTour = function (room, user, team) {
 	let roomId = toId(room);
 	let userId = toId(user);
-	if (!wars[roomId]) return 'No había ninguna guerra en esta sala.';
-	if (wars[roomId].tourRound !== 0) return 'La guerra ya ha empezado. No te puedes unir.';
-	if (wars[roomId].type === 'lineups') return 'Los equipos deben ser registrados por los capitanes de los clanes en esta guerra.';
-	if (!exports.joinable(room, user)) return 'Ya estabas inscrito en este torneo. Para jugar por otro equipo primero debes salir.';
+	if (!wars[roomId]) return 'There was no war in this room.';
+	if (wars[roomId].tourRound !== 0) return 'The war has already started. You cannot join.';
+	if (wars[roomId].type === 'lineups') return 'Teams must be registered by the captains of the clans in this war.';
+	if (!exports.joinable(room, user)) return 'You are already registered for this tournament. To play for another team you must first leave.';
 	let registeredA = Object.keys(wars[roomId].teamAMembers);
 	let registeredB = Object.keys(wars[roomId].teamBMembers);
 	if (toId(team) === toId(wars[roomId].teamA) && registeredA.length < wars[roomId].size) {
@@ -170,19 +170,19 @@ exports.joinTeamTour = function (room, user, team) {
 		wars[roomId].teamBMembers[userId] = 1;
 		return false;
 	}
-	return 'No quedan plazas para el equipo especificado.';
+	return 'There are no places for the specified team.';
 };
 
 exports.regParticipants = function (room, user, source) {
 	let roomId = toId(room);
 	let userId = toId(user);
 	let params = source.split(',');
-	if (!wars[roomId]) return 'No había ninguna guerra en esta sala.';
-	if (wars[roomId].tourRound !== 0) return 'La guerra ya ha empezado. No se pueden registrar alieaciones.';
-	if (wars[roomId].type !== 'lineups') return 'Esta guerra no es por alineaciones.';
+	if (!wars[roomId]) return 'There was no war in this room.';
+	if (wars[roomId].tourRound !== 0) return 'The war has already begun. Can not register alignments.';
+	if (wars[roomId].type !== 'lineups') return 'This war is not by alignments.';
 	let lineup = {};
 	let oldLineup = {};
-	if (params.length < (wars[roomId].size + 1)) return 'Debes especificar la alineación completa.';
+	if (params.length < (wars[roomId].size + 1)) return 'You must specify the complete alignment.';
 	let targetUser;
 	let targetClan;
 	if (toId(user) === toId(wars[roomId].authA)) {
@@ -195,9 +195,9 @@ exports.regParticipants = function (room, user, source) {
 	}
 	for (let n = 0; n < wars[roomId].size; ++n) {
 		targetUser = Users.get(params[n + 1]);
-		if (!targetUser || !targetUser.connected) return toId(params[n + 1]) + ' no existe o no está disponible. Todos los usuarios de la alineacón deben estarlo.';
-		if (oldLineup[toId(targetUser.name)] || lineup[toId(targetUser.name)]) return toId(params[n + 1]) + ' ya estaba en otro equipo o lo has escrito 2 veces.';
-		if (!Clans.findClanFromMember(targetUser.name) || toId(Clans.findClanFromMember(targetUser.name)) !== targetClan) return toId(params[n + 1]) + ' no pertenece al clan.';
+		if (!targetUser || !targetUser.connected) return toId(params[n + 1]) + ' does not exist or is not available. All alignment users must be present.';
+		if (oldLineup[toId(targetUser.name)] || lineup[toId(targetUser.name)]) return toId(params[n + 1]) + ' you had already joined another team or you joined it 2 times.';
+		if (!Clans.findClanFromMember(targetUser.name) || toId(Clans.findClanFromMember(targetUser.name)) !== targetClan) return toId(params[n + 1]) + ' is not a clan member.';
 		lineup[toId(targetUser.name)] = 1;
 	}
 	if (userId === toId(wars[roomId].authA)) wars[roomId].teamAMembers = lineup;
@@ -208,22 +208,22 @@ exports.regParticipants = function (room, user, source) {
 exports.sizeTeamTour = function (room, size) {
 	let roomId = toId(room);
 	size = parseInt(size);
-	if (size < 3) return 'El tamaño de la guerra no es válido.';
-	if (!wars[roomId]) return 'No había ninguna guerra en esta sala.';
-	if (wars[roomId].tourRound !== 0) return 'La guerra ya ha empezado. No se le puede cambiar el tamaño.';
+	if (size < 3) return 'The war size is not valid.';
+	if (!wars[roomId]) return 'There was no war in this room.';
+	if (wars[roomId].tourRound !== 0) return 'The war has already begun. Can not resize it.';
 	let registeredA = Object.keys(wars[roomId].teamAMembers);
 	let registeredB = Object.keys(wars[roomId].teamBMembers);
 	if (registeredA.length <= size && registeredB.length <= size) {
 		wars[roomId].size = size;
 		return false;
 	}
-	return 'Se han registrado demasiados usuarios como para cambiar el tamaño de la guerra.';
+	return 'Too many users have been registered to resize the war.';
 };
 
 exports.setAuth = function (room, authA, authB) {
 	let roomId = toId(room);
-	if (!wars[roomId]) return 'No había ninguna guerra en esta sala.';
-	if (wars[roomId].type !== 'lineups') return 'Esta guerra no es por alineaciones.';
+	if (!wars[roomId]) return 'There was no war in this room.';
+	if (wars[roomId].type !== 'lineups') return 'This war is not by alignments.';
 	wars[roomId].authA = authA;
 	wars[roomId].authB = authB;
 	return false;
@@ -232,17 +232,17 @@ exports.setAuth = function (room, authA, authB) {
 exports.leaveTeamTour = function (room, user) {
 	let roomId = toId(room);
 	let userId = toId(user);
-	if (!wars[roomId]) return 'No había ninguna guerra en esta sala.';
-	if (!wars[roomId].teamAMembers[userId] && !wars[roomId].teamBMembers[userId]) return 'No estabas inscrito en la guerra.';
+	if (!wars[roomId]) return 'There was no war in this room.';
+	if (!wars[roomId].teamAMembers[userId] && !wars[roomId].teamBMembers[userId]) return 'You were not enrolled in the war.';
 	if (wars[roomId].tourRound !== 0) {
-		if (!exports.dqTeamTour(room, user, 'cmd')) return 'Ya habías sido descalificado o pasado a la siguiente ronda';
-		Rooms.get(roomId).addRaw('<b>' + user + '</b> se ha autodescalificado de la guerra.');
+		if (!exports.dqTeamTour(room, user, 'cmd')) return 'You were already disqualified or passed to the next round';
+		Rooms.get(roomId).addRaw('<b>' + user + '</b> has been disqualified from the war.');
 		if (exports.isRoundEnded(roomId)) {
 			exports.autoEnd(roomId);
 		}
-		return 'Has salido de la guerra.';
+		return 'You have left the war.';
 	} else {
-		if (wars[roomId].type === 'lineups') return 'Los equipos deben ser registrados por los capitanes de los clanes en esta guerra.';
+		if (wars[roomId].type === 'lineups') return 'Teams must be registered by the captains of the clans in this war.';
 		if (wars[roomId].teamAMembers[userId]) delete wars[roomId].teamAMembers[userId];
 		if (wars[roomId].teamBMembers[userId]) delete wars[roomId].teamBMembers[userId];
 	}
@@ -369,11 +369,11 @@ exports.autoEnd = function (room) {
 	//raw of end
 	let htmlEndTour = '';
 	if (scoreA > scoreB) {
-		htmlEndTour = '<br><hr /><h2><font color="green"><center>&iexcl;Felicidades <font color="black">' + wars[roomId].teamA + '</font>!</center></font></h2><h2><font color="green"><center>&iexcl;Has ganado la guerra en formato ' + wars[roomId].format + ' contra <font color="black">' + wars[roomId].teamB + "</font>!</center></font></h2><hr />";
+		htmlEndTour = '<br><hr /><h2><font color="green"><center>&iexcl;Congratulations <font color="black">' + wars[roomId].teamA + '</font>!</center></font></h2><h2><font color="green"><center>&iexcl;You have won the war in format ' + wars[roomId].format + ' against <font color="black">' + wars[roomId].teamB + "</font>!</center></font></h2><hr />";
 	} else if (scoreA < scoreB) {
-		htmlEndTour = '<br><hr /><h2><font color="green"><center>&iexcl;Felicidades <font color="black">' + wars[roomId].teamB + '</font>!</center></font></h2><h2><font color="green"><center>&iexcl;Has ganado la guerra en formato ' + wars[roomId].format + ' contra <font color="black">' + wars[roomId].teamA + "</font>!</center></font></h2><hr />";
+		htmlEndTour = '<br><hr /><h2><font color="green"><center>&iexcl;Congratulations <font color="black">' + wars[roomId].teamB + '</font>!</center></font></h2><h2><font color="green"><center>&iexcl;You have won the war in format ' + wars[roomId].format + ' against <font color="black">' + wars[roomId].teamA + "</font>!</center></font></h2><hr />";
 	} else if (scoreA === scoreB) {
-		htmlEndTour = '<br><hr /><h2><font color="green"><center>&iexcl;La guerra de formato ' + wars[roomId].format + ' entre <font color="black">' + wars[roomId].teamA + '</font> y <font color="black">' + wars[roomId].teamB + '</font> ha terminado en Empate!</center></font></h2><hr />';
+		htmlEndTour = '<br><hr /><h2><font color="green"><center>&iexcl;The war in format ' + wars[roomId].format + ' between <font color="black">' + wars[roomId].teamA + '</font> and <font color="black">' + wars[roomId].teamB + '</font> has ended in a tie!</center></font></h2><hr />';
 	}
 	Rooms.get(roomId).addRaw(exports.viewTourStatus(roomId) + htmlEndTour);
 	let addpoints = Clans.setWarResult(wars[roomId].teamA, wars[roomId].teamB, scoreA, scoreB);
@@ -432,7 +432,7 @@ exports.invalidate = function (room, matchup) {
 
 exports.replaceParticipant = function (room, p1, p2) {
 	let roomId = toId(room);
-	if (!wars[roomId]) return 'No había ninguna guerra en esta sala.';
+	if (!wars[roomId]) return 'There was no war in this room.';
 	if (!wars[roomId].tourRound === 0) return 'La guerra no habia empezado';
 	let matchupId = exports.findMatchup(room, p1);
 	if (!matchupId) return 'El usuario no participaba en nungún combate de esta guerra.';
