@@ -6,8 +6,8 @@ const fs = require('fs');
 // Ideally, this should be zero.
 const DEFAULT_AMOUNT = 0;
 
-global.currencyName = 'Stardust';
-global.currencyPlural = 'Stardust';
+global.currencyName = 'Buck';
+global.currencyPlural = 'Bucks';
 
 let Economy = global.Economy = {
 	/**
@@ -85,13 +85,13 @@ exports.commands = {
 		if (userid.length > 19) return this.sendReply("/wallet - [user] can't be longer than 19 characters.");
 
 		Economy.readMoney(userid, money => {
-			this.sendReplyBox(SG.nameColor(target, true) + " has " + money + ((money === 1) ? " " + currencyName + "." : " " + currencyPlural + "."));
+			this.sendReplyBox(Plugins.Colors.apply(target, true) + " has " + money + ((money === 1) ? " " + currencyName + "." : " " + currencyPlural + "."));
 			//if (this.broadcasting) room.update();
 		});
 	},
 
-	gs: 'givecurrency', //You can change "gs" and "givestardust" to your currency name for an alias that applies to your currency Example: AwesomeBucks could be "ga" and "giveawesomebucks"
-	givestardust: 'givecurrency',
+	gb: 'givecurrency', //You can change "gs" and "givestardust" to your currency name for an alias that applies to your currency Example: AwesomeBucks could be "ga" and "giveawesomebucks"
+	givebucks: 'givecurrency',
 	gc:'givecurrency',
 	givecurrency: function (target, room, user, connection, cmd) {
 		if (!this.can('forcewin')) return false;
@@ -117,7 +117,7 @@ exports.commands = {
 			Economy.readMoney(targetUser, newAmount => {
 				if (Users(targetUser) && Users(targetUser).connected) {
 					Users.get(targetUser).popup('|html|You have received ' + amount + ' ' + (amount === 1 ? currencyName : currencyPlural) +
-					' from ' + SG.nameColor(user.userid, true) + '.');
+					' from ' + Plugins.Colors.apply(user.userid, true) + '.');
 				}
 				this.sendReply(targetUser + " has received " + amount + ((amount === 1) ? " " + currencyName + "." : " " + currencyPlural + "."));
 				Economy.logTransaction(user.name + " has given " + amount + ((amount === 1) ? " " + currencyName + " " : " " + currencyPlural + " ") + " to " + targetUser + ". (Reason: " + reason + ") They now have " + newAmount + (newAmount === 1 ? " " + currencyName + "." : " " + currencyPlural + "."));
@@ -125,8 +125,8 @@ exports.commands = {
 		});
 	},
 
-	ts: 'takecurrency', //You can change "ts" and "takestardust" to your currency name for an alias that applies to your currency Example: AwesomeBucks could be "ta" and "takeawesomebucks"
-	takestardust: 'takecurrency',
+	tb: 'takecurrency', //You can change "ts" and "takestardust" to your currency name for an alias that applies to your currency Example: AwesomeBucks could be "ta" and "takeawesomebucks"
+	takebucks: 'takecurrency',
 	tc:'takecurrency',
 	takecurrency: function (target, room, user, connection, cmd) {
 		if (!this.can('forcewin')) return false;
@@ -152,7 +152,7 @@ exports.commands = {
 		Economy.writeMoney(targetUser, -amount, () => {
 			Economy.readMoney(targetUser, newAmount => {
 				if (Users(targetUser) && Users(targetUser).connected) {
-					Users.get(targetUser).popup('|html|' + SG.nameColor(user.userid, true) + ' has removed ' + amount + ' ' + (amount === 1 ? currencyName : currencyPlural) +
+					Users.get(targetUser).popup('|html|' + Plugins.Colors.apply(user.userid, true) + ' has removed ' + amount + ' ' + (amount === 1 ? currencyName : currencyPlural) +
 					' from you.<br />');
 				}
 				this.sendReply("You removed " + amount + ((amount === 1) ? " " + currencyName + " " : " " + currencyPlural + " ") + " from " + Chat.escapeHTML(targetUser));
@@ -161,8 +161,8 @@ exports.commands = {
 		});
 	},
 
-	confirmtransferstardust: 'transfercurrency', //You can change "transferstardust" and "confirmtransferstardust" to your currency name for an alias that applies to your currency Example: AwesomeBucks could be "transferawesomebucks" and "confirmtransferawesomebucks"
-	transferstardust: 'transfercurrency',
+	donate: 'transfercurrency', //You can change "transferstardust" and "confirmtransferstardust" to your currency name for an alias that applies to your currency Example: AwesomeBucks could be "transferawesomebucks" and "confirmtransferawesomebucks"
+	transferbucks: 'transfercurrency',
 	confirmtransfercurrency: 'transfercurrency',
 	transfercurrency: function (target, room, user, connection, cmd) {
 		if (!target) return this.sendReply("Usage: /" + cmd + " [user], [amount]");
@@ -184,7 +184,7 @@ exports.commands = {
 				return this.popupReply('|html|<center>' +
 					'<button class = "card-td button" name = "send" value = "/confirmtransfercurrency ' + toId(targetUser) + ', ' + amount + '"' +
 					'style = "outline: none; width: 200px; font-size: 11pt; padding: 10px; border-radius: 14px ; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.4) inset; transition: all 0.2s;">' +
-					'Confirm transfer to <br><b style = "color:' + SG.hashColor(targetUser) + '; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8)">' + Chat.escapeHTML(targetUser) + '</b></button></center>'
+					'Confirm transfer to <br><b style = "color:' + Plugins.Colors.apply(targetUser) + '; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8)">' + Chat.escapeHTML(targetUser) + '</b></button></center>'
 				);
 			}
 			Economy.writeMoney(user.userid, -amount, () => {
@@ -198,7 +198,7 @@ exports.commands = {
 								targetUser + " now has " + firstAmount + " " + (firstAmount === 1 ? " " + currencyPlural : " " + currencyPlural)
 							);
 							if (Users.getExact(targetUser) && Users.getExact(targetUser).connected) {
-								Users.getExact(targetUser).send('|popup||html|' + SG.nameColor(user.name, true) + " has sent you " + amount + ((amount === 1) ? " " + currencyPlural : " " + currencyPlural));
+								Users.getExact(targetUser).send('|popup||html|' + Plugins.Colors.apply(user.name, true) + " has sent you " + amount + ((amount === 1) ? " " + currencyPlural : " " + currencyPlural));
 							}
 						});
 					});
@@ -249,7 +249,7 @@ exports.commands = {
 			let count = 1;
 			for (let u in rows) {
 				if (rows[u].amount < 1) continue;
-				output += '<tr><td>' + count + '</td><td>' + SG.nameColor(rows[u].name, true) + '</td><td>' + rows[u].amount + '</td></tr>';
+				output += '<tr><td>' + count + '</td><td>' + Plugins.Colors.apply(rows[u].name, true) + '</td><td>' + rows[u].amount + '</td></tr>';
 				count++;
 			}
 			self.sendReplyBox(output);
