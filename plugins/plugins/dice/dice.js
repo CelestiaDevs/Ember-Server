@@ -35,7 +35,7 @@ class Dice {
 		}, INACTIVE_END_TIME);
 
 		let buck = (this.bet === 1 ? 'buck' : 'bucks');
-		this.startMessage = '<div class="infobox"><b style="font-size: 14pt; color: #24678d"><center><span style="color: ' + SG.hashColor(starter) + '">' + Chat.escapeHTML(starter) + '</span> has started a game of dice for <span style = "color: green">' + amount + '</span> ' + buck + '!</center></b><br>' +
+		this.startMessage = '<div class="infobox"><b style="font-size: 14pt; color: #24678d"><center><span style="color: ' + Plugins.Colors.apply(starter) + '">' + Chat.escapeHTML(starter) + '</span> has started a game of dice for <span style = "color: green">' + amount + '</span> ' + buck + '!</center></b><br>' +
 			'<center><img style="margin-right: 30px;" src = "http://i.imgur.com/eywnpqX.png" width="80" height="80">' +
 			'<img style="transform:rotateY(180deg); margin-left: 30px;" src="http://i.imgur.com/eywnpqX.png" width="80" height="80"><br>' +
 			'<button name="send" value="/joindice">Click to join!</button></center>';
@@ -44,14 +44,14 @@ class Dice {
 
 	join(user, self) {
 		if (this.players.length >= 2) return self.errorReply("Two users have already joined this game of dice.");
-		Economy.readMoney(user.userid, money => {
+		Shop.getUserMoney(user.userid, money => {
 			if (money < this.bet) return self.sendReply('You don\'t have enough money for this game of dice.');
 			if (this.players.includes(user)) return self.sendReply('You have already joined this game of dice.');
 			if (this.players.length && this.players[0].latestIp === user.latestIp) return self.errorReply("You have already joined this game of dice under the alt '" + this.players[0].name + "'.");
 			if (this.players.length >= 2) return self.errorReply("Two users have already joined this game of dice.");
 
 			this.players.push(user);
-			this.room.add('|uhtmlchange|' + this.room.diceCount + '|' + this.startMessage + '<center>' + SG.nameColor(user.name) + ' has joined the game!</center></div>').update();
+			this.room.add('|uhtmlchange|' + this.room.diceCount + '|' + this.startMessage + '<center>' + Plugins.Colors.apply(user.name) + ' has joined the game!</center></div>').update();
 			if (this.players.length === 2) this.play();
 		});
 	}
@@ -65,18 +65,18 @@ class Dice {
 
 	play() {
 		let p1 = this.players[0], p2 = this.players[1];
-		Economy.readMoney(p1.userid, money1 => {
-			Economy.readMoney(p2.userid, money2 => {
+		Shop.getUserMoney(p1.userid, money1 => {
+			Shop.getUserMoney(p2.userid, money2 => {
 				if (money1 < this.bet || money2 < this.bet) {
 					let user = (money1 < this.bet ? p1 : p2);
 					let other = (user === p1 ? p2 : p1);
 					user.sendTo(this.room, 'You have been removed from this game of dice, as you do not have enough money.');
 					other.sendTo(this.room, user.name + ' has been removed from this game of dice, as they do not have enough money. Wait for another user to join.');
 					this.players.splice(this.players.indexOf(user), 1);
-					this.room.add('|uhtmlchange|' + this.room.diceCount + '|' + this.startMessage + '<center>' + this.players.map(user => SG.nameColor(user.name)) + ' has joined the game!</center>').update();
+					this.room.add('|uhtmlchange|' + this.room.diceCount + '|' + this.startMessage + '<center>' + this.players.map(user => Plugins.Colors.apply(user.name)) + ' has joined the game!</center>').update();
 					return;
 				}
-				let players = this.players.map(user => SG.nameColor(user.name)).join(' and ');
+				let players = this.players.map(user => Plugins.Colors.apply(user.name)).join(' and ');
 				this.room.add('|uhtmlchange|' + this.room.diceCount + '|' + this.startMessage + '<center>' + players + ' have joined the game!</center></div>').update();
 				let roll1, roll2;
 				do {
@@ -93,15 +93,15 @@ class Dice {
 					this.room.add('|uhtmlchange|' + this.room.diceCount + '|<div class="infobox"><center>' + players + ' have joined the game!<br /><br />' +
 						'The game has been started! Rolling the dice...<br />' +
 						'<img src = "' + diceImg(roll1) + '" align = "left" title = "' + Chat.escapeHTML(p1.name) + '\'s roll"><img src = "' + diceImg(roll2) + '" align = "right" title = "' + p2.name + '\'s roll"><br />' +
-						SG.nameColor(p1.name, true) + ' rolled ' + (roll1 + 1) + '!<br />' +
-						SG.nameColor(p2.name, true) + ' rolled ' + (roll2 + 1) + '!<br />' +
-						SG.nameColor(winner.name, true) + ' has won <b style="color:green">' + (this.bet - taxedAmt) + '</b> ' + buck + '!<br />' +
-						'Better luck next time, ' + SG.nameColor(loser.name) + '!'
+						Plugins.Colors.apply(p1.name, true) + ' rolled ' + (roll1 + 1) + '!<br />' +
+						Plugins.Colors.apply(p2.name, true) + ' rolled ' + (roll2 + 1) + '!<br />' +
+						Plugins.Colors.apply(winner.name, true) + ' has won <b style="color:green">' + (this.bet - taxedAmt) + '</b> ' + buck + '!<br />' +
+						'Better luck next time, ' + Plugins.Colors.apply(loser.name) + '!'
 					).update();
-					Economy.writeMoney(winner.userid, (this.bet - taxedAmt), () => {
-						Economy.writeMoney(loser.userid, -this.bet, () => {
-							Economy.readMoney(winner.userid, winnerMoney => {
-								Economy.readMoney(loser.userid, loserMoney => {
+					Shop.giveMoney(winner.userid, (this.bet - taxedAmt), () => {
+						Shop.giveMoney(loser.userid, -this.bet, () => {
+							Shop.getUserMoney(winner.userid, winnerMoney => {
+								Shop.getUserMoney(loser.userid, loserMoney => {
 									Economy.logDice(winner.userid + " has won a dice against " + loser.userid + ". They now have " + winnerMoney + (winnerMoney === 1 ? " buck." : " bucks."));
 									Economy.logDice(loser.userid + " has lost a dice against " + winner.userid + ". T hey now have " + loserMoney + (loserMoney === 1 ? " buck." : " bucks."));
 									this.end();
