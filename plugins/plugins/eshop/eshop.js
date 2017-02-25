@@ -3,7 +3,7 @@
 const fs = require('fs');
 let allowThisShop = false; //Change to true to make these command work
 let writeJSON = true;
-SG.eShop = {};
+EM.eShop = {};
 
 function NewItem(name, desc, price, isSSB) {
 	this.name = name;
@@ -15,14 +15,14 @@ function NewItem(name, desc, price, isSSB) {
 
 function writeShop() {
 	if (!writeJSON) return false; //Prevent corruptions
-	fs.writeFile('config/eShop.json', JSON.stringify(SG.eShop));
+	fs.writeFile('config/eShop.json', JSON.stringify(EM.eShop));
 }
 
 function shopDisplay() {
 	let output = '<div style="max-height:300px; width: 100%; overflow: scroll"><table style="border:2px solid #101ad1; border-radius: 5px; width: 100%;"><tr><th colspan="3" style="border: 2px solid #070e96; border-radius: 5px">Server Shop</th></tr>';
-	for (let i in SG.eShop) {
-		if (!SG.eShop[i]) continue;
-		output += '<tr><td style="border: 2px solid #070e96; width: 20%; text-align: center"><button name="send" value="/eshop buy ' + SG.eShop[i].id + '">' + SG.eShop[i].name + '</button></td><td style="border: 2px solid #070e96; width: 70%; text-align: center">' + SG.eShop[i].desc + '</td><td style="border: 2px solid #070e96; width: 10%; text-align: center">' + SG.eShop[i].price + '</td></tr>';
+	for (let i in EM.eShop) {
+		if (!EM.eShop[i]) continue;
+		output += '<tr><td style="border: 2px solid #070e96; width: 20%; text-align: center"><button name="send" value="/eshop buy ' + EM.eShop[i].id + '">' + EM.eShop[i].name + '</button></td><td style="border: 2px solid #070e96; width: 70%; text-align: center">' + EM.eShop[i].desc + '</td><td style="border: 2px solid #070e96; width: 10%; text-align: center">' + EM.eShop[i].price + '</td></tr>';
 	}
 	output += '</table></div>';
 	return output;
@@ -66,12 +66,12 @@ function toToken(item) {
 try {
 	fs.accessSync('config/eShop.json', fs.F_OK);
 	let raw = JSON.parse(fs.readFileSync('config/eShop.json', 'utf8'));
-	SG.eShop = raw;
+	EM.eShop = raw;
 } catch (e) {
 	fs.writeFile('config/eShop.json', "{}", function (err) {
 		if (err) {
 			console.error('Error while loading eShop: ' + err);
-			SG.eShop = {
+			EM.eShop = {
 				closed: true,
 			};
 			writeJSON = false;
@@ -83,7 +83,7 @@ try {
 
 //Usage notification
 try {
-	fs.accessSync('spacialgaze-plugins/shop.js', fs.F_OK);
+	fs.accessSync('chat-plugins/shop.js', fs.F_OK);
 	if (allowThisShop) console.warn('Since the normal shop is up the eShop has been disabled.');
 	allowThisShop = false;
 } catch (e) {
@@ -97,33 +97,33 @@ exports.commands = {
 		add: function (target, room, user, connection, cmd, message) {
 			if (!this.can('roomowner')) return false;
 			if (!allowThisShop) return this.errorReply('This shop is closed');
-			if (SG.eShop.closed) return this.sendReply('An error closed the shop.');
+			if (EM.eShop.closed) return this.sendReply('An error closed the shop.');
 			target = target.split(',');
 			if (!target[2]) return this.parse('/eshop help');
-			if (SG.eShop[toId(target[0])]) return this.errorReply(target[0] + ' is already in the shop.');
+			if (EM.eShop[toId(target[0])]) return this.errorReply(target[0] + ' is already in the shop.');
 			if (isNaN(Number(target[2]))) return this.parse('/eshop help');
 			let isSSB = false;
 			if (toId(target[0]) === 'shiny' || toId(target[0]) === 'ffacustomsymbol' || toId(target[0]) === 'customability' || toId(target[0]) === 'customitem' || toId(target[0]) === 'custommove') isSSB = true;
-			SG.eShop[toId(target[0])] = new NewItem(target[0], target[1], target[2], isSSB);
+			EM.eShop[toId(target[0])] = new NewItem(target[0], target[1], target[2], isSSB);
 			writeShop();
 			return this.sendReply('The item ' + target[0] + ' was added.');
 		},
 		remove: function (target, room, user, connection, cmd, message) {
 			if (!allowThisShop) return this.errorReply('This shop is closed');
 			if (!this.can('roomowner')) return false;
-			if (SG.eShop.closed) return this.sendReply('An error closed the shop.');
+			if (EM.eShop.closed) return this.sendReply('An error closed the shop.');
 			if (!target) return this.parse('/eshop help');
-			if (!SG.eShop[toId(target)]) return this.errorReply(target + ' is not in the shop.');
-			delete SG.eShop[toId(target)];
+			if (!EM.eShop[toId(target)]) return this.errorReply(target + ' is not in the shop.');
+			delete EM.eShop[toId(target)];
 			writeShop();
 			return this.sendReply('The item ' + target + ' was removed.');
 		},
 		buy: function (target, room, user, connection, cmd, message) {
 			if (!allowThisShop) return this.errorReply('This shop is closed');
 			if (!target) return this.parse('/eshop help buy');
-			if (SG.eShop.closed) return this.sendReply('The shop is closed, come back later.');
-			if (!SG.eShop[toId(target)]) return this.errorReply('Item ' + target + ' not found.');
-			let item = SG.eShop[toId(target)];
+			if (EM.eShop.closed) return this.sendReply('The shop is closed, come back later.');
+			if (!EM.eShop[toId(target)]) return this.errorReply('Item ' + target + ' not found.');
+			let item = EM.eShop[toId(target)];
 			Economy.readMoney(user.userid, userMoney => {
 				if (item.price > userMoney) return this.errorReply('You need ' + (item.price - userMoney) + ' more ' + ((item.price - userMoney) === 1 ? global.currencyName : global.currenyPlural) + ' to buy this.');
 				if (item.isSSB && !SG.ssb[user.userid]) return this.sendReply('You need to run /ssb edit at least once before you can buy this.');
