@@ -121,6 +121,12 @@ exports.transferMoney = function (userA, userB, pds) {
 	writePdData();
 	return true;
 };
+//dice game
+exports.logDice: function (message) {
+		if (!message) return false;
+		fs.appendFile('logs/dice.log', '[' + new Date().toUTCString() + '] ' + message + '\n');
+	},
+};
 //symbols
 exports.symbolPermision = function (user) {
 	let userId = toId(user);
