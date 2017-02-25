@@ -7,7 +7,7 @@ const badEndings = ['the', 'and', 'a', 'an', 'or', 'with', 'to'];
 
 function cleanWord(word) {
 	let reg = /[^a-zA-Z0-9 :]/g;
-	let clean = Tools.escapeHTML(word);
+	let clean = Chat.escapeHTML(word);
 	if (reg.test(word)) {
 		return false;
 	} else {
