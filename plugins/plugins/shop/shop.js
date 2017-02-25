@@ -5,7 +5,7 @@ exports.commands = {
 	 * Shop commands
 	 *********************************************************/
 
-	/**tienda: 'shop',
+	tienda: 'shop',
 	shop: function (target, room, user) {
 		if (!this.runBroadcast()) return false;
 		this.sendReplyBox(
@@ -24,7 +24,7 @@ exports.commands = {
 			'<br /> Some items can only be purchased by contacting an administrator. For more information use the command /shophelp' +
 			'</center>'
 		);
-	},**/
+	},
 
 	ayudatienda: 'shophelp',
 	shophelp: function () {
