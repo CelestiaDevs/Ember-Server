@@ -1,5 +1,5 @@
 {
-  "name": "Pokemon-Showdown-Plugin-Roomevents",
+  "name": "Pokemon-Showdown-Plugin-Room-Events",
   "version": "0.2",
   "engines": {
     "node": ">= 4.0.0"
