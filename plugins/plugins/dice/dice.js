@@ -102,8 +102,8 @@ class Dice {
 						Shop.giveMoney(loser.userid, -this.bet, () => {
 							Shop.getUserMoney(winner.userid, winnerMoney => {
 								Shop.getUserMoney(loser.userid, loserMoney => {
-									Economy.logDice(winner.userid + " has won a dice against " + loser.userid + ". They now have " + winnerMoney + (winnerMoney === 1 ? " buck." : " bucks."));
-									Economy.logDice(loser.userid + " has lost a dice against " + winner.userid + ". T hey now have " + loserMoney + (loserMoney === 1 ? " buck." : " bucks."));
+									Shop.logDice(winner.userid + " has won a dice against " + loser.userid + ". They now have " + winnerMoney + (winnerMoney === 1 ? " buck." : " bucks."));
+									Shop.logDice(loser.userid + " has lost a dice against " + winner.userid + ". T hey now have " + loserMoney + (loserMoney === 1 ? " buck." : " bucks."));
 									this.end();
 								});
 							});
