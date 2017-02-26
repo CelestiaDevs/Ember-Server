@@ -35,8 +35,8 @@ exports.commands = {
 		if (targetUser && targetUser.connected) return this.sendReplyBox(Plugins.Colors.apply(targetUser.name, true) + " is <b><font color='limegreen'>Currently Online</b></font>.");
 		target = Chat.escapeHTML(target);
 		let seen = Db.seen.get(toId(target));
-		if (!seen) return this.sendReplyBox(Plugins.Colors.apply(target, true) + " has <b><font color='red'>never been online</font></b> on this server.");
-		this.sendReplyBox(Plugins.Colors.apply(target, true) + " was last seen <b>" + Chat.toDurationString(Date.now() - seen, {precision: true}) + "</b> ago.");
+		if (!seen) return this.sendReplyBox(Plugins.Colors.apply(targetUser.name, true) + " has <b><font color='red'>never been online</font></b> on this server.");
+		this.sendReplyBox(Plugins.Colors.apply(targetUser.name, true) + " was last seen <b>" + Chat.toDurationString(Date.now() - seen, {precision: true}) + "</b> ago.");
 	},
 	seenhelp: ["/seen - Shows when the user last connected on the server."],
 
