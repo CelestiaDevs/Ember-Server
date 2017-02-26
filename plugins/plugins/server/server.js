@@ -27,6 +27,18 @@ exports.commands = {
 		Users.users.forEach(user => user.popup('All rooms have been cleared.'));
 		this.privateModCommand(`(${user.name} used /globalclearall.)`);
 	},
+	
+	seen: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		if (!target) return this.parse('/help seen');
+		let targetUser = Users.get(target);
+		if (targetUser && targetUser.connected) return this.sendReplyBox(Plugins.Colors.apply(targetUser.name, true) + " is <b><font color='limegreen'>Currently Online</b></font>.");
+		target = Chat.escapeHTML(target);
+		let seen = Db.seen.get(toId(target));
+		if (!seen) return this.sendReplyBox(Plugins.Colors.apply(target, true) + " has <b><font color='red'>never been online</font></b> on this server.");
+		this.sendReplyBox(Plugins.Colors.apply(target, true) + " was last seen <b>" + Chat.toDurationString(Date.now() - seen, {precision: true}) + "</b> ago.");
+	},
+	seenhelp: ["/seen - Shows when the user last connected on the server."],
 
 	masspm: 'pmall',
 	pmall: function (target, room, user) {
