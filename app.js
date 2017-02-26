@@ -72,6 +72,10 @@ if (!fs.existsSync(DATA_DIR + "avatars/")) {
 	fs.mkdirSync(DATA_DIR + "avatars/");
 }
 
+if (!fs.existsSync(DB_DIR)) {
+	fs.mkdirSync(DB_DIR);
+}
+
 if (!fs.existsSync(LOGS_DIR)) {
 	fs.mkdirSync(LOGS_DIR);
 	fs.mkdirSync(LOGS_DIR + 'chat/');
@@ -181,6 +185,8 @@ global.Punishments = require('./punishments');
 
 global.Chat = require('./chat');
 Chat.loadCommands();
+
+global.Db = require('origindb')(DB_DIR);
 
 global.Rooms = require('./rooms');
 
