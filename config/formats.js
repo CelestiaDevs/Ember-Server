@@ -1275,6 +1275,20 @@ exports.Formats = [
 			}
 		},
 	},
+	{
+		name: "[Gen 7] Pokemon Mystery Dungeon",
+
+		mod: 'pmd',
+		team: 'randomPmd',
+		ruleset: ['HP Percentage Mod', 'Cancel Mod'],
+		onBegin: function () {
+			let allPokemon = this.p1.pokemon.concat(this.p2.pokemon);
+			for (let i = 0, len = allPokemon.length; i < len; i++) {
+				allPokemon[i].maxhp *= 5;
+				allPokemon[i].hp = allPokemon[i].maxhp;
+			}
+		},
+	},
 
 	// RoA Spotlight
 	///////////////////////////////////////////////////////////////////
