@@ -1,4 +1,4 @@
-Pokémon Showdown
+Pokémon Showdown - Ember Server
 ========================================================================
 
 Navigation: [Website][1] | **Server repository** | [Client repository][2] | [Dex repository][3]
@@ -130,6 +130,13 @@ Pokémon Showdown's server is distributed under the terms of the [MIT License][9
 
   [9]: https://github.com/Zarel/Pokemon-Showdown/blob/master/LICENSE
 
+
+Ember Development Credits
+------------------------------------------------------------------------
+
+Owner
+
+- DeltaSkiez - Development, Sysadmin
 
 Credits
 ------------------------------------------------------------------------
