@@ -167,6 +167,8 @@ global.toUserName = function (userid) {
 
 global.Monitor = require('./monitor');
 
+global.Db = require('nef')(require('nef-fs')('config/db'));
+
 global.Tools = require('./tools');
 global.toId = Tools.getId;
 
