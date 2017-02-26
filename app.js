@@ -65,6 +65,7 @@ try {
 /* ----------------Data-Directory------------*/
 global.DATA_DIR = (process.env.OPENSHIFT_DATA_DIR) ? process.env.OPENSHIFT_DATA_DIR : './config/';
 global.LOGS_DIR = (process.env.OPENSHIFT_DATA_DIR) ? (process.env.OPENSHIFT_DATA_DIR + 'logs/') : './logs/';
+global.DB_DIR = (process.env.OPENSHIFT_DATA_DIR) ? process.env.OPENSHIFT_DATA_DIR : './config/db/';
 /* ------------------------------------------*/
 
 if (!fs.existsSync(DATA_DIR + "avatars/")) {
