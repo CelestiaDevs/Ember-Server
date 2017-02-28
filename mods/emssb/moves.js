@@ -262,11 +262,11 @@ exports.BattleMovedex = {
 		type: "Normal",
 	},
 	// Revival Jackie
-	duckpower: {
+	hurricaneslicer: {
 		category: "Status",
-		id: "duckpower",
+		id: "hurricaneslicer",
 		isNonstandard: true,
-		name: "Duck Power",
+		name: "Hurricane Slicer",
 		self: {
 			boosts: {
 				def: 1,
@@ -284,11 +284,11 @@ exports.BattleMovedex = {
 		type: "Fairy",
 	},
 	// Hanna
-	tsunamicrash: {
+	dnaevolution: {
 		category: "Status",
-		id: "tsunamicrash",
+		id: "dnaevolution",
 		isNonstandard: true,
-		name: "Tsunami Crash",
+		name: "DNA Evolution",
 		pp: 10,
 		secondary: {
 			volatileStatus: 'attract',
