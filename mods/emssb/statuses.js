@@ -135,13 +135,13 @@ exports.BattleStatuses = {
 	hanna: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '@Hanna', 'You can\'t touch the master of RAGE!');
+			this.add('c', '@Hanna', 'Sigh. Guess I have time for a quick ace before going back to sleep.');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '@Hanna', 'I shall spare you today, young one!');
+			this.add('c', '@Hanna', 'Man, I\'m getting tired of this shit.');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '@Hanna', 'The RAGE wasn\'t enough to overpower you!');
+			this.add('c', '@Hanna', 'Well you\'re a little bit of a bitch, aren\'t you?');
 		},
 	},
 	revivaljackie: {
