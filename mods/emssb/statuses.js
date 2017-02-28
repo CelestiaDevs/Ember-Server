@@ -12,16 +12,16 @@ exports.BattleStatuses = {
 			this.add('c', '+Crystal Gray', 'Shit I got cleaned');
 		},
 	},
-	flamingaurora: {
+	meltymoltengalaxy: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '%Flaming Aurora', 'Imp Latios Sucks');
+			this.add('c', '%MeltyMoltenGalaxy', 'Imp Latios Sucks');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '%Flaming Aurora', 'Lemme Go Sleep');
+			this.add('c', '%MeltyMoltenGalaxy', 'Lemme Go Sleep');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '%Flaming Aurora', 'llamatea');
+			this.add('c', '%MeltyMoltenGalaxy', 'llamatea');
 		},
 	},
 	implatios: {
@@ -132,28 +132,28 @@ exports.BattleStatuses = {
 			this.add('c', '~HurriKaine', 'The flames are dowsed.');
 		},
 	},
-	revivalhanna: {
+	hanna: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '@Revival Hanna', 'You can\'t touch the master of RAGE!');
+			this.add('c', '@Hanna', 'You can\'t touch the master of RAGE!');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '@Revival Hanna', 'I shall spare you today, young one!');
+			this.add('c', '@Hanna', 'I shall spare you today, young one!');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '@Revival Hanna', 'The RAGE wasn\'t enough to overpower you!');
+			this.add('c', '@Hanna', 'The RAGE wasn\'t enough to overpower you!');
 		},
 	},
-	sakurashaymin: {
+	revivaljackie: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '%SakuraShaymin', '``All hail.``');
+			this.add('c', '%Revival Jackie', '``All hail.``');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '%SakuraShaymin', '``I\'m off, night``');
+			this.add('c', '%Revival Jackie', '``I\'m off, night``');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '%SakuraShaymin', '``Nice achievement.``');
+			this.add('c', '%Revival Jackie', '``Nice achievement.``');
 		},
 	},
 	vaporeonhydroxide: {
