@@ -27,7 +27,7 @@ exports.BattleScripts = {
 				species: 'Clefairy',
 				ability: 'Analytic',
 				item: 'Eviolite',
-				gender: 'F',
+				gender: 'M',
 				moves: [
 					['Calm Mind', 'Cosmic Power'][variant], 'Soft-Boiled', 'Stored Power',
 				],
@@ -43,6 +43,7 @@ exports.BattleScripts = {
 				species: 'Kartana',
 				ability: 'Beast Boost',
 				item: 'Choice Scarf',
+				gender: 'F',
 				moves: ['Power Whip', 'V-create', 'Bolt Strike',
 				],
 				signatureMove: 'Paper Cut',
@@ -59,6 +60,7 @@ exports.BattleScripts = {
 				species: 'Genesect',
 				ability: 'Download',
 				item: 'Choice Scarf',
+				gender: 'F',
 				moves: ['U-turn', 'Ice Beam', 'Explosion',
 				],
 				signatureMove: 'Crystallized Ukaku',
@@ -101,11 +103,11 @@ exports.BattleScripts = {
 				},
 				nature: 'Timid',
 			},
-			'@Revival Hanna': {
+			'@Hanna': {
 				species: 'Gyarados',
 				ability: 'Guts',
 				item: 'Leftovers',
-				gender: 'M',
+				gender: 'F',
 				moves: ['Substitute', 'Dragon Dance', 'Bounce',
 				],
 				signatureMove: 'Tsunami Crash',
@@ -118,7 +120,7 @@ exports.BattleScripts = {
 			},
 
 			// Global Drivers:
-			'%Flaming Aurora': {
+			'%MeltyMoltenGalaxy': {
 				species: 'Rayquaza-Mega',
 				ability: 'Delta Stream',
 				item: 'Assault Vest',
@@ -133,20 +135,20 @@ exports.BattleScripts = {
 				},
 				nature: 'Adamant',
 			},
-			'%SakuraShaymin': {
-				species: 'Golduck',
-				ability: 'Cloud Nine',
-				item: 'Leftovers',
-				gender: 'M',
-				moves: ['Scald', 'Ice Beam', 'Psychic',
+			'%Revival Jackie': {
+				species: 'Shaymin-Sky',
+				ability: 'Serene Grace',
+				item: 'King\'s Rock',
+				gender: 'F',
+				moves: ['Seed Flare', 'Giga Drain', 'Psychic',
 				],
-				signatureMove: 'Duck Power',
+				signatureMove: 'Hurricane Slicer',
 				evs: {
 					spa: 252,
 					spe: 252,
 					hp: 4,
 				},
-				nature: 'Modest',
+				nature: 'Timid',
 			},
 			
 			// Global Bots:
@@ -170,6 +172,7 @@ exports.BattleScripts = {
 				species: 'Garchomp',
 				ability: 'Rough Skin',
 				item: 'Leftovers',
+				gender: 'F',
 				moves: ['Rock Tomb', 'Earthquake', 'Swords Dance',
 				],
 				signatureMove: 'Dragon Blitz',
@@ -184,6 +187,7 @@ exports.BattleScripts = {
 				species: 'Vaporeon',
 				ability: 'Water Absorb',
 				item: 'Leftovers',
+				gender: 'M',
 				moves: ['Scald', 'Protect', 'Toxic',
 				],
 				signatureMove: 'Devotion',
@@ -200,6 +204,7 @@ exports.BattleScripts = {
 				species: 'Aggron',
 				ability: 'Sturdy',
 				item: 'Leftovers',
+				gender: 'F',
 				moves: ['Head Smash', 'Thunder Punch', 'Earthquake',
 				],
 				signatureMove: 'Tri-Horn Bash',
@@ -214,6 +219,7 @@ exports.BattleScripts = {
 				species: 'Greninja',
 				ability: 'Protean',
 				item: 'Expert Belt',
+				gender: 'F',
 				moves: ['Dark Pulse', 'Extrasensory', 'Ice Beam',
 				],
 				signatureMove: 'Hydro Smash',
@@ -228,6 +234,7 @@ exports.BattleScripts = {
 				species: 'Luxray',
 				ability: 'Rivalry',
 				item: 'Leftovers',
+				gender: 'F',
 				moves: ['Discharge', 'Crunch', 'Ice Fang',
 				],
 				signatureMove: 'Power Cut',
