@@ -147,19 +147,19 @@ exports.BattleStatuses = {
 	revivaljackie: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '%Revival Jackie', '``All hail.``');
+			this.add('c', '%Revival Jackie', 'Gotcha ;)');
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('c', '%Revival Jackie', '``I\'m off, night``');
+			this.add('c', '%Revival Jackie', 'Byeeeeeeeeee :3');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '%Revival Jackie', '``Nice achievement.``');
+			this.add('c', '%Revival Jackie', 'Bleh x_x');
 		},
 	},
 	vaporeonhydroxide: {
 		exists: true,
 		onStart: function () {
-			this.add('c', '$VaporeonHydroxide', ' I\'m here to help!');
+			this.add('c', '$VaporeonHydroxide', 'I\'m here to help!');
 		},
 		onSwitchOut: function (pokemon) {
 			this.add('c', '$VaporeonHydroxide', 'I\'ll be back soon');
@@ -177,7 +177,7 @@ exports.BattleStatuses = {
 			this.add('c', '+Perfect Rose', 'I\'ll come back later.');
 		},
 		onFaint: function (pokemon) {
-			this.add('c', '+Perfect Rose', ' I will never fall.');
+			this.add('c', '+Perfect Rose', 'I will never fall.');
 		},
 	},
 };
