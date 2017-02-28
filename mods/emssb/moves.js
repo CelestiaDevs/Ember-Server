@@ -120,7 +120,7 @@ exports.BattleMovedex = {
 			this.add('-anim', source, "Blizzard", target);
 		},
 	},
-	// Flaming Aurora
+	// MeltyMoltenGalaxy
 	crestofdeath: {
 		category: "Special",
 		basePower: 150,
@@ -261,7 +261,7 @@ exports.BattleMovedex = {
 		target: "Normal",
 		type: "Normal",
 	},
-	// SakuraShaymin
+	// Revival Jackie
 	duckpower: {
 		category: "Status",
 		id: "duckpower",
@@ -283,7 +283,7 @@ exports.BattleMovedex = {
 		target: "self",
 		type: "Fairy",
 	},
-	// Revival Hanna
+	// Hanna
 	tsunamicrash: {
 		category: "Status",
 		id: "tsunamicrash",
