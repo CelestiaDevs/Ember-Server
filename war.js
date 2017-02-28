@@ -547,37 +547,37 @@ let cmds = {
 					'<li>/war size, [Players per team] - Change the size of the war.</li>' +
 					'<li>/war auth, [captain1], [captain2] - Sets the captains of the clans.</li>' +
 					'<li>/war reg, [P1], [P2]... - Command to register alignments, only usable by captains.</li>' +
-					'<li>/war start - Inicia una guerra una vez registradas las alineaciones.</li>' +
-					'<li>/war search - Muestra las guerras en curso del servidor.</li>' +
+					'<li>/war start - Starts a war once the alignments are recorded.</li>' +
+					'<li>/war search - Shows ongoing server wars.</li>' +
 					'</ul>');
 			break;
 		case 'nuevo':
 		case 'new':
 		case 'create':
-			if (params.length < 6) return this.sendReply("Usage: /war new, [standard/total/lineups], [tier/multitier], [tamaño], [clanA], [clanB]");
+			if (params.length < 6) return this.sendReply("Usage: /war new, [standard/total/lineups], [tier/multitier], [size], [clanA], [clanB]");
 			if (!this.can('joinbattle', room)) return false;
-			if (!room.isOfficial) return this.sendReply("Este comando solo puede ser usado en salas Oficiales.");
-			if (War.getTourData(roomId)) return this.sendReply("Ya había una guerra en esta sala.");
-			if (tour[roomId] && tour[roomId].status != 0) return this.sendReply('Ya hay un torneo en  esta sala.');
-			if (teamTour.getTourData(roomId)) return this.sendReply("Ya había un torneo de equipos en esta sala.");
+			if (!room.isOfficial) return this.sendReply("This command can only be used in official rooms.");
+			if (War.getTourData(roomId)) return this.sendReply("There was already a war in this room.");
+			if (tour[roomId] && tour[roomId].status != 0) return this.sendReply('There is already a tournament in this room.');
+			if (teamTour.getTourData(roomId)) return this.sendReply("There was already a team tournament in this room.");
 			var size = parseInt(params[3]);
-			if (size < 3) return this.sendReply("Mínimo deben ser 3 jugadores por clan.");
+			if (size < 3) return this.sendReply("Minimum must be 3 players per clan.");
 			var format = War.tourTiers[toId(params[2])];
-			if (!format) return this.sendReply("Formato no válido.");
-			if (!Clans.getProfile(params[4]) || !Clans.getProfile(params[5])) return this.sendReply("Alguno de los clanes no existía.");
-			if (War.findClan(params[4]) || War.findClan(params[5])) return this.sendReply("Alguno de los clanes ya estaba en guerra.");
+			if (!format) return this.sendReply("Format not valid.");
+			if (!Clans.getProfile(params[4]) || !Clans.getProfile(params[5])) return this.sendReply("Some of the clans did not exist.");
+			if (War.findClan(params[4]) || War.findClan(params[5])) return this.sendReply("Some of the clans were already at war.");
 			params[4] = Clans.getClanName(params[4]);
 			params[5] = Clans.getClanName(params[5]);
 			switch (toId(params[1])) {
 			case 'standard':
 				War.newTeamTour(room.id, 'standard', format, size, Chat.escapeHTML(params[4]), Chat.escapeHTML(params[5]));
-				this.logModCommand(user.name + " ha iniciado una guerra standard entre los clanes " + toId(params[4]) + " y " + toId(params[5]) + " en formato " + format + ".");
-				Rooms.get(room.id).addRaw('<hr /><h2><font color="green">' + user.name + ' ha iniciado una guerra standard en formato ' + format + ' entre ' + Chat.escapeHTML(params[4]) + " y " + Chat.escapeHTML(params[5]) + '.</font></h2><b>Para unirse a la war: <button name="send" value="/war join">/war join</button></b><br /><b><font color="blueviolet">Jugadores por equipo:</font></b> ' + size + '<br /><font color="blue"><b>FORMATO:</b></font> ' + format + '<hr /><br /><font color="red"><b>Recuerda que debes mantener tu nombre durante toda la duración de la guerra.</b></font>');
+				this.logModCommand(user.name + " has initiated a standard war between the clans " + toId(params[4]) + " and " + toId(params[5]) + " in format " + format + ".");
+				Rooms.get(room.id).addRaw('<hr /><h2><font color="green">' + user.name + ' has started a standard war in format ' + format + ' between ' + Chat.escapeHTML(params[4]) + " and " + Chat.escapeHTML(params[5]) + '.</font></h2><b>To join the war: <button name="send" value="/war join">/war join</button></b><br /><b><font color="blueviolet">Team Players:</font></b> ' + size + '<br /><font color="blue"><b>FORMAT:</b></font> ' + format + '<hr /><br /><font color="red"><b>Remember that you must keep your name for the duration of the war.</b></font>');
 				break;
 			case 'total':
 				War.newTeamTour(room.id, 'total', format, size, Chat.escapeHTML(params[4]), Chat.escapeHTML(params[5]));
 				this.logModCommand(user.name + " ha iniciado una guerra total entre los clanes " + toId(params[4]) + " y " + toId(params[5]) + " en formato " + format + ".");
-				Rooms.get(room.id).addRaw('<hr /><h2><font color="green">' + user.name + ' ha iniciado una guerra total en formato ' + format + ' entre ' + Chat.escapeHTML(params[4]) + " y " + Chat.escapeHTML(params[5]) + '.</font></h2><b>Para unirse a la war: <button name="send" value="/war join">/war join</button></b><br /><b><font color="blueviolet">Jugadores por equipo:</font></b> ' + size + '<br /><font color="blue"><b>FORMATO:</b></font> ' + format + '<hr /><br /><font color="red"><b>Recuerda que debes mantener tu nombre durante toda la duración de la guerra.</b></font>');
+				Rooms.get(room.id).addRaw('<hr /><h2><font color="green">' + user.name + ' ha iniciado una guerra total en formato ' + format + ' entre ' + Chat.escapeHTML(params[4]) + " and " + Chat.escapeHTML(params[5]) + '.</font></h2><b>To join the war: <button name="send" value="/war join">/war join</button></b><br /><b><font color="blueviolet">Team Players:</font></b> ' + size + '<br /><font color="blue"><b>FORMAT:</b></font> ' + format + '<hr /><br /><font color="red"><b>Remember that you must keep your name for the duration of the war.</b></font>');
 				break;
 			case 'lineups':
 				if (params.length < 8) return this.sendReply("Usage: /war new, lineups, [tier/multitier], [tamano], [clanA], [clanB], [capitanA], [capitanB]");
