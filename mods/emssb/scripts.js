@@ -104,19 +104,19 @@ exports.BattleScripts = {
 				nature: 'Timid',
 			},
 			'@Hanna': {
-				species: 'Gyarados',
-				ability: 'Guts',
-				item: 'Leftovers',
+				species: 'Volcarona',
+				ability: 'Swarm',
+				item: 'Focus Sash',
 				gender: 'F',
-				moves: ['Substitute', 'Dragon Dance', 'Bounce',
+				moves: ['Bug Buzz', 'Fiery Dance', 'Hurricane',
 				],
-				signatureMove: 'Tsunami Crash',
+				signatureMove: 'DNA Evolution',
 				evs: {
 					atk: 252,
 					spe: 252,
 					hp: 4,
 				},
-				nature: 'Adamant',
+				nature: 'Timid',
 			},
 
 			// Global Drivers:
