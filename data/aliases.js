@@ -37,6 +37,12 @@ exports.BattleAliases = {
 	"monorandom": "[Gen 7] Monotype Random Battle",
 	"bf": "Battle Factory",
 	"inverse": "Inverse Battle",
+	"fullpotential": "[Gen 7] Full Potential",
+	"automagic": "[Gen 7] Automagic",
+	"embermonotype": "[Gen 7] Ember Monotype",
+	"perseverance": "[Gen 7] Perseverance",
+	"pmd": "[Gen 7] Pokemon Mystery Dungeon",
+	"ssb": "[Gen 7] Super Staff Bros",
 
 	// mega evos
 	"maero": "Aerodactyl-Mega",
