@@ -856,7 +856,7 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
 	},
 	{
-		name: "[Gen 7] Random Monotype",
+		name: "[Gen 7] Monotype Random Battle",
 		mod: 'randoms',
 
 		searchShow: true,
